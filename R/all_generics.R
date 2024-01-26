@@ -5,14 +5,14 @@ setGeneric("id<-", function(x, value) standardGeneric("id<-"))
 setGeneric("dataset_id", function(x) standardGeneric("dataset_id"))
 setGeneric("dataset_id<-", function(x, value) standardGeneric("dataset_id<-"))
 
-# Generic needed for Neighbor Graph S4 objects(ONG,FNG)
+# generic functions for neighbor graph S4 objects (ONG,FNG)
 
 setGeneric("edge_metric", function(x) standardGeneric("edge_metric"))
 setGeneric("edge_metric<-", function(x, value) standardGeneric("edge_metric<-"))
 setGeneric("metric_type", function(x) standardGeneric("metric_type"))
 setGeneric("metric_type<-", function(x, value) standardGeneric("metric_type<-"))
 
-#Generics for REC S4 objects
+# generic functions for the REC S4 object
 
 setGeneric("record_id", function(x) standardGeneric("record_id"))
 setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
@@ -32,3 +32,18 @@ setGeneric("record_runtime_end", function(x) standardGeneric("record_runtime_end
 setGeneric("record_runtime_end<-", function(x, value) standardGeneric("record_runtime_end<-"))
 setGeneric("record_runtime_duration", function(x) standardGeneric("record_runtime_duration"))
 setGeneric("record_runtime_duration<-", function(x, value) standardGeneric("record_runtime_duration<-"))
+
+# generic functions for the OID S4 object
+
+setGeneric("oid_header", function(x) standardGeneric("oid_header"))
+setGeneric("oid_header<-", function(x, value) standardGeneric("oid_header<-"))
+setGeneric("oid_header_delim", function(x) standardGeneric("oid_header_delim"))
+setGeneric("oid_header_delim<-", function(x, value) standardGeneric("oid_header_delim<-"))
+
+# generic functions for the FID S4 object
+
+setGeneric("fid_header", function(x) standardGeneric("fid_header"))
+setGeneric("fid_header<-", function(x, value) standardGeneric("fid_header<-"))
+setGeneric("fid_header_delim", function(x) standardGeneric("fid_header_delim"))
+setGeneric("fid_header_delim<-", function(x, value) standardGeneric("fid_header_delim<-"))
+
