@@ -24,7 +24,7 @@ setGeneric("oid_header<-", function(x, value) {
 setGeneric("oid_header_delim", function(x) {
     standardGeneric("oid_header_delim")
 })
-setGeneric("oid_header_delim", function(x, value) {
+setGeneric("oid_header_delim<-", function(x, value) {
     standardGeneric("oid_header_delim<-")
 })
 
@@ -39,6 +39,6 @@ setGeneric("fid_header<-", function(x, value) {
 setGeneric("fid_header_delim", function(x) {
     standardGeneric("fid_header_delim")
 })
-setGeneric("fid_header_delim", function(x, value) {
+setGeneric("fid_header_delim<-", function(x, value) {
     standardGeneric("fid_header_delim<-")
 })
