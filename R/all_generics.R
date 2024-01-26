@@ -100,3 +100,12 @@ setGeneric("fid_header", function(x) standardGeneric("fid_header"))
 setGeneric("fid_header<-", function(x, value) standardGeneric("fid_header<-"))
 setGeneric("fid_header_delim", function(x) standardGeneric("fid_header_delim"))
 setGeneric("fid_header_delim<-", function(x, value) standardGeneric("fid_header_delim<-"))
+
+# generic functions for FEA objects
+
+setGeneric("feature_name", function(x) standardGeneric("feature_name"))
+setGeneric("feature_name<-", function(x, value) standardGeneric("feature_name<-"))
+setGeneric("reference_database", function(x) standardGeneric("reference_database"))
+setGeneric("reference_database<-", function(x, value) standardGeneric("reference_database<-"))
+setGeneric("reference_organism", function(x) standardGeneric("reference_organism"))
+setGeneric("reference_organism<-", function(x, value) standardGeneric("reference_organism<-"))
