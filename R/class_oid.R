@@ -5,37 +5,25 @@ setClass("OID", slots = list(id = "character",
                              oid_header = "character",
                              oid_header_delim = "character"))
 
-setMethod("id", signature("OID"), function(x) {
-    paste0(x@id)
-})
-
+setMethod("id", signature("OID"), function(x) x@id)
 setMethod("id<-", signature("OID"), function(x, value) {
     x@id <- value
     x
 })
 
-setMethod("dataset_id", signature("OID"), function(x) {
-    paste0(x@dataset_id)
-})
-
+setMethod("dataset_id", signature("OID"), function(x) x@dataset_id)
 setMethod("dataset_id<-", signature("OID"), function(x, value) {
     x@dataset_id <- value
     x
 })
 
-setMethod("oid_header", signature("OID"), function(x) {
-    paste0(x$oid_header)
-})
-
+setMethod("oid_header", signature("OID"), function(x) x@oid_header)
 setMethod("oid_header<-", signature("OID"), function(x, value) {
     x@oid_header <- value
     x
 })
 
-setMethod("oid_header_delim", signature("OID"), function(x) {
-    paste0(x$oid_header_delim)
-})
-
+setMethod("oid_header_delim", signature("OID"), function(x) x@oid_header_delim)
 setMethod("oid_header_delim<-", signature("OID"), function(x, value) {
     x@oid_header_delim <- value
     x

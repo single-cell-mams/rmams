@@ -5,37 +5,25 @@ setClass("FID", slots = list(id = "character",
                              fid_header = "character",
                              fid_header_delim = "character"))
 
-setMethod("id", signature("FID"), function(x) {
-    paste0(x@id)
-})
-
+setMethod("id", signature("FID"), function(x) x@id)
 setMethod("id<-", signature("FID"), function(x, value) {
     x@id <- value
     x
 })
 
-setMethod("dataset_id", signature("FID"), function(x) {
-    paste0(x@dataset_id)
-})
-
+setMethod("dataset_id", signature("FID"), function(x) x@dataset_id)
 setMethod("dataset_id<-", signature("FID"), function(x, value) {
     x@dataset_id <- value
     x
 })
 
-setMethod("fid_header", signature("FID"), function(x) {
-    paste0(x$fid_header)
-})
-
+setMethod("fid_header", signature("FID"), function(x) x@fid_header)
 setMethod("fid_header<-", signature("FID"), function(x, value) {
     x@fid_header <- value
     x
 })
 
-setMethod("fid_header_delim", signature("FID"), function(x) {
-    paste0(x$fid_header_delim)
-})
-
+setMethod("fid_header_delim", signature("FID"), function(x) x@fid_header_delim)
 setMethod("fid_header_delim<-", signature("FID"), function(x, value) {
     x@fid_header_delim <- value
     x
