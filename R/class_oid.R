@@ -1,5 +1,11 @@
 # Define the OID S4 object
 
+#' @description Stores Observation ID class
+#' @slot id character
+#' @slot dataset_id character
+#' @slot oid_header character
+#' @slot oid_header_delim character
+
 setClass("OID", slots = list(id = "character",
                              dataset_id = "character",
                              oid_header = "character",
@@ -30,6 +36,14 @@ setMethod("oid_header_delim<-", signature("OID"), function(x, value) {
 })
 
 # constructor for the OID S4 object
+
+#' @param id
+#' @param dataset_id
+#' @param oid_header
+#' @param oid_header_delim
+#'
+#' @return
+#' @export
 
 create_OID_object <- function(id = NA_character_, 
                               dataset_id = NA_character_, 
