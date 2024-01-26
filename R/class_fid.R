@@ -1,5 +1,11 @@
 # Define the FID S4 object
 
+#' @description Stores Feature ID class
+#' @slot id character
+#' @slot dataset_id character
+#' @slot fid_header character
+#' @slot fid_header_delim character
+
 setClass("FID", slots = list(id = "character",
                              dataset_id = "character",
                              fid_header = "character",
@@ -30,6 +36,14 @@ setMethod("fid_header_delim<-", signature("FID"), function(x, value) {
 })
 
 # constructor for the FID S4 object
+
+#' @param id
+#' @param dataset_id
+#' @param fid_header
+#' @param fid_header_delim
+#'
+#' @return
+#' @export
 
 create_FID_object <- function(id = NA_character_, 
                               dataset_id = NA_character_, 

@@ -5,14 +5,68 @@ setGeneric("id<-", function(x, value) standardGeneric("id<-"))
 setGeneric("dataset_id", function(x) standardGeneric("dataset_id"))
 setGeneric("dataset_id<-", function(x, value) standardGeneric("dataset_id<-"))
 
-# generic functions for neighbor graph S4 objects (ONG,FNG)
+# generic functions for FOM objects
+
+# Define a generic function and method for 'data_type'
+setGeneric("data_type", function(x) standardGeneric("data_type"))
+setGeneric("data_type<-", function(x, value) standardGeneric("data_type<-"))
+# Define a generic function and method for 'representation'
+setGeneric("representation", function(x) standardGeneric("representation"))
+setGeneric("representation<-", function(x, value) standardGeneric("representation<-"))
+# Define a generic function and method for 'representation_description'
+setGeneric("representation_description", function(x) standardGeneric("representation_description"))
+setGeneric("representation_description<-", function(x, value) standardGeneric("representation_description<-"))
+# Define a generic function and method for 'obs_unit'
+setGeneric("obs_unit", function(x) standardGeneric("obs_unit"))
+setGeneric("obs_unit<-", function(x, value) standardGeneric("obs_unit<-"))
+# Define a generic function and method for 'processing'
+setGeneric("processing", function(x) standardGeneric("processing"))
+setGeneric("processing<-", function(x, value) standardGeneric("processing<-"))
+# Define a generic function and method for 'processing_description'
+setGeneric("processing_description", function(x) standardGeneric("processing_description"))
+setGeneric("processing_description<-", function(x, value) standardGeneric("processing_description<-"))
+# Define a generic function and method for 'analyte'
+setGeneric("analyte", function(x) standardGeneric("analyte"))
+setGeneric("analyte<-", function(x, value) standardGeneric("analyte<-"))
+# Define a generic function and method for 'analyte_description'
+setGeneric("analyte_description", function(x) standardGeneric("analyte_description"))
+setGeneric("analyte_description<-", function(x, value) standardGeneric("analyte_description<-"))
+# Define a generic function and method for 'modality'
+setGeneric("modality", function(x) standardGeneric("modality"))
+setGeneric("modality<-", function(x, value) standardGeneric("modality<-"))
+# Define a generic function and method for 'obs_subset'
+setGeneric("obs_subset", function(x) standardGeneric("obs_subset"))
+setGeneric("obs_subset<-", function(x, value) standardGeneric("obs_subset<-"))
+# Define a generic function and method for 'obs_subset_description'
+setGeneric("obs_subset_description", function(x) standardGeneric("obs_subset_description"))
+setGeneric("obs_subset_description<-", function(x, value) standardGeneric("obs_subset_description<-"))
+# Define a generic function and method for 'feature_subset'
+setGeneric("feature_subset", function(x) standardGeneric("feature_subset"))
+setGeneric("feature_subset<-", function(x, value) standardGeneric("feature_subset<-"))
+# Define a generic function and method for 'feature_subset_description'
+setGeneric("feature_subset_description", function(x) standardGeneric("feature_subset_description"))
+setGeneric("feature_subset_description<-", function(x, value) standardGeneric("feature_subset_description<-"))
+# Define a generic function and method for 'record_id'
+setGeneric("record_id", function(x) standardGeneric("record_id"))
+setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
+# Define a generic function and method for 'parent_id'
+setGeneric("parent_id", function(x) standardGeneric("parent_id"))
+setGeneric("parent_id<-", function(x, value) standardGeneric("parent_id<-"))
+# Define a generic function and method for 'parent_relationship'
+setGeneric("parent_relationship", function(x) standardGeneric("parent_relationship"))
+setGeneric("parent_relationship<-", function(x, value) standardGeneric("parent_relationship<-"))
+# Define a generic function and method for 'parent_relationship_description'
+setGeneric("parent_relationship_description", function(x) standardGeneric("parent_relationship_description"))
+setGeneric("parent_relationship_description<-", function(x, value) standardGeneric("parent_relationship_description<-"))
+           
+# generic functions for neighbor graph objects (ONG,FNG)
 
 setGeneric("edge_metric", function(x) standardGeneric("edge_metric"))
 setGeneric("edge_metric<-", function(x, value) standardGeneric("edge_metric<-"))
 setGeneric("metric_type", function(x) standardGeneric("metric_type"))
 setGeneric("metric_type<-", function(x, value) standardGeneric("metric_type<-"))
 
-# generic functions for the REC S4 object
+# generic functions for REC objects
 
 setGeneric("record_id", function(x) standardGeneric("record_id"))
 setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
@@ -33,17 +87,25 @@ setGeneric("record_runtime_end<-", function(x, value) standardGeneric("record_ru
 setGeneric("record_runtime_duration", function(x) standardGeneric("record_runtime_duration"))
 setGeneric("record_runtime_duration<-", function(x, value) standardGeneric("record_runtime_duration<-"))
 
-# generic functions for the OID S4 object
+# generic functions for OID objects
 
 setGeneric("oid_header", function(x) standardGeneric("oid_header"))
 setGeneric("oid_header<-", function(x, value) standardGeneric("oid_header<-"))
 setGeneric("oid_header_delim", function(x) standardGeneric("oid_header_delim"))
 setGeneric("oid_header_delim<-", function(x, value) standardGeneric("oid_header_delim<-"))
 
-# generic functions for the FID S4 object
+# generic functions for FID objects
 
 setGeneric("fid_header", function(x) standardGeneric("fid_header"))
 setGeneric("fid_header<-", function(x, value) standardGeneric("fid_header<-"))
 setGeneric("fid_header_delim", function(x) standardGeneric("fid_header_delim"))
 setGeneric("fid_header_delim<-", function(x, value) standardGeneric("fid_header_delim<-"))
 
+# generic functions for FEA objects
+
+setGeneric("feature_name", function(x) standardGeneric("feature_name"))
+setGeneric("feature_name<-", function(x, value) standardGeneric("feature_name<-"))
+setGeneric("reference_database", function(x) standardGeneric("reference_database"))
+setGeneric("reference_database<-", function(x, value) standardGeneric("reference_database<-"))
+setGeneric("reference_organism", function(x) standardGeneric("reference_organism"))
+setGeneric("reference_organism<-", function(x, value) standardGeneric("reference_organism<-"))
