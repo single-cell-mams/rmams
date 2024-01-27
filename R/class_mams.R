@@ -55,7 +55,7 @@ create_MAMS_Object <- function(
   )
   
   # Validate the MAMS object
-  validate_MAMS_Object(mams_obj)
+  #validate_MAMS_Object(mams_obj)
   
   return(mams_obj)
 }

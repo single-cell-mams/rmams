@@ -10,12 +10,16 @@
 #' @examples
 setClass("OBS", slots = list(id = "character",
                              dataset_id = "character",
-                             record_id = "character"))
+                             record_id = "character",
+                             filepath = "character",
+                             accessor = "character"))
 
 create_OBS_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
-    record_id = NA_character_
+    record_id = NA_character_,
+    filepath = NA_character_,
+    accessor = NA_character_
 ) {
   obj <- new("FEA",
              id = id,

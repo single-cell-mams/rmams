@@ -4,6 +4,10 @@ setGeneric("id", function(x) standardGeneric("id"))
 setGeneric("id<-", function(x, value) standardGeneric("id<-"))
 setGeneric("dataset_id", function(x) standardGeneric("dataset_id"))
 setGeneric("dataset_id<-", function(x, value) standardGeneric("dataset_id<-"))
+setGeneric("filepath", function(x) standardGeneric("filepath"))
+setGeneric("filepath<-", function(x, value) standardGeneric("filepath<-"))
+setGeneric("accessor", function(x) standardGeneric("accessor"))
+setGeneric("accessor<-", function(x, value) standardGeneric("accessor<-"))
 
 # generic functions for FOM objects
 

@@ -5,11 +5,15 @@
 #' @slot dataset_id character
 #' @slot fid_header character
 #' @slot fid_header_delim character
+#' @slot filepath character
+#' @slot accessor character
 
 setClass("FID", slots = list(id = "character",
                              dataset_id = "character",
                              fid_header = "character",
-                             fid_header_delim = "character"))
+                             fid_header_delim = "character",
+                             filepath = "character",
+                             accessor = "character"))
 
 setMethod("id", signature("FID"), function(x) x@id)
 setMethod("id<-", signature("FID"), function(x, value) {
@@ -35,24 +39,42 @@ setMethod("fid_header_delim<-", signature("FID"), function(x, value) {
     x
 })
 
+setMethod("filepath", signature("FID"), function(x) x@filepath)
+setMethod("filepath<-", signature("FID"), function(x, value) {
+    x@filepath <- value
+    x
+})
+
+setMethod("accessor", signature("FID"), function(x) x@accessor)
+setMethod("accessor<-", signature("FID"), function(x, value) {
+    x@accessor <- value
+    x
+})
+
 # constructor for the FID S4 object
 
 #' @param id
 #' @param dataset_id
 #' @param fid_header
 #' @param fid_header_delim
-#'
+#' @param filepath
+#' @param accessor
+#' 
 #' @return
 #' @export
 
 create_FID_object <- function(id = NA_character_, 
                               dataset_id = NA_character_, 
                               fid_header = NA_character_, 
-                              fid_header_delim = NA_character_) {
+                              fid_header_delim = NA_character_,
+                              filepath = NA_character_,
+                              accessor = NA_character_) {
     obj <- new("FID", 
                id = id, 
                dataset_id = dataset_id, 
                fid_header = fid_header, 
-               fid_header_delim = fid_header_delim)
+               fid_header_delim = fid_header_delim,
+               filepath = filepath,
+               accessor = accessor)
     return(obj)
 }

@@ -7,7 +7,7 @@
 #' @keywords internal
 #' @noRd
 setClass(
-  "FNG",
+  "ONG",
   slots = list(
     id = "character",
     dataset_id = "character",
@@ -61,3 +61,4 @@ create_ONG_Object <- function(
   )
   return(obj)
 }
+
