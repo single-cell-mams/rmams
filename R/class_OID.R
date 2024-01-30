@@ -73,7 +73,7 @@ create_OID_object <- function(id = NA_character_,
                id = id, 
                dataset_id = dataset_id, 
                oid_header = oid_header, 
-               oid_header_delim = oid_header_delim.
+               oid_header_delim = oid_header_delim,
                filepath = filepath,
                accessor = accessor)
     return(obj)

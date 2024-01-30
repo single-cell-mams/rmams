@@ -152,7 +152,7 @@ create_FOM_Object <- function(
     parent_relationship = NA_character_,
     parent_relationship_description = NA_character_,
     filepath = NA_character_,
-    accessor = NA_character_,
+    accessor = NA_character_
 ) {
   obj <- new("FOM",
              id = id,
