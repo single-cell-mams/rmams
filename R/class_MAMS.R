@@ -105,3 +105,34 @@ validate_MAMS_Object <- function(mams_obj) {
   # If everything is valid, return TRUE
   return(TRUE)
 }
+
+
+# fom function to set attributes
+setMethod("fom", signature(mams = "MAMS"), function(mams, fom_id, key) {
+    if (is.null(mams@FOM[[fom_id]][[key]])) {
+        mams@FOM[[fom_id]][[key]] <- NA
+    }
+    else
+        mams@FOM[[fom_id]][[key]]
+})
+setMethod("fom<-", signature(mams = "MAMS"), function(mams, fom_id, key, value) {
+    mams@FOM[[fom_id]][[key]] <- value
+    return(mams)
+})
+
+# call this in setMethod 
+fom <- function(mams, fom_id, key) { # this function just returns value? why need to create object here (should be in the other one where value is added)
+    if (is.null(mams@FOM[[fom_id]])) {
+        mams@FOM[[fom_id]] <- create_FOM_Object()
+        # need to add id as well 
+        print("NA")
+    }
+    else if (is.null(mams@FOM[[fom_id]][[key]])) { #nested?
+        mams@FOM[[fom_id]][[key]] <- NA
+        print("NA")
+    }
+    else {
+        print(mams@FOM[[fom_id]][[key]])
+    }
+    return(mams@FOM[[fom_id]][[key]]) # return value from the key 
+}

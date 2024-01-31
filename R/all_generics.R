@@ -1,3 +1,8 @@
+# generic function for fom
+setGeneric("fom", function(mams, ...) standardGeneric("fom"))
+setGeneric("fom<-", function(mams, ..., value) standardGeneric("fom<-"))
+
+
 # generic functions for all objects
 
 setGeneric("id", function(x) standardGeneric("id"))
