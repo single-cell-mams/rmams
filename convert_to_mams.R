@@ -9,24 +9,25 @@ observation_subsets <- c("filtered", "filtered", "clean")
 
 ## Input list of objects, named by the filename
 ## Input vector of observation subsets, one for each file
+## Needs completion: FEA, OBS, ONG, FNG, REC
 convert_seurat_to_MAMS <- function(object_list, observation_subsets){
     FEA <- c()
-    OBS <- c()
+    OBS <- c() 
     FOMs <- list()
     FIDs <- c()
+    obs_unit <- "cell" # should probably be a user input
     for(i in 1:length(object_list)){
         object <- object_list[[i]]
         filepath <- paste0(names(object_list)[[i]], ".rds")
         oid <- paste0("oid", i)
         obs <- paste0("obs", i)
-        obs_unit <- "cell"
         obs_subset <- observation_subsets[[i]]
         
         for(mod in SeuratObject::Assays(object)){
             fid <- paste0("fid", length(FIDs)+1)
-            fea <- paste0("fea", length(FIDs)+1)
+            fea <- paste0("fea", length(FIDs)+1) # should fea values be the same as fid? 
             FIDs <- c(FIDs, fid)
-
+            
             if(mod == "RNA"){
                 modality <- "rna"
                 analyte <- "rna"
@@ -35,6 +36,8 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
                 analyte <- "protein"
             }
             
+            ## Loop over Assays
+            ## Needs completion: record ID
             for(assay in SeuratObject::Layers(object)){
                 fom <- paste0("fom", length(FOMs)+1)
                 accessor <- paste0("GetAssayData(object = ", substr(filepath, 1, nchar(filepath)-4), ', slot = \"', assay, '\" assay = \"', mod, '\")')
@@ -54,11 +57,11 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
                     processing <- "scaled"
                     feature_subset <- "variable"
                 }
-                
-                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, modalilty=modality, analyte=analyte, obs_subset=obs_subset, data_type=data_type, representation=representation, processing=processing, feature_subset=feature_subset)
-                #FOMs[fid] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, record_id=record_id)
+                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset)#, record_id=record_id)
             }
             
+            ## Loop over Graphs & Neighbors
+            ## Needs Completion
             for(graph in Graphs(object)){
                 ## Neighbors
                 graphname <- paste("FindNeighbors",mod,dimred, sep = ".")
@@ -68,14 +71,14 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
             #if(length(names(object[[mod]][[]])) > 1){
             #    FEA <- c(FEA, paste(names(object[[mod]][[]]), mod, sep = "."))
             #}
-            
             #OBS <- c(OBS, paste(names(object@meta.data), mod, sep = "."))
         }
         
-        for(dimred in names(object@reductions)){
+        ## Loop over Reduced Dimensions
+        ## Needs completion: tracking obs_subset, parent_relationship, record_id
+        for(dimred in names(object@reductions)){ 
             fom <- paste0("fom", length(FOMs)+1)
             reduction <- object@reductions[[dimred]]
-            #### OR check Reductions(obj) instead of following if statement 
             if(grepl("pca|ica", dimred, ignore.case = TRUE)){
                 processing<- "Reduction"
             } else if (grepl("tsne|umap", dimred, ignore.case = TRUE)){
@@ -83,7 +86,7 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
             FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
-            #FOMs[fid] <- list(filepath=filepath, accessor=accessor, oid=oid, obs=obs, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, parent_id=parent_id, parent_relationship=parent_relationship, record_id=record_id)
+            # Full list of params: #FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, obs=obs, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, parent_id=parent_id, parent_relationship=parent_relationship, record_id=record_id)
         }
         
     }
