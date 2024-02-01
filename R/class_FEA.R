@@ -33,6 +33,7 @@ create_FEA_object <- function(
   obj <- new("FEA",
              id = id,
              dataset_id = dataset_id,
+             filepath = filepath,
              accessor = accessor,
              data_type = data_type,
              feature_modality = feature_modality,
