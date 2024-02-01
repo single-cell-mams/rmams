@@ -69,15 +69,3 @@ setMethod("fid_header_delim<-", signature("FID"), function(x, value) {
     x@fid_header_delim <- value
     x
 })
-
-setMethod("filepath", signature("FID"), function(x) x@filepath)
-setMethod("filepath<-", signature("FID"), function(x, value) {
-    x@filepath <- value
-    x
-})
-
-setMethod("accessor", signature("FID"), function(x) x@accessor)
-setMethod("accessor<-", signature("FID"), function(x, value) {
-    x@accessor <- value
-    x
-})
