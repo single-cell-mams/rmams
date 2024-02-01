@@ -1,3 +1,8 @@
+# generic function for fom
+setGeneric("fom", function(mams, ...) standardGeneric("fom"))
+setGeneric("fom<-", function(mams, ..., value) standardGeneric("fom<-"))
+
+
 #' @title character or list class union
 #' @description class to allow either NULL or list
 #' @keywords internal
