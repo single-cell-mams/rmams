@@ -87,7 +87,7 @@ create_MAMS_Object <- function(
   
   return(mams_obj)
 }
-}
+
 
 #' Function to validate a MAMS object
 #'
@@ -137,7 +137,7 @@ validate_MAMS_Object <- function(mams_obj) {
 
 
 # fom function to get attributes
-setMethod("fom", signature(mams = "MAMS"), function(mams, fom_id, key) {
+setMethod("fom", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fom_id, key) {
     if (is.null(mams@FOM[[fom_id]])){
         stop("No FOM object with the provided fom_id exists.")
     }
@@ -145,7 +145,7 @@ setMethod("fom", signature(mams = "MAMS"), function(mams, fom_id, key) {
 })
 
 # fom function to set attributes
-setMethod("fom<-", signature(mams = "MAMS"), function(mams, fom_id, key, value) {
+setMethod("fom<-", signature(mams = "MAMS", fom_id = "character", key = "character", value = "character"), function(mams, fom_id, key, value) {
     if (is.null(mams@FOM[[fom_id]])){
         mams@FOM[[fom_id]] <- create_FOM_Object(id = fom_id)
     }
