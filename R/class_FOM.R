@@ -1,7 +1,9 @@
 #' Class to create a FOM object
 #'
 #' @slot id character. 
-#' @slot dataset_id character. 
+#' @slot dataset_id character.
+#' @slot filepath character.
+#' @slot accessor character. 
 #' @slot data_type character. 
 #' @slot representation character. 
 #' @slot representation_description character. 
@@ -19,6 +21,12 @@
 #' @slot parent_id character. 
 #' @slot parent_relationship character. 
 #' @slot parent_relationship_description character. 
+#' @slot oid character.
+#' @slot fid character.
+#' @slot obs character.
+#' @slot fea character.
+#' @slot ong character.
+#' @slot fng character.
 #'
 #' @return
 #' @export
@@ -62,6 +70,8 @@ setClass(
 #' @param id 
 #' @param dataset_id 
 #' @param data_type 
+#' @param filepath
+#' @param accessor
 #' @param representation 
 #' @param representation_description 
 #' @param obs_unit 
@@ -78,6 +88,12 @@ setClass(
 #' @param parent_id 
 #' @param parent_relationship 
 #' @param parent_relationship_description 
+#' @param oid
+#' @param fid
+#' @param obs
+#' @param fea
+#' @param ong
+#' @param fng
 #'
 #' @return
 #' @export

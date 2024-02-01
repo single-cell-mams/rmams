@@ -3,10 +3,10 @@
 #' @description Stores Observation ID class
 #' @slot id character
 #' @slot dataset_id character
-#' @slot oid_header character
-#' @slot oid_header_delim character
 #' @slot filepath character
 #' @slot accessor character
+#' @slot oid_header character
+#' @slot oid_header_delim character
 
 setClass("OID", slots = list(id = "character",
                              dataset_id = "character",                             
@@ -39,7 +39,6 @@ setMethod("accessor<-", "OID", function(x, value) {
   x 
 })
 
-
 setMethod("oid_header", signature("OID"), function(x) x@oid_header)
 setMethod("oid_header<-", signature("OID"), function(x, value) {
     x@oid_header <- value
@@ -49,18 +48,6 @@ setMethod("oid_header<-", signature("OID"), function(x, value) {
 setMethod("oid_header_delim", signature("OID"), function(x) x@oid_header_delim)
 setMethod("oid_header_delim<-", signature("OID"), function(x, value) {
     x@oid_header_delim <- value
-    x
-})
-
-setMethod("filepath", signature("OID"), function(x) x@filepath)
-setMethod("filepath<-", signature("OID"), function(x, value) {
-    x@filepath <- value
-    x
-})
-
-setMethod("accessor", signature("OID"), function(x) x@accessor)
-setMethod("accessor<-", signature("OID"), function(x, value) {
-    x@accessor <- value
     x
 })
 
@@ -81,18 +68,14 @@ create_OID_object <- function(id = NA_character_,
                               filepath = NA_character_,
                               accessor = NA_character_,
                               oid_header = NA_character_, 
-                              oid_header_delim = NA_character_,
-                              filepath = NA_character_,
-                              accessor = NA_character_) {
+                              oid_header_delim = NA_character_) {
     obj <- new("OID", 
                id = id, 
                dataset_id = dataset_id, 
                filepath = filepath,
                accessor = accessor,
                oid_header = oid_header, 
-               oid_header_delim = oid_header_delim,
-               filepath = filepath,
-               accessor = accessor)
+               oid_header_delim = oid_header_delim)
     return(obj)
 }
 

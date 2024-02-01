@@ -2,6 +2,8 @@
 #' @description Stores observation Neighborhood Graph class
 #' @slot id 
 #' @slot dataset_id 
+#' @slot filepath
+#' @slot accessor
 #' @slot edge_metric 
 #' @slot metric_type 
 #' @keywords internal

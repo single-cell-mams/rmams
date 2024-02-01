@@ -2,6 +2,8 @@
 #'
 #' @slot id character. 
 #' @slot dataset_id character. 
+#' @slot filepath character.
+#' @slot accessor character.
 #' @slot record_id character. 
 #'
 #' @return
@@ -55,7 +57,6 @@ setMethod("accessor<-", "OBS", function(x, value) {
   x@accessor <- value
   x 
 })
-
 
 setMethod("record_id", "OBS", function(x) x@record_id)
 setMethod("record_id<-", "OBS", function(x, value) {
