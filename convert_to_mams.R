@@ -24,7 +24,9 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
         
         for(mod in SeuratObject::Assays(object)){
             fid <- paste0("fid", length(FIDs)+1)
-            fid <- c(FIDs, fid)
+            fea <- paste0("fea", length(FIDs)+1)
+            FIDs <- c(FIDs, fid)
+
             if(mod == "RNA"){
                 modality <- "rna"
                 analyte <- "rna"
@@ -36,7 +38,7 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
             for(assay in SeuratObject::Layers(object)){
                 fom <- paste0("fom", length(FOMs)+1)
                 accessor <- paste0("GetAssayData(object = ", substr(filepath, 1, nchar(filepath)-4), ', slot = \"', assay, '\" assay = \"', mod, '\")')
-                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, modalilty=modality, analyte=analyte, obs_subset=obs_subset)
+                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, modalilty=modality, analyte=analyte, obs_subset=obs_subset)
                 #FOMs[fid] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, record_id=record_id)
             }
             
@@ -72,6 +74,6 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
 }
 
 test <- convert_seurat_to_MAMS(object_list, observation_subsets)
-
+test
 
 
