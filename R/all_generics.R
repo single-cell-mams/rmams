@@ -1,7 +1,8 @@
-# generic function for fom
-setGeneric("fom", function(mams, ...) standardGeneric("fom"))
-setGeneric("fom<-", function(mams, ..., value) standardGeneric("fom<-"))
-
+#' @title character or list class union
+#' @description class to allow either NULL or list
+#' @keywords internal
+#' @noRd
+setClassUnion("CharOrList", c("character", "list"))
 
 # generic functions for all objects
 
@@ -13,6 +14,22 @@ setGeneric("filepath", function(x) standardGeneric("filepath"))
 setGeneric("filepath<-", function(x, value) standardGeneric("filepath<-"))
 setGeneric("accessor", function(x) standardGeneric("accessor"))
 setGeneric("accessor<-", function(x, value) standardGeneric("accessor<-"))
+
+# generic functions for Cross Reference to the subobjects
+setGeneric("fom", function(x) standardGeneric("fom"))
+setGeneric("fom<-", function(x, value) standardGeneric("fom<-"))
+setGeneric("oid", function(x) standardGeneric("oid"))
+setGeneric("oid<-", function(x, value) standardGeneric("oid<-"))
+setGeneric("fid", function(x) standardGeneric("fid"))
+setGeneric("fid<-", function(x, value) standardGeneric("fid<-"))
+setGeneric("fea", function(x) standardGeneric("fea"))
+setGeneric("fea<-", function(x, value) standardGeneric("fea<-"))
+setGeneric("obs", function(x) standardGeneric("obs"))
+setGeneric("obs<-", function(x, value) standardGeneric("obs<-"))
+setGeneric("ong", function(x) standardGeneric("ong"))
+setGeneric("ong<-", function(x, value) standardGeneric("ong<-"))
+setGeneric("fng", function(x) standardGeneric("fng"))
+setGeneric("fng<-", function(x, value) standardGeneric("fng<-"))
 
 # generic functions for FOM objects
 
@@ -67,7 +84,7 @@ setGeneric("parent_relationship<-", function(x, value) standardGeneric("parent_r
 # Define a generic function and method for 'parent_relationship_description'
 setGeneric("parent_relationship_description", function(x) standardGeneric("parent_relationship_description"))
 setGeneric("parent_relationship_description<-", function(x, value) standardGeneric("parent_relationship_description<-"))
-           
+
 # generic functions for neighbor graph objects (ONG,FNG)
 
 setGeneric("edge_metric", function(x) standardGeneric("edge_metric"))
@@ -104,16 +121,14 @@ setGeneric("oid_header_delim", function(x) standardGeneric("oid_header_delim"))
 setGeneric("oid_header_delim<-", function(x, value) standardGeneric("oid_header_delim<-"))
 
 # generic functions for FID objects
-
 setGeneric("fid_header", function(x) standardGeneric("fid_header"))
 setGeneric("fid_header<-", function(x, value) standardGeneric("fid_header<-"))
 setGeneric("fid_header_delim", function(x) standardGeneric("fid_header_delim"))
 setGeneric("fid_header_delim<-", function(x, value) standardGeneric("fid_header_delim<-"))
 
 # generic functions for FEA objects
-
-setGeneric("feature_name", function(x) standardGeneric("feature_name"))
-setGeneric("feature_name<-", function(x, value) standardGeneric("feature_name<-"))
+setGeneric("feature_modality", function(x) standardGeneric("feature_modality"))
+setGeneric("feature_modality<-", function(x, value) standardGeneric("feature_modality<-"))
 setGeneric("reference_database", function(x) standardGeneric("reference_database"))
 setGeneric("reference_database<-", function(x, value) standardGeneric("reference_database<-"))
 setGeneric("reference_organism", function(x) standardGeneric("reference_organism"))

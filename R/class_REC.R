@@ -4,6 +4,7 @@
 #' @noRd
 setClassUnion("CharOrList", c("character", "list"))
 
+
 # **REC Class ####
 #' @description Stores provenance about the dataset and also other objects
 #' @slot id 
