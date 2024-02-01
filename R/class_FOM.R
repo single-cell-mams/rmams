@@ -57,7 +57,6 @@ setClass(
   )
 )
 
-
 #' Constructor function to create a FOM object
 #'
 #' @param id 
@@ -169,7 +168,6 @@ setMethod("fng<-", "FOM", function(x, value) { x@fng <- value; x })
 setMethod("ong", "FOM", function(x) x@ong)
 setMethod("ong<-", "FOM", function(x, value) { x@ong <- value; x })
 
-
 setMethod("data_type", "FOM", function(x) x@data_type)
 setMethod("data_type<-", "FOM", function(x, value) { x@data_type <- value; x })
 setMethod("representation", "FOM", function(x) x@representation)
@@ -204,4 +202,3 @@ setMethod("parent_relationship", "FOM", function(x) x@parent_relationship)
 setMethod("parent_relationship<-", "FOM", function(x, value) { x@parent_relationship <- value; x })
 setMethod("parent_relationship_description", "FOM", function(x) x@parent_relationship_description)
 setMethod("parent_relationship_description<-", "FOM", function(x, value) { x@parent_relationship_description <- value; x })
-

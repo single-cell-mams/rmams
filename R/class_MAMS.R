@@ -134,3 +134,21 @@ validate_MAMS_Object <- function(mams_obj) {
   # If everything is valid, return TRUE
   return(TRUE)
 }
+
+
+# fom function to get attributes
+setMethod("fom", signature(mams = "MAMS"), function(mams, fom_id, key) {
+    if (is.null(mams@FOM[[fom_id]])){
+        stop("No FOM object with the provided fom_id exists.")
+    }
+    slot(mams@FOM[[fom_id]], key) 
+})
+
+# fom function to set attributes
+setMethod("fom<-", signature(mams = "MAMS"), function(mams, fom_id, key, value) {
+    if (is.null(mams@FOM[[fom_id]])){
+        mams@FOM[[fom_id]] <- create_FOM_Object(id = fom_id)
+    }
+    slot(mams@FOM[[fom_id]], key) <- value
+    return(mams)
+})
