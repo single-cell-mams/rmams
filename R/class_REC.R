@@ -97,7 +97,7 @@ setMethod("record_runtime_duration<-", "REC", function(x, value) {
 
 
 #Create object function 
-create_REC_Object <- function(
+create_REC_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
     record_id = NA_character_,

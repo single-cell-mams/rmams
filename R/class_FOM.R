@@ -99,7 +99,7 @@ setClass(
 #' @export
 #'
 #' @examples
-create_FOM_Object <- function(
+create_FOM_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
     filepath = NA_character_,
