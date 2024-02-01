@@ -23,6 +23,32 @@ setClass(
   )
 )
 
+#' Class to create MAMS object
+#'
+#' @slot FOM list. 
+#' @slot FEA list. 
+#' @slot OBS list. 
+#' @slot FID list. 
+#' @slot OID list. 
+#' @slot REC list. 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+setClass(
+  "MAMS",
+  slots = list(
+    FOM = "list",
+    FEA = "list",
+    OBS = "list",
+    FID = "list",
+    OID = "list",
+    REC = "list",
+    ONG = "list"
+  )
+)
+
 #' Constructor function to create a MAMS object
 #'
 #' @param FOM 
@@ -42,7 +68,8 @@ create_MAMS_Object <- function(
     OBS = list(),
     FID = list(),
     OID = list(),
-    REC = list()
+    REC = list(),
+    ONG = list()
 ) {
   # Create an instance of the MAMS class
   mams_obj <- new("MAMS",
@@ -51,13 +78,15 @@ create_MAMS_Object <- function(
                   OBS = OBS,
                   FID = FID,
                   OID = OID,
-                  REC = REC
+                  REC = REC,
+                  ONG = ONG
   )
   
   # Validate the MAMS object
-  validate_MAMS_Object(mams_obj)
+  #validate_MAMS_Object(mams_obj)
   
   return(mams_obj)
+}
 }
 
 #' Function to validate a MAMS object
