@@ -1,3 +1,10 @@
+#' @title character or list class union
+#' @description class to allow either NULL or list
+#' @keywords internal
+#' @noRd
+setClassUnion("CharOrList", c("character", "list"))
+
+
 # **REC Class ####
 #' @description Stores provenance about the dataset and also other objects
 #' @slot id 
