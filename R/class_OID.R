@@ -13,9 +13,7 @@ setClass("OID", slots = list(id = "character",
                              filepath = "character",
                              accessor = "character",
                              oid_header = "character",
-                             oid_header_delim = "character",
-                             filepath = "character",
-                             accessor = "character"))
+                             oid_header_delim = "character"))
 
 setMethod("id", signature("OID"), function(x) x@id)
 setMethod("id<-", signature("OID"), function(x, value) {

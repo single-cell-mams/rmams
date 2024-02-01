@@ -17,6 +17,29 @@ setClass("FID", slots = list(id = "character",
                              filepath = "character",
                              accessor = "character"))
 
+# constructor for the FID S4 object
+
+create_FID_object <- function(id = NA_character_, 
+                              dataset_id = NA_character_, 
+                              filepath = NA_character_,
+                              accessor = NA_character_,
+                              fid_header = NA_character_, 
+                              fid_header_delim = NA_character_,
+                              filepath = NA_character_,
+                              accessor = NA_character_) {
+    obj <- new("FID", 
+               id = id, 
+               dataset_id = dataset_id,                
+               filepath = filepath,
+               accessor = accessor,
+               fid_header = fid_header, 
+               fid_header_delim = fid_header_delim,
+               filepath = filepath,
+               accessor = accessor)
+    return(obj)
+}
+
+
 setMethod("id", signature("FID"), function(x) x@id)
 setMethod("id<-", signature("FID"), function(x, value) {
     x@id <- value
@@ -64,35 +87,3 @@ setMethod("accessor<-", signature("FID"), function(x, value) {
     x@accessor <- value
     x
 })
-
-# constructor for the FID S4 object
-
-#' @param id
-#' @param dataset_id
-#' @param fid_header
-#' @param fid_header_delim
-#' @param filepath
-#' @param accessor
-#' 
-#' @return
-#' @export
-
-create_FID_object <- function(id = NA_character_, 
-                              dataset_id = NA_character_, 
-                              filepath = NA_character_,
-                              accessor = NA_character_,
-                              fid_header = NA_character_, 
-                              fid_header_delim = NA_character_,
-                              filepath = NA_character_,
-                              accessor = NA_character_) {
-    obj <- new("FID", 
-               id = id, 
-               dataset_id = dataset_id,                
-               filepath = filepath,
-               accessor = accessor,
-               fid_header = fid_header, 
-               fid_header_delim = fid_header_delim,
-               filepath = filepath,
-               accessor = accessor)
-    return(obj)
-}

@@ -6,31 +6,8 @@
 #' @slot FID list. 
 #' @slot OID list. 
 #' @slot REC list. 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-setClass(
-  "MAMS",
-  slots = list(
-    FOM = "list",
-    FEA = "list",
-    OBS = "list",
-    FID = "list",
-    OID = "list",
-    REC = "list"
-  )
-)
-
-#' Class to create MAMS object
-#'
-#' @slot FOM list. 
-#' @slot FEA list. 
-#' @slot OBS list. 
-#' @slot FID list. 
-#' @slot OID list. 
-#' @slot REC list. 
+#' @slot ONG list.
+#' @slot FNG list.
 #'
 #' @return
 #' @export
@@ -45,7 +22,8 @@ setClass(
     FID = "list",
     OID = "list",
     REC = "list",
-    ONG = "list"
+    ONG = "list",
+    FNG = "list"
   )
 )
 
@@ -57,6 +35,8 @@ setClass(
 #' @param FID 
 #' @param OID 
 #' @param REC 
+#' @param ONG
+#' @param FNG
 #'
 #' @return
 #' @export
@@ -69,7 +49,8 @@ create_MAMS_Object <- function(
     FID = list(),
     OID = list(),
     REC = list(),
-    ONG = list()
+    ONG = list(),
+    FNG = list()
 ) {
   # Create an instance of the MAMS class
   mams_obj <- new("MAMS",
@@ -79,7 +60,8 @@ create_MAMS_Object <- function(
                   FID = FID,
                   OID = OID,
                   REC = REC,
-                  ONG = ONG
+                  ONG = ONG,
+                  FNG = FNG
   )
   
   # Validate the MAMS object
@@ -87,54 +69,6 @@ create_MAMS_Object <- function(
   
   return(mams_obj)
 }
-
-
-#' Function to validate a MAMS object
-#'
-#' @param mams_obj 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-validate_MAMS_Object <- function(mams_obj) {
-  # Check classes
-  classes_FOM <- sapply(mams_obj@FOM, class)
-  if(all(classes_FOM == "FOM")){
-    stop("Invalid FOM list")
-  }
-  classes_FEA <- sapply(mams_obj@FEA, class)
-  if(all(classes_FEA == "FEA")){
-    stop("Invalid FEA list")
-  }
-  classes_OBS <- sapply(mams_obj@OBS, class)
-  if(all(classes_OBS == "OBS")){
-    stop("Invalid OBS list")
-  }
-  classes_FID <- sapply(mams_obj@FID, class)
-  if(all(classes_FID == "FID")){
-    stop("Invalid FID list")
-  }
-  classes_OID <- sapply(mams_obj@OID, class)
-  if(all(classes_OID == "OID")){
-    stop("Invalid OID list")
-  }
-  classes_REC <- sapply(mams_obj@REC, class)
-  if(all(classes_REC == "REC")){
-    stop("Invalid REC list")
-  }
-  
-  # Check length if required
-  # if (length(mams_obj@FOM) == 0) {
-  #   stop("The 'FOM' list in the 'MAMS' object must not be empty.")
-  # }
-  
-  # Other checks
-  
-  # If everything is valid, return TRUE
-  return(TRUE)
-}
-
 
 # fom function to get attributes
 setMethod("fom", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fom_id, key) {
@@ -145,7 +79,24 @@ setMethod("fom", signature(mams = "MAMS", fom_id = "character", key = "character
 })
 
 # fom function to set attributes
-setMethod("fom<-", signature(mams = "MAMS", fom_id = "character", key = "character", value = "character"), function(mams, fom_id, key, value) {
+setMethod("fom<-", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fom_id, key, value) {
+    if (is.null(mams@FOM[[fom_id]])){
+        mams@FOM[[fom_id]] <- create_FOM_Object(id = fom_id)
+    }
+    slot(mams@FOM[[fom_id]], key) <- value
+    return(mams)
+})
+
+# fid function to get attributes
+setMethod("fid", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fid_id, key) {
+    if (is.null(mams@FOM[[fid_id]])){
+        stop("No FID object with the provided fom_id exists.")
+    }
+    slot(mams@FOM[[fom_id]], key) 
+})
+
+# fid function to set attributes
+setMethod("fom<-", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fom_id, key, value) {
     if (is.null(mams@FOM[[fom_id]])){
         mams@FOM[[fom_id]] <- create_FOM_Object(id = fom_id)
     }

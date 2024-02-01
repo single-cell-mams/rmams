@@ -2,6 +2,8 @@
 #'
 #' @slot id character. 
 #' @slot dataset_id character. 
+#' @slot filepath character.
+#' @slot accessor character.
 #' @slot feature_modality character. 
 #' @slot reference_database character. 
 #' @slot reference_organism character. 
