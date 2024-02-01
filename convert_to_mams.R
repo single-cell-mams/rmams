@@ -38,7 +38,24 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
             for(assay in SeuratObject::Layers(object)){
                 fom <- paste0("fom", length(FOMs)+1)
                 accessor <- paste0("GetAssayData(object = ", substr(filepath, 1, nchar(filepath)-4), ', slot = \"', assay, '\" assay = \"', mod, '\")')
-                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, modalilty=modality, analyte=analyte, obs_subset=obs_subset)
+                if(assay == "counts"){
+                    data_type <- "int"
+                    representation <- "sparse"
+                    processing <- "counts"
+                    feature_subset <- "full"
+                }else if(assay == "data"){
+                    data_type <- "double"
+                    representation <- "sparse"
+                    processing <- "lognormalized"
+                    feature_subset <- "full"
+                }else if(assay == "scale.data"){
+                    data_type <- "double"
+                    representation <- "dense"
+                    processing <- "scaled"
+                    feature_subset <- "variable"
+                }
+                
+                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, modalilty=modality, analyte=analyte, obs_subset=obs_subset, data_type=data_type, representation=representation, processing=processing, feature_subset=feature_subset)
                 #FOMs[fid] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, record_id=record_id)
             }
             
@@ -65,7 +82,7 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
                 processing <- "Embedding"
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset=obs_subset)
+            FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
             #FOMs[fid] <- list(filepath=filepath, accessor=accessor, oid=oid, obs=obs, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, parent_id=parent_id, parent_relationship=parent_relationship, record_id=record_id)
         }
         
