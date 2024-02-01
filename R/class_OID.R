@@ -9,7 +9,9 @@
 #' @slot accessor character
 
 setClass("OID", slots = list(id = "character",
-                             dataset_id = "character",
+                             dataset_id = "character",                             
+                             filepath = "character",
+                             accessor = "character",
                              oid_header = "character",
                              oid_header_delim = "character",
                              filepath = "character",
@@ -26,6 +28,19 @@ setMethod("dataset_id<-", signature("OID"), function(x, value) {
     x@dataset_id <- value
     x
 })
+
+setMethod("filepath", "OID", function(x) x@filepath)
+setMethod("filepath<-", "OID", function(x, value) { 
+  x@filepath <- value
+  x 
+})
+
+setMethod("accessor", "OID", function(x) x@accessor)
+setMethod("accessor<-", "OID", function(x, value) { 
+  x@accessor <- value
+  x 
+})
+
 
 setMethod("oid_header", signature("OID"), function(x) x@oid_header)
 setMethod("oid_header<-", signature("OID"), function(x, value) {
@@ -64,7 +79,9 @@ setMethod("accessor<-", signature("OID"), function(x, value) {
 #' @export
 
 create_OID_object <- function(id = NA_character_, 
-                              dataset_id = NA_character_, 
+                              dataset_id = NA_character_,
+                              filepath = NA_character_,
+                              accessor = NA_character_,
                               oid_header = NA_character_, 
                               oid_header_delim = NA_character_,
                               filepath = NA_character_,
@@ -72,6 +89,8 @@ create_OID_object <- function(id = NA_character_,
     obj <- new("OID", 
                id = id, 
                dataset_id = dataset_id, 
+               filepath = filepath,
+               accessor = accessor,
                oid_header = oid_header, 
                oid_header_delim = oid_header_delim,
                filepath = filepath,
