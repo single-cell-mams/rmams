@@ -17,6 +17,7 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
     FNG <- list()
     FOMs <- list()
     FIDs <- c()
+    #MAMS <- create_MAMS_object()
     obs_unit <- "cell" # should probably be a user input
     for(i in 1:length(object_list)){
         object <- object_list[[i]]
@@ -59,16 +60,17 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
                     processing <- "scaled"
                     feature_subset <- "variable"
                 }
-                FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset)#, record_id=record_id)
+                FOMs[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, obs_unit = obs_unit, representation = representation, analyte = analyte, modality = modality, obs_subset = obs_subset, feature_subset = feature_subset, oid = oid, fid = fid, obs = obs)
+                # FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, fid=fid, obs=obs, fea=fea, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset)#, record_id=record_id)
             }
             
             ## Loop over Graphs & Neighbors
             ## Needs Completion
-            for(graph in Graphs(object)){
-                ## Neighbors
-                graphname <- paste("FindNeighbors",mod,dimred, sep = ".")
-                edge_metric <- object@commands[[graphname]]$annoy.metric
-            }
+            #for(graph in Graphs(object)){
+            ## Neighbors
+            #    graphname <- paste("FindNeighbors",mod,dimred, sep = ".")
+            #    edge_metric <- object@commands[[graphname]]$annoy.metric
+            #}
             
             #if(length(names(object[[mod]][[]])) > 1){
             #    FEA <- c(FEA, paste(names(object[[mod]][[]]), mod, sep = "."))
@@ -87,15 +89,13 @@ convert_seurat_to_MAMS <- function(object_list, observation_subsets){
                 processing <- "Embedding"
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+            #FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
             # Full list of params: #FOMs[[fom]] <- list(filepath=filepath, accessor=accessor, oid=oid, obs=obs, data_type=data_type, representation=representation, obs_unit=obs_unit, processing=processing, feature_subset=feature_subset, modality=modality, analyte=analyte, obs_subset=obs_subset, parent_id=parent_id, parent_relationship=parent_relationship, record_id=record_id)
         }
-        
     }
-    return(FOMs)
+    MAMS <- create_MAMS_object(FOM = FOMs)
+    return(MAMS)
 }
 
 test <- convert_seurat_to_MAMS(object_list, observation_subsets)
 test
-
-
