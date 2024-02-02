@@ -11,8 +11,10 @@ observation_subsets <- c("filtered", "filtered", "clean")
 ## Input vector of observation subsets, one for each file
 ## Needs completion: FEA, OBS, ONG, FNG, REC
 convert_seurat_to_MAMS <- function(object_list, observation_subsets){
-    FEA <- c()
-    OBS <- c() 
+    FEA <- list()
+    OBS <- list() 
+    ONG <- list()
+    FNG <- list()
     FOMs <- list()
     FIDs <- c()
     obs_unit <- "cell" # should probably be a user input
