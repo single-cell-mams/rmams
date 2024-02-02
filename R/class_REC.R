@@ -1,9 +1,3 @@
-#' @title character or list class union
-#' @description class to allow either NULL or list
-#' @keywords internal
-#' @noRd
-setClassUnion("CharOrList", c("character", "list"))
-
 # **REC Class ####
 #' @description Stores provenance about the dataset and also other objects
 #' @slot id 
@@ -103,7 +97,7 @@ setMethod("record_runtime_duration<-", "REC", function(x, value) {
 
 
 #Create object function 
-create_REC_Object <- function(
+create_REC_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
     record_id = NA_character_,

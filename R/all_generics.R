@@ -1,11 +1,37 @@
+# generic function for high level setters/getters
+setGeneric("fom", function(mams, fom_id, key) standardGeneric("fom"))
+setGeneric("fom<-", function(mams, fom_id, key, value) standardGeneric("fom<-"))
+setGeneric("fid", function(mams, fid_id, key) standardGeneric("fid"))
+setGeneric("fid<-", function(mams, fid_id, key, value) standardGeneric("fid<-"))
+setGeneric("oid", function(mams, oid_id, key) standardGeneric("oid"))
+setGeneric("oid<-", function(mams, oid_id, key, value) standardGeneric("oid<-"))
+setGeneric("fea", function(mams, fea_id, key) standardGeneric("fea"))
+setGeneric("fea<-", function(mams, fea_id, key, value) standardGeneric("fea<-"))
+setGeneric("fng", function(mams, fng_id, key) standardGeneric("fng"))
+setGeneric("fng<-", function(mams, fng_id, key, value) standardGeneric("fng<-"))
+setGeneric("ong", function(mams, ong_id, key) standardGeneric("ong"))
+setGeneric("ong<-", function(mams, ong_id, key, value) standardGeneric("ong<-"))
+setGeneric("obs", function(mams, obs_id, key) standardGeneric("obs"))
+setGeneric("obs<-", function(mams, obs_id, key, value) standardGeneric("obs<-"))
+setGeneric("rec", function(mams, rec_id, key) standardGeneric("rec"))
+setGeneric("rec<-", function(mams, rec_id, key, value) standardGeneric("rec<-"))
+
+#' @title character or list class union
+#' @description class to allow either NULL or list
+#' @keywords internal
+#' @noRd
+setClassUnion("CharOrList", c("character", "list"))
+
 # generic functions for all objects
 
 setGeneric("id", function(x) standardGeneric("id"))
 setGeneric("id<-", function(x, value) standardGeneric("id<-"))
 setGeneric("dataset_id", function(x) standardGeneric("dataset_id"))
 setGeneric("dataset_id<-", function(x, value) standardGeneric("dataset_id<-"))
-
-# generic functions for FOM objects
+setGeneric("filepath", function(x) standardGeneric("filepath"))
+setGeneric("filepath<-", function(x, value) standardGeneric("filepath<-"))
+setGeneric("accessor", function(x) standardGeneric("accessor"))
+setGeneric("accessor<-", function(x, value) standardGeneric("accessor<-"))
 
 # Define a generic function and method for 'data_type'
 setGeneric("data_type", function(x) standardGeneric("data_type"))
@@ -58,15 +84,11 @@ setGeneric("parent_relationship<-", function(x, value) standardGeneric("parent_r
 # Define a generic function and method for 'parent_relationship_description'
 setGeneric("parent_relationship_description", function(x) standardGeneric("parent_relationship_description"))
 setGeneric("parent_relationship_description<-", function(x, value) standardGeneric("parent_relationship_description<-"))
-           
-# generic functions for neighbor graph objects (ONG,FNG)
 
 setGeneric("edge_metric", function(x) standardGeneric("edge_metric"))
 setGeneric("edge_metric<-", function(x, value) standardGeneric("edge_metric<-"))
 setGeneric("metric_type", function(x) standardGeneric("metric_type"))
 setGeneric("metric_type<-", function(x, value) standardGeneric("metric_type<-"))
-
-# generic functions for REC objects
 
 setGeneric("record_id", function(x) standardGeneric("record_id"))
 setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
@@ -87,24 +109,18 @@ setGeneric("record_runtime_end<-", function(x, value) standardGeneric("record_ru
 setGeneric("record_runtime_duration", function(x) standardGeneric("record_runtime_duration"))
 setGeneric("record_runtime_duration<-", function(x, value) standardGeneric("record_runtime_duration<-"))
 
-# generic functions for OID objects
-
 setGeneric("oid_header", function(x) standardGeneric("oid_header"))
 setGeneric("oid_header<-", function(x, value) standardGeneric("oid_header<-"))
 setGeneric("oid_header_delim", function(x) standardGeneric("oid_header_delim"))
 setGeneric("oid_header_delim<-", function(x, value) standardGeneric("oid_header_delim<-"))
-
-# generic functions for FID objects
 
 setGeneric("fid_header", function(x) standardGeneric("fid_header"))
 setGeneric("fid_header<-", function(x, value) standardGeneric("fid_header<-"))
 setGeneric("fid_header_delim", function(x) standardGeneric("fid_header_delim"))
 setGeneric("fid_header_delim<-", function(x, value) standardGeneric("fid_header_delim<-"))
 
-# generic functions for FEA objects
-
-setGeneric("feature_name", function(x) standardGeneric("feature_name"))
-setGeneric("feature_name<-", function(x, value) standardGeneric("feature_name<-"))
+setGeneric("feature_modality", function(x) standardGeneric("feature_modality"))
+setGeneric("feature_modality<-", function(x, value) standardGeneric("feature_modality<-"))
 setGeneric("reference_database", function(x) standardGeneric("reference_database"))
 setGeneric("reference_database<-", function(x, value) standardGeneric("reference_database<-"))
 setGeneric("reference_organism", function(x) standardGeneric("reference_organism"))
