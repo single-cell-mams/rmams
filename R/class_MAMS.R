@@ -16,14 +16,14 @@
 setClass(
   "MAMS",
   slots = list(
-    FOM = "list",
-    FEA = "list",
-    OBS = "list",
-    FID = "list",
-    OID = "list",
-    REC = "list",
-    ONG = "list",
-    FNG = "list"
+    FOM = "ListOrNULL",
+    FEA = "ListOrNULL",
+    OBS = "ListOrNULL",
+    FID = "ListOrNULL",
+    OID = "ListOrNULL",
+    REC = "ListOrNULL",
+    ONG = "ListOrNULL",
+    FNG = "ListOrNULL"
   )
 )
 

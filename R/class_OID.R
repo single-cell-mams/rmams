@@ -8,12 +8,12 @@
 #' @slot oid_header character
 #' @slot oid_header_delim character
 
-setClass("OID", slots = list(id = "character",
-                             dataset_id = "character",                             
-                             filepath = "character",
-                             accessor = "character",
-                             oid_header = "character",
-                             oid_header_delim = "character"))
+setClass("OID", slots = list(id = "CharOrNULL",
+                             dataset_id = "CharOrNULL",                             
+                             filepath = "CharOrNULL",
+                             accessor = "CharOrNULL",
+                             oid_header = "CharOrNULL",
+                             oid_header_delim = "CharOrNULL"))
 
 setMethod("id", signature("OID"), function(x) x@id)
 setMethod("id<-", signature("OID"), function(x, value) {
@@ -80,4 +80,13 @@ create_OID_object <- function(id = NA_character_,
 }
 
 
+# collapse function to sub object
+setMethod("collapse_to_list", "OID", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
+})
 

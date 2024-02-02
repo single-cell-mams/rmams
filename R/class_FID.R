@@ -8,12 +8,12 @@
 #' @slot filepath character
 #' @slot accessor character
 
-setClass("FID", slots = list(id = "character",
-                             dataset_id = "character",
-                             filepath = "character",
-                             accessor = "character",
-                             fid_header = "character",
-                             fid_header_delim = "character"))
+setClass("FID", slots = list(id = "CharOrNULL",
+                             dataset_id = "CharOrNULL",
+                             filepath = "CharOrNULL",
+                             accessor = "CharOrNULL",
+                             fid_header = "CharOrNULL",
+                             fid_header_delim = "CharOrNULL"))
 
 # constructor for the FID S4 object
 
@@ -69,3 +69,14 @@ setMethod("fid_header_delim<-", signature("FID"), function(x, value) {
     x@fid_header_delim <- value
     x
 })
+
+# collapse function to sub object
+setMethod("collapse_to_list", "FID", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
+})
+

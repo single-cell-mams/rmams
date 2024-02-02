@@ -35,33 +35,33 @@
 setClass(
   "FOM",
   slots = c(
-    id = "character",
-    dataset_id = "character",    
-    filepath = "character",
-    accessor = "character",
-    data_type = "character",
-    representation = "character",
-    representation_description = "character",
-    obs_unit = "character",
-    processing = "character",
-    processing_description = "character",
-    analyte = "character",
-    analyte_description = "character",
-    modality = "character",
-    obs_subset = "character",
-    obs_subset_description = "character",
-    feature_subset = "character",
-    feature_subset_description = "character",
-    record_id = "character",
-    parent_id = "character",
-    parent_relationship = "character",
-    parent_relationship_description = "character",
-    oid = "character",
-    fid = "character",
-    obs = "character",
-    fea = "character",
-    ong = "character",
-    fng = "character"
+    id = "CharOrNULL",
+    dataset_id = "CharOrNULL",    
+    filepath = "CharOrNULL",
+    accessor = "CharOrNULL",
+    data_type = "CharOrNULL",
+    representation = "CharOrNULL",
+    representation_description = "CharOrNULL",
+    obs_unit = "CharOrNULL",
+    processing = "CharOrNULL",
+    processing_description = "CharOrNULL",
+    analyte = "CharOrNULL",
+    analyte_description = "CharOrNULL",
+    modality = "CharOrNULL",
+    obs_subset = "CharOrNULL",
+    obs_subset_description = "CharOrNULL",
+    feature_subset = "CharOrNULL",
+    feature_subset_description = "CharOrNULL",
+    record_id = "CharOrNULL",
+    parent_id = "CharOrNULL",
+    parent_relationship = "CharOrNULL",
+    parent_relationship_description = "CharOrNULL",
+    oid = "CharOrNULL",
+    fid = "CharOrNULL",
+    obs = "CharOrNULL",
+    fea = "CharOrNULL",
+    ong = "CharOrNULL",
+    fng = "CharOrNULL"
   )
 )
 
@@ -171,18 +171,19 @@ setMethod("filepath<-", "FOM", function(x, value) { x@filepath <- value; x })
 setMethod("accessor", "FOM", function(x) x@accessor)
 setMethod("accessor<-", "FOM", function(x, value) { x@accessor <- value; x })
 
-setMethod("fid", "FOM", function(x) x@fid)
-setMethod("fid<-", "FOM", function(x, value) { x@fid <- value; x })
-setMethod("oid", "FOM", function(x) x@oid)
-setMethod("oid<-", "FOM", function(x, value) { x@oid <- value; x })
-setMethod("fea", "FOM", function(x) x@fea)
-setMethod("fea<-", "FOM", function(x, value) { x@fea <- value; x })
-setMethod("obs", "FOM", function(x) x@obs)
-setMethod("obs<-", "FOM", function(x, value) { x@obs <- value; x })
-setMethod("fng", "FOM", function(x) x@fng)
-setMethod("fng<-", "FOM", function(x, value) { x@fng <- value; x })
-setMethod("ong", "FOM", function(x) x@ong)
-setMethod("ong<-", "FOM", function(x, value) { x@ong <- value; x })
+#Conflict Generic/Methods Settings
+#setMethod("fid", "FOM", function(x) x@fid)
+#setMethod("fid<-", "FOM", function(x, value) { x@fid <- value; x })
+#setMethod("oid", "FOM", function(x) x@oid)
+#setMethod("oid<-", "FOM", function(x, value) { x@oid <- value; x })
+#setMethod("fea", "FOM", function(x) x@fea)
+#setMethod("fea<-", "FOM", function(x, value) { x@fea <- value; x })
+#setMethod("obs", "FOM", function(x) x@obs)
+#setMethod("obs<-", "FOM", function(x, value) { x@obs <- value; x })
+#setMethod("fng", "FOM", function(x) x@fng)
+#setMethod("fng<-", "FOM", function(x, value) { x@fng <- value; x })
+#setMethod("ong", "FOM", function(x) x@ong)
+#setMethod("ong<-", "FOM", function(x, value) { x@ong <- value; x })
 
 setMethod("data_type", "FOM", function(x) x@data_type)
 setMethod("data_type<-", "FOM", function(x, value) { x@data_type <- value; x })
@@ -218,3 +219,14 @@ setMethod("parent_relationship", "FOM", function(x) x@parent_relationship)
 setMethod("parent_relationship<-", "FOM", function(x, value) { x@parent_relationship <- value; x })
 setMethod("parent_relationship_description", "FOM", function(x) x@parent_relationship_description)
 setMethod("parent_relationship_description<-", "FOM", function(x, value) { x@parent_relationship_description <- value; x })
+
+
+# collapse function to sub object
+setMethod("collapse_to_list", "FOM", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
+})

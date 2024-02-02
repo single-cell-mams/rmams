@@ -20,7 +20,19 @@ setGeneric("rec<-", function(mams, rec_id, key, value) standardGeneric("rec<-"))
 #' @description class to allow either NULL or list
 #' @keywords internal
 #' @noRd
-setClassUnion("CharOrList", c("character", "list"))
+setClassUnion("CharOrList", c("character", "list", "NULL"))
+
+#' @title character or NULL class union
+#' @description class to allow either NULL or character
+#' @keywords internal
+#' @noRd
+setClassUnion("CharOrNULL", c("character", "NULL"))
+
+#' @title character or list class union
+#' @description class to allow either NULL or list
+#' @keywords internal
+#' @noRd
+setClassUnion("ListOrNULL", c("list", "NULL"))
 
 # generic functions for all objects
 
@@ -125,3 +137,10 @@ setGeneric("reference_database", function(x) standardGeneric("reference_database
 setGeneric("reference_database<-", function(x, value) standardGeneric("reference_database<-"))
 setGeneric("reference_organism", function(x) standardGeneric("reference_organism"))
 setGeneric("reference_organism<-", function(x, value) standardGeneric("reference_organism<-"))
+
+
+# Define the S4 generic function for to S3 list converter
+setGeneric("collapse_to_list", function(x,...) {
+  standardGeneric("collapse_to_list")
+})
+

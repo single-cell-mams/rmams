@@ -13,14 +13,14 @@
 #' @export
 #'
 #' @examples
-setClass("FEA", slots = list(id = "character",
-                             dataset_id = "character",
-                             filepath = "character",
-                             accessor = "character",
-                             feature_modality = "character",
-                             reference_database = "character",
-                             reference_organism = "character",
-                             record_id = "character"))
+setClass("FEA", slots = list(id = "CharOrNULL",
+                             dataset_id = "CharOrNULL",
+                             filepath = "CharOrNULL",
+                             accessor = "CharOrNULL",
+                             feature_modality = "CharOrNULL",
+                             reference_database = "CharOrNULL",
+                             reference_organism = "CharOrNULL",
+                             record_id = "CharOrNULL"))
 
 create_FEA_object <- function(
     id = NA_character_,
@@ -37,7 +37,6 @@ create_FEA_object <- function(
              dataset_id = dataset_id,
              filepath = filepath,
              accessor = accessor,
-             data_type = data_type,
              feature_modality = feature_modality,
              reference_database = reference_database,
              reference_organism = reference_organism,
@@ -92,4 +91,15 @@ setMethod("record_id", "FEA", function(x) x@record_id)
 setMethod("record_id<-", "FEA", function(x, value) {
   x@record_id <- value
   x
+})
+
+
+# collapse function to sub object
+setMethod("collapse_to_list", "FEA", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
 })
