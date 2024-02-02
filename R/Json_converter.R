@@ -168,8 +168,8 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
   if (is.list(MAMS)){
     list_to_write = list()
     for (i in 1:length(MAMS)){
-      MAMSobj = MAMS[i]
-      list_to_write[i] = list("FOM"= lapply(MAMSobj@FOM,collapse_to_list),
+      MAMSobj = MAMS[[i]]
+      list_to_write[[i]] = list("FOM"= lapply(MAMSobj@FOM,collapse_to_list),
                            "FEA"= lapply(MAMSobj@FEA,collapse_to_list),
                            "OBS"= lapply(MAMSobj@OBS,collapse_to_list),
                            "FID"= lapply(MAMSobj@FID,collapse_to_list),
@@ -177,6 +177,7 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
                            "ONG"= lapply(MAMSobj@ONG,collapse_to_list),
                            "FNG"= lapply(MAMSobj@FNG,collapse_to_list),
                            "REC"= lapply(MAMSobj@REC,collapse_to_list))
+      names(list_to_write[[i]]) = c("FOM","FEA","OBS","FID","OID","ONG","FNG","REC")
     }
   }
   else if (class(MAMS) == "MAMS"){
@@ -188,14 +189,15 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
                           "ONG"= lapply(MAMS@ONG,collapse_to_list),
                           "FNG"= lapply(MAMS@FNG,collapse_to_list),
                           "REC"= lapply(MAMS@REC,collapse_to_list))
+    names(list_to_write) = c("FOM","FEA","OBS","FID","OID","ONG","FNG","REC")
   }
   else(
     stop("MAMS must be a MAMS object , or a list of MAMS objects")
   )
   names(list_to_write) = names(MAMS)
   json_data <- jsonlite::toJSON(list_to_write, pretty = TRUE)
-  return(json_data)
-  #jsonlite::writeLines(json_data, filepath)
+  #return(json_data)
+  jsonlite::writeLines(json_data, filepath)
 }
 
 
