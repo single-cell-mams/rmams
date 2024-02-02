@@ -171,7 +171,7 @@ setMethod("filepath<-", "FOM", function(x, value) { x@filepath <- value; x })
 setMethod("accessor", "FOM", function(x) x@accessor)
 setMethod("accessor<-", "FOM", function(x, value) { x@accessor <- value; x })
 
-#Conflict Generic/Methods Settings
+
 #setMethod("fid", "FOM", function(x) x@fid)
 #setMethod("fid<-", "FOM", function(x, value) { x@fid <- value; x })
 #setMethod("oid", "FOM", function(x) x@oid)
