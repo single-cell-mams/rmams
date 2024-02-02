@@ -2,6 +2,8 @@
 #' @description Stores Feature Neighborhood Graph class
 #' @slot id 
 #' @slot dataset_id 
+#' @slot filepath
+#' @slot accessor
 #' @slot edge_metric 
 #' @slot metric_type 
 #' @keywords internal
@@ -64,7 +66,7 @@ setMethod("metric_type<-", "FNG", function(x, value) {
 })
 
 #Create object function 
-create_FNG_Object <- function(
+create_FNG_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
     filepath = NA_character_,

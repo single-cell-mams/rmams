@@ -2,6 +2,8 @@
 #' @description Stores observation Neighborhood Graph class
 #' @slot id 
 #' @slot dataset_id 
+#' @slot filepath
+#' @slot accessor
 #' @slot edge_metric 
 #' @slot metric_type 
 #' @keywords internal
@@ -71,7 +73,7 @@ setMethod("metric_type<-", "ONG", function(x, value) {
 })
 
 #Create object function 
-create_ONG_Object <- function(
+create_ONG_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
     filepath = NA_character_,
