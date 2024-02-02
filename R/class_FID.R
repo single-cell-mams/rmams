@@ -60,12 +60,12 @@ setMethod("accessor<-", "FID", function(x, value) {
 
 setMethod("fid_header", signature("FID"), function(x) x@fid_header)
 setMethod("fid_header<-", signature("FID"), function(x, value) {
-    x@fid_header <- value
-    x
+  x@fid_header <- value
+  x
 })
 
 setMethod("fid_header_delim", signature("FID"), function(x) x@fid_header_delim)
 setMethod("fid_header_delim<-", signature("FID"), function(x, value) {
-    x@fid_header_delim <- value
-    x
+  x@fid_header_delim <- value
+  x
 })
