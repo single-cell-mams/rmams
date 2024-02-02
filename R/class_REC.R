@@ -17,17 +17,17 @@
 setClass(
   "REC",
   slots = list(
-    id = "character",
-    dataset_id = "character",
-    record_id = "character",
-    record_package_name = "character",
-    record_package_version = "character",
-    record_function_name = "character",
+    id = "CharOrNULL",
+    dataset_id = "CharOrNULL",
+    record_id = "CharOrNULL",
+    record_package_name = "CharOrNULL",
+    record_package_version = "CharOrNULL",
+    record_function_name = "CharOrNULL",
     record_function_parameters = "CharOrList",
-    record_workflow_link = "character",
-    record_runtime_start = "character",
-    record_runtime_end = "character",
-    record_runtime_duration = "character"
+    record_workflow_link = "CharOrNULL",
+    record_runtime_start = "CharOrNULL",
+    record_runtime_end = "CharOrNULL",
+    record_runtime_duration = "CharOrNULL"
   )
 )
 
@@ -125,3 +125,14 @@ create_REC_object <- function(
   )
   return(obj)
 }
+
+
+# collapse function to sub object
+setMethod("collapse_to_list", "REC", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
+})

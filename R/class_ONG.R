@@ -11,14 +11,14 @@
 setClass(
   "ONG",
   slots = list(
-    id = "character",
-    dataset_id = "character",
-    filepath = "character",
-    accessor = "character",
-    parent_id = "character",
-    record_id = "character",
-    edge_metric = "character",
-    metric_type = "character"
+    id = "CharOrNULL",
+    dataset_id = "CharOrNULL",
+    filepath = "CharOrNULL",
+    accessor = "CharOrNULL",
+    parent_id = "CharOrNULL",
+    record_id = "CharOrNULL",
+    edge_metric = "CharOrNULL",
+    metric_type = "CharOrNULL"
   )
 )
 
@@ -96,3 +96,12 @@ create_ONG_object <- function(
   return(obj)
 }
 
+# collapse function to sub object
+setMethod("collapse_to_list", "ONG", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
+})

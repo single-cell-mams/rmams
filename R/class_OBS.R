@@ -10,11 +10,11 @@
 #' @export
 #'
 #' @examples
-setClass("OBS", slots = list(id = "character",
-                             dataset_id = "character",    
-                             filepath = "character",
-                             accessor = "character",
-                             record_id = "character"))
+setClass("OBS", slots = list(id = "CharOrNULL",
+                             dataset_id = "CharOrNULL",    
+                             filepath = "CharOrNULL",
+                             accessor = "CharOrNULL",
+                             record_id = "CharOrNULL"))
 
 create_OBS_object <- function(
     id = NA_character_,
@@ -23,7 +23,7 @@ create_OBS_object <- function(
     accessor = NA_character_,
     record_id = NA_character_
 ) {
-  obj <- new("FEA",
+  obj <- new("OBS",
              id = id,
              dataset_id = dataset_id,
              filepath = filepath,
@@ -62,4 +62,15 @@ setMethod("record_id", "OBS", function(x) x@record_id)
 setMethod("record_id<-", "OBS", function(x, value) {
   x@record_id <- value
   x
+})
+
+
+# collapse function to sub object
+setMethod("collapse_to_list", "OBS", function(x) {
+  collapsed_list <- mapply(function(s) slot(x, s),
+                           slotNames(x),
+                           SIMPLIFY = FALSE)
+  # Remove NULL values
+  collapsed_list <- Filter(function(y) !is.null(y), collapsed_list)
+  return(collapsed_list)
 })
