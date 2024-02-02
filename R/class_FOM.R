@@ -1,7 +1,9 @@
 #' Class to create a FOM object
 #'
 #' @slot id character. 
-#' @slot dataset_id character. 
+#' @slot dataset_id character.
+#' @slot filepath character.
+#' @slot accessor character. 
 #' @slot data_type character. 
 #' @slot representation character. 
 #' @slot representation_description character. 
@@ -19,6 +21,12 @@
 #' @slot parent_id character. 
 #' @slot parent_relationship character. 
 #' @slot parent_relationship_description character. 
+#' @slot oid character.
+#' @slot fid character.
+#' @slot obs character.
+#' @slot fea character.
+#' @slot ong character.
+#' @slot fng character.
 #'
 #' @return
 #' @export
@@ -28,7 +36,9 @@ setClass(
   "FOM",
   slots = c(
     id = "character",
-    dataset_id = "character",
+    dataset_id = "character",    
+    filepath = "character",
+    accessor = "character",
     data_type = "character",
     representation = "character",
     representation_description = "character",
@@ -45,16 +55,23 @@ setClass(
     record_id = "character",
     parent_id = "character",
     parent_relationship = "character",
-    parent_relationship_description = "character"
+    parent_relationship_description = "character",
+    oid = "character",
+    fid = "character",
+    obs = "character",
+    fea = "character",
+    ong = "character",
+    fng = "character"
   )
 )
-
 
 #' Constructor function to create a FOM object
 #'
 #' @param id 
 #' @param dataset_id 
 #' @param data_type 
+#' @param filepath
+#' @param accessor
 #' @param representation 
 #' @param representation_description 
 #' @param obs_unit 
@@ -71,14 +88,22 @@ setClass(
 #' @param parent_id 
 #' @param parent_relationship 
 #' @param parent_relationship_description 
+#' @param oid
+#' @param fid
+#' @param obs
+#' @param fea
+#' @param ong
+#' @param fng
 #'
 #' @return
 #' @export
 #'
 #' @examples
-create_FOM_Object <- function(
+create_FOM_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
+    filepath = NA_character_,
+    accessor = NA_character_,
     data_type = NA_character_,
     representation = NA_character_,
     representation_description = NA_character_,
@@ -95,11 +120,19 @@ create_FOM_Object <- function(
     record_id = NA_character_,
     parent_id = NA_character_,
     parent_relationship = NA_character_,
-    parent_relationship_description = NA_character_
+    parent_relationship_description = NA_character_,
+    oid = NA_character_,
+    fid = NA_character_,
+    obs = NA_character_,
+    fea = NA_character_,
+    ong = NA_character_,
+    fng = NA_character_
 ) {
   obj <- new("FOM",
              id = id,
              dataset_id = dataset_id,
+             filepath = filepath,
+             accessor = accessor,
              data_type = data_type,
              representation = representation,
              representation_description = representation_description,
@@ -116,7 +149,13 @@ create_FOM_Object <- function(
              record_id = record_id,
              parent_id = parent_id,
              parent_relationship = parent_relationship,
-             parent_relationship_description = parent_relationship_description
+             parent_relationship_description = parent_relationship_description,
+             oid = oid,
+             fid = fid,
+             obs = obs,
+             fea = fea,
+             ong = ong,
+             fng = fng
   )
   
   return(obj)
@@ -127,6 +166,24 @@ setMethod("id", "FOM", function(x) x@id)
 setMethod("id<-", "FOM", function(x, value) { x@id <- value; x})
 setMethod("dataset_id", "FOM", function(x) x@dataset_id)
 setMethod("dataset_id<-", "FOM", function(x, value) { x@dataset_id <- value; x })
+setMethod("filepath", "FOM", function(x) x@filepath)
+setMethod("filepath<-", "FOM", function(x, value) { x@filepath <- value; x })
+setMethod("accessor", "FOM", function(x) x@accessor)
+setMethod("accessor<-", "FOM", function(x, value) { x@accessor <- value; x })
+
+#setMethod("fid", "FOM", function(x) x@fid)
+#setMethod("fid<-", "FOM", function(x, value) { x@fid <- value; x })
+#setMethod("oid", "FOM", function(x) x@oid)
+#setMethod("oid<-", "FOM", function(x, value) { x@oid <- value; x })
+#setMethod("fea", "FOM", function(x) x@fea)
+#setMethod("fea<-", "FOM", function(x, value) { x@fea <- value; x })
+#setMethod("obs", "FOM", function(x) x@obs)
+#setMethod("obs<-", "FOM", function(x, value) { x@obs <- value; x })
+#setMethod("fng", "FOM", function(x) x@fng)
+#setMethod("fng<-", "FOM", function(x, value) { x@fng <- value; x })
+#setMethod("ong", "FOM", function(x) x@ong)
+#setMethod("ong<-", "FOM", function(x, value) { x@ong <- value; x })
+
 setMethod("data_type", "FOM", function(x) x@data_type)
 setMethod("data_type<-", "FOM", function(x, value) { x@data_type <- value; x })
 setMethod("representation", "FOM", function(x) x@representation)
@@ -161,4 +218,3 @@ setMethod("parent_relationship", "FOM", function(x) x@parent_relationship)
 setMethod("parent_relationship<-", "FOM", function(x, value) { x@parent_relationship <- value; x })
 setMethod("parent_relationship_description", "FOM", function(x) x@parent_relationship_description)
 setMethod("parent_relationship_description<-", "FOM", function(x, value) { x@parent_relationship_description <- value; x })
-
