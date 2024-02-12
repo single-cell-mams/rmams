@@ -8,6 +8,7 @@
 #' @examples
 convert_seurat_to_MAMS <- function(object_list){
     FOMs <- list()
+    ONG <- list()
     FIDs <- c()
     for(i in 1:length(object_list)){
         object <- object_list[[i]]
@@ -63,8 +64,34 @@ convert_seurat_to_MAMS <- function(object_list){
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
             FOMs[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
         }
+        ## Graph
+        for(graph in Graphs(object)){
+            #filepath <- paste0(names(object_list)[[i]], ".rds")
+            ogr <- paste0("ogr", length(ONG)+1)
+            graphname <- paste("FindNeighbors", mod, dimred, sep = ".")
+            edge_metric <- object@commands[[graphname]]$annoy.metric
+            metric_type <- "distance"
+            accessor <- paste0("Graphs(", substr(filepath, 1, nchar(filepath)-4), ', \"', graph, '\")')
+            if(substr(graph, 1, 3) == "RNA"||substr(graph, 1, 3) == "ADT"){
+                record_id <- paste("FindNeighbors", mod, dimred, substr(filepath, 15, nchar(filepath)-4), sep = ".")
+            }
+            else if(substr(graph, 1, 3) == "wsn"||substr(graph, 1, 3) == "wkn"){
+                record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
+            }
+            ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
+        }
+        ## Neighbor
+        for(neighbor in Neighbors(object)){
+            ogr <- paste0("ogr", length(ONG)+1)
+            graphname <- paste("FindNeighbors", mod, dimred, sep = ".")
+            edge_metric <- object@commands[[graphname]]$annoy.metric
+            metric_type <- "distance"
+            accessor <- paste0("Neighbors(", substr(filepath, 1, nchar(filepath)-4), ', \"', neighbor, '\")')
+            record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
+            ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
+        }
     }
     MAMS <- create_MAMS_object(FOM = FOMs)
     return(MAMS)
 }
-
+        
