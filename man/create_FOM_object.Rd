@@ -35,46 +35,63 @@ create_FOM_object(
 )
 }
 \arguments{
-\item{id}{}
+\item{id}{Denotes the unique id of the matrix, annotation data frame, or graph and should be unique}
 
-\item{dataset_id}{}
+\item{dataset_id}{ID of the dataset}
 
-\item{data_type}{}
+\item{filepath}{Path to the file}
 
-\item{representation}{}
+\item{accessor}{Accessor}
 
-\item{representation_description}{}
+\item{data_type}{Explicitly describes the type of data stored in the FOM}
 
-\item{obs_unit}{}
+\item{representation}{Preferred representation of the matrix}
 
-\item{processing}{}
+\item{representation_description}{More detail about the representation}
 
-\item{processing_description}{}
+\item{obs_unit}{Biological unit of the observations}
 
-\item{analyte}{}
+\item{processing}{Used to describe the nature of the data contained within the matrix}
 
-\item{analyte_description}{}
+\item{processing_description}{More detail about the nature of the data}
 
-\item{modality}{}
+\item{analyte}{Used to describe the biological analytes being quantified in the matrix}
 
-\item{obs_subset}{}
+\item{analyte_description}{More details about the analytes}
 
-\item{obs_subset_description}{}
+\item{modality}{Describes the modality of the matrix, may be the same as another field or combination of other fields}
 
-\item{feature_subset}{}
+\item{obs_subset}{Describes the subset of observations that are present in the FOM}
 
-\item{feature_subset_description}{}
+\item{obs_subset_description}{More about the subset of observations}
 
-\item{record_id}{}
+\item{feature_subset}{Describes the subset of features that are present in the FOM}
 
-\item{parent_id}{}
+\item{feature_subset_description}{More about the subset of features}
 
-\item{parent_relationship}{}
+\item{record_id}{Unique id to denote a combination of entries for record_package_name, record_package_version, record_function_name, and record_function_parameters}
 
-\item{parent_relationship_description}{}
+\item{parent_id}{Denotes the id(s) of the parent matrices that were used to produce the matrix}
 
-\item{fng}{}
+\item{parent_relationship}{Denotes the type of relationship with the parent matrix or matrices}
+
+\item{parent_relationship_description}{More about the type of relationship with the parent matrix or matrices}
+
+\item{oid}{Character vector or combination of character vectors used to denote the unique ID of each observation}
+
+\item{fid}{Character vector or combination of character vectors used to denote the unique ID of each feature}
+
+\item{obs}{Name of matrices or data frames with the same number of observations as its corresponding FOM}
+
+\item{fea}{Name of matrices or data frames with the same number of features as its corresponding FOM}
+
+\item{ong}{Name of observation neighborhood graph}
+
+\item{fng}{Name of feature neighborhood graph}
+}
+\value{
+a FOM S4 object for further use with other MAMS objects and sub-objects
 }
 \description{
-Constructor function to create a FOM object
+Create the FOM object
 }

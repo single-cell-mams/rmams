@@ -1,5 +1,5 @@
 Package: rmams
-Title: What the Package Does (One Line, Title Case)
+Title: R Matrix and Analysis Metadata Standards
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -7,11 +7,18 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
+Depends: 
+    R (>= 3.5.0)
+Imports:
+    SeuratObject,
+    jsonlite,
+    methods
+Suggests:
+    Seurat
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 URL: https://salzcamino.github.io/rmams/

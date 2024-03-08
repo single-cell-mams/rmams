@@ -16,19 +16,24 @@ create_MAMS_object(
 )
 }
 \arguments{
-\item{FOM}{}
+\item{FOM}{FOM}
 
-\item{FEA}{}
+\item{FEA}{FEA}
 
-\item{OBS}{}
+\item{OBS}{OBS}
 
-\item{FID}{}
+\item{FID}{FID}
 
-\item{OID}{}
+\item{OID}{OID}
 
-\item{REC}{}
+\item{REC}{REC}
 
-\item{FNG}{}
+\item{ONG}{ONG}
+
+\item{FNG}{FNG}
+}
+\value{
+a MAMS object for further use
 }
 \description{
 Constructor function to create a MAMS object

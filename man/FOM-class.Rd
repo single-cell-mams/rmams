@@ -3,9 +3,15 @@
 \docType{class}
 \name{FOM-class}
 \alias{FOM-class}
-\title{Class to create a FOM object}
+\title{class FOM}
+\value{
+a FOM class for further use with other MAMS objects and sub-objects
+}
 \description{
-Class to create a FOM object
+Stores the main feature observation matrix
+}
+\details{
+Define the Feature Observation Matrix (FOM) S4 object
 }
 \section{Slots}{
 
