@@ -4,8 +4,10 @@
 #'
 #'
 #'
-#' @param object_list 
-#'
+#' @param object_list A named list of Seurat objects to be converted to MAMS format
+#' @param observation_subsets A vector with same length as object_list indicating the
+#' observation subset for each Seurat object. One of: full, filtered, threshold, detected,
+#' nonartifact, clean.
 #' @return
 #' @export
 #'
@@ -54,7 +56,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                     processing <- "scaled"
                     feature_subset <- "variable"
                 }
-                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
               #  FOMs[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, representation = representation, analyte = analyte, modality = modality, obs_subset = obs_subset, feature_subset = feature_subset, oid = oid, fid = fid, obs = obs, fea = fea)
             }
         }
@@ -68,7 +70,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                 processing <- "Embedding"
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
            # FOMs[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
          }
         ## Graph
