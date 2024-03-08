@@ -39,3 +39,8 @@ vignettes/*.pdf
 .Renviron
 
 rmams.Rproj
+docs
+.Rproj.user
+.Rdata
+.DS_Store
+.quarto
