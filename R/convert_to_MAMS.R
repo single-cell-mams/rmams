@@ -36,7 +36,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                 analyte <- "protein"
             }
             
-            for(assay in SeuratObject::Layers(object)){
+            for(assay in slotNames(object@assays[[mod]])){
                 fom <- paste0("fom", length(MAMS@FOM)+1)
                 accessor <- paste0("GetAssayData(object = ", substr(filepath, 1, nchar(filepath)-4), ', slot = \"', assay, '\" assay = \"', mod, '\")')
                 if(assay == "counts"){
