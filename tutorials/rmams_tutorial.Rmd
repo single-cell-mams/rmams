@@ -3,13 +3,41 @@ title: "Introduction to rmams"
 author:
 - name: Irzam Sarfraz
   affiliation: 
-  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA  
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA 
+- name: Yusuke Koga
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Salam Abdullatif
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+- name: Ming Liu
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Amulya Shastry
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Tao Guo
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+- name: Jingwen Xu
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+
+- name: Joshua D. Campbell
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+  email: camp@bu.edu  
 
 date: "`r Sys.Date()`"
 package: rmams
 output: 
-  rmarkdown::html_vignette
-  toc:TRUE
+  html_document:
+    toc: TRUE
 
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
