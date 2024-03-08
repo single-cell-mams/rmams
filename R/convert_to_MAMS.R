@@ -1,14 +1,10 @@
 #' Converts Seurat object to a MAMS object
-#'
-#'
-#'
-#'
-#'
+#' 
 #' @param object_list A named list of Seurat objects to be converted to MAMS format
 #' @param observation_subsets A vector with same length as object_list indicating the
 #' observation subset for each Seurat object. One of: full, filtered, threshold, detected,
 #' nonartifact, clean.
-#' @return
+#' @return A MAMS object containing all the extracted metadata fields.
 #' @export
 #'
 #' @examples
