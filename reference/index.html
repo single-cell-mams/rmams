@@ -47,24 +47,39 @@
 
       <dl><dt>
           
-          <code><a href="FEA-class.html">FEA-class</a></code> 
-        </dt>
-        <dd>Class to create a FEA object</dd>
-      </dl><dl><dt>
-          
           <code><a href="FOM-class.html">FOM-class</a></code> 
         </dt>
-        <dd>Class to create a FOM object</dd>
+        <dd>class FOM</dd>
       </dl><dl><dt>
           
-          <code><a href="MAMS-class.html">MAMS-class</a></code> 
+          <code><a href="accessor-FOM-method.html">accessor(<i>&lt;FOM&gt;</i>)</a></code> 
         </dt>
-        <dd>Class to create MAMS object</dd>
+        <dd>accessor</dd>
       </dl><dl><dt>
           
-          <code><a href="OBS-class.html">OBS-class</a></code> 
+          <code><a href="accessor-set-FOM-method.html">`accessor&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
         </dt>
-        <dd>Class to create a OBS object</dd>
+        <dd>accessor&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="analyte-FOM-method.html">analyte(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>analyte</dd>
+      </dl><dl><dt>
+          
+          <code><a href="analyte-set-FOM-method.html">`analyte&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>analyte&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="analyte_description-FOM-method.html">analyte_description(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>analyte_description</dd>
+      </dl><dl><dt>
+          
+          <code><a href="analyte_description-set-FOM-method.html">`analyte_description&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>analyte_description&lt;-</dd>
       </dl><dl><dt>
           
           <code><a href="check_MAMS.html">check_MAMS()</a></code> 
@@ -74,7 +89,22 @@
           
           <code><a href="convert_seurat_to_MAMS.html">convert_seurat_to_MAMS()</a></code> 
         </dt>
-        <dd>Converts Seurat object to a MAMS object</dd>
+        <dd>Converts a Seurat object to a MAMS object.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_FEA_object.html">create_FEA_object()</a></code> 
+        </dt>
+        <dd>Constructor for the FEA S4 object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_FID_object.html">create_FID_object()</a></code> 
+        </dt>
+        <dd>Constructor for the FID S4 object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_FNG_object.html">create_FNG_object()</a></code> 
+        </dt>
+        <dd>Constructor for the FNG (feature neighborhood graph) S4 object</dd>
       </dl><dl><dt>
           
           <code><a href="create_FOM_object.html">create_FOM_object()</a></code> 
@@ -82,9 +112,214 @@
         <dd>Constructor function to create a FOM object</dd>
       </dl><dl><dt>
           
+          <code><a href="create_MAMS_from_JSON.html">create_MAMS_from_JSON()</a></code> 
+        </dt>
+        <dd>Create a MAMS object from a JSON file</dd>
+      </dl><dl><dt>
+          
           <code><a href="create_MAMS_object.html">create_MAMS_object()</a></code> 
         </dt>
         <dd>Constructor function to create a MAMS object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_OBS_object.html">create_OBS_object()</a></code> 
+        </dt>
+        <dd>Constructor for the OBS (observations) S4 object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_OID_object.html">create_OID_object()</a></code> 
+        </dt>
+        <dd>Constructor for the OID S4 object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_ONG_object.html">create_ONG_object()</a></code> 
+        </dt>
+        <dd>Constructor for the ONG (observation neighborhood graph) S4 object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_REC_object.html">create_REC_object()</a></code> 
+        </dt>
+        <dd>Constructor for the REC (provenance records) S4 object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="data_type-FOM-method.html">data_type(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>data_type</dd>
+      </dl><dl><dt>
+          
+          <code><a href="data_type-set-FOM-method.html">`data_type&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>data_type&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="dataset_id-FOM-method.html">dataset_id(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>dataset_id</dd>
+      </dl><dl><dt>
+          
+          <code><a href="dataset_id-set-FOM-method.html">`dataset_id&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>dataset_id&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="feature_subset-FOM-method.html">feature_subset(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>feature_subset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="feature_subset-set-FOM-method.html">`feature_subset&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>feature_subset&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="feature_subset_description-FOM-method.html">feature_subset_description(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>feature_subset_description</dd>
+      </dl><dl><dt>
+          
+          <code><a href="feature_subset_description-set-FOM-method.html">`feature_subset_description&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>feature_subset_description&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="filepath-FOM-method.html">filepath(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>filepath</dd>
+      </dl><dl><dt>
+          
+          <code><a href="filepath-set-FOM-method.html">`filepath&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>filepath&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="id-FOM-method.html">id(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>id</dd>
+      </dl><dl><dt>
+          
+          <code><a href="id-set-FOM-method.html">`id&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>id&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="modality-FOM-method.html">modality(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>modality</dd>
+      </dl><dl><dt>
+          
+          <code><a href="modality-set-FOM-method.html">`modality&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>modality&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="obs_subset-FOM-method.html">obs_subset(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>obs_subset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="obs_subset-set-FOM-method.html">`obs_subset&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>obs_subset&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="obs_subset_description-FOM-method.html">obs_subset_description(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>obs_subset_description</dd>
+      </dl><dl><dt>
+          
+          <code><a href="obs_subset_description-set-FOM-method.html">`obs_subset_description&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>obs_subset_description&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="obs_unit-FOM-method.html">obs_unit(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>obs_unit</dd>
+      </dl><dl><dt>
+          
+          <code><a href="obs_unit-set-FOM-method.html">`obs_unit&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>obs_unit&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parent_id-FOM-method.html">parent_id(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>parent_id</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parent_id-set-FOM-method.html">`parent_id&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>parent_id&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parent_relationship-FOM-method.html">parent_relationship(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>parent_relationship</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parent_relationship-set-FOM-method.html">`parent_relationship&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>parent_relationship&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parent_relationship_description-FOM-method.html">parent_relationship_description(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>parent_relationship_description</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parent_relationship_description-set-FOM-method.html">`parent_relationship_description&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>parent_relationship_description&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="processing-FOM-method.html">processing(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>processing</dd>
+      </dl><dl><dt>
+          
+          <code><a href="processing-set-FOM-method.html">`processing&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>processing&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="processing_description-FOM-method.html">processing_description(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>processing_description</dd>
+      </dl><dl><dt>
+          
+          <code><a href="processing_description-set-FOM-method.html">`processing_description&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>processing_description&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="record_id-FOM-method.html">record_id(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>record_id</dd>
+      </dl><dl><dt>
+          
+          <code><a href="record_id-set-FOM-method.html">`record_id&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>record_id&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="representation-FOM-method.html">representation(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>representation</dd>
+      </dl><dl><dt>
+          
+          <code><a href="representation-set-FOM-method.html">`representation&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>representation&lt;-</dd>
+      </dl><dl><dt>
+          
+          <code><a href="representation_description-FOM-method.html">representation_description(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>representation_description</dd>
+      </dl><dl><dt>
+          
+          <code><a href="representation_description-set-FOM-method.html">`representation_description&lt;-`(<i>&lt;FOM&gt;</i>)</a></code> 
+        </dt>
+        <dd>representation_description&lt;-</dd>
       </dl></div>
   </main></div>
 
