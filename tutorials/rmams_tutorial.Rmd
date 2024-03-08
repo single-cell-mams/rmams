@@ -9,6 +9,7 @@ date: "`r Sys.Date()`"
 package: rmams
 output: 
   rmarkdown::html_vignette
+  toc:TRUE
 
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -25,6 +26,9 @@ knitr::opts_chunk$set(
 
 
 # Introduction
+
+
+# Step 1: Creating the Seurat object
 
 Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data. This use case demonstrates how MAMS can be used to annotate matrices and annotations that are produced during the analysis of multi-modal single-cell data containing both RNA and Antibody Derived Tags (ADTs). We will analyze the [PBMC 1K dataset](https://support.10xgenomics.com/single-cell-gene-expression/datasets/4.0.0/SC3_v3_NextGem_SI_PBMC_CSP_1K) with the Seurat package according to the [Multi-modal](https://satijalab.org/seurat/articles/multimodal_vignette.html) and [Weighted Nearst Neighbor vignettes](https://satijalab.org/seurat/articles/weighted_nearest_neighbor_analysis.html). The analytical steps include:
 
@@ -206,7 +210,7 @@ saveRDS(data.tcell, "/Users/amulyashastry/Documents/Code/R/MAMS/rmams_latest/dat
 
 
 
-## Creating the object from seurat object
+# Step 2 Creating the MAMS object from seurat object
 
 ### loading data
 
@@ -220,14 +224,30 @@ names(object_list) <- file_names
 observational_subsets<-c("filtered","nonempty","subset")
 ```
 
-# create MAMS object
+### Create MAMS object
 
 ```{r}
 result<- convert_seurat_to_MAMS(object_list,observational_subsets)
+
+# View the object 
+result@FOM
+```
+
+#### Accessing data 
+
+```{r}
+# FOM object
+result@FOM
+
+# ONG object
+
+result@ONG
 ```
 
 
-# Validating MAMS object
+
+
+# Step 3 Validating MAMS object
 
 ```{r}
 
