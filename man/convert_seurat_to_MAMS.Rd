@@ -4,10 +4,17 @@
 \alias{convert_seurat_to_MAMS}
 \title{Converts Seurat object to a MAMS object}
 \usage{
-convert_seurat_to_MAMS(object_list)
+convert_seurat_to_MAMS(object_list, observation_subsets)
 }
 \arguments{
-\item{object_list}{}
+\item{object_list}{A named list of Seurat objects to be converted to MAMS format}
+
+\item{observation_subsets}{A vector with same length as object_list indicating the
+observation subset for each Seurat object. One of: full, filtered, threshold, detected,
+nonartifact, clean.}
+}
+\value{
+A MAMS object containing all the extracted metadata fields.
 }
 \description{
 Converts Seurat object to a MAMS object
