@@ -1,4 +1,5 @@
-# **REC Class ####
+# Define the REC (record) S4 object
+
 #' @description Stores provenance about the dataset and also other objects
 #' @slot id 
 #' @slot dataset_id 
@@ -95,6 +96,23 @@ setMethod("record_runtime_duration<-", "REC", function(x, value) {
   x
 })
 
+
+#' Constructor for the REC (provenance records) S4 object
+#' @description Creates the FID object and populates its subfields
+#' @param id Main ID of MAMS object
+#' @param dataset_id Parent dataset ID
+#' @param record_id Record ID
+#' @param record_package_name Name of toolkit
+#' @param record_package_version Version of toolkit
+#' @param record_function_name Name of function(s) used
+#' @param record_function_parameters Parameters passed to function(s)
+#' @param record_workflow_link Link to the workflow of the toolkit
+#' @param record_runtime_start Runtime start
+#' @param record_runtime_end Runtime end
+#' @param record_runtime_duration Run duration
+#' 
+#' @return a REC S4 object for use with MAMS
+#' @export
 
 #Create object function 
 create_REC_object <- function(

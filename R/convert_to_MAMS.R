@@ -8,9 +8,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{mams <- convert_seurat_to_mams("pbmc_seurat")}
+#' 
 convert_seurat_to_MAMS <- function(object_list,observation_subsets){
-   # FOMs <- list()
-  #  ONG <- list()
+    #FOMs <- list()
+    #ONG <- list()
     FIDs <- c()
     MAMS <- create_MAMS_object()
     for(i in 1:length(object_list)){
@@ -41,16 +43,22 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                     representation <- "sparse"
                     processing <- "counts"
                     feature_subset <- "full"
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+                    
                 }else if(assay == "data"){
                     data_type <- "double"
                     representation <- "sparse"
                     processing <- "lognormalized"
                     feature_subset <- "full"
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+                    
                 }else if(assay == "scale.data"){
                     data_type <- "double"
                     representation <- "dense"
                     processing <- "scaled"
                     feature_subset <- "variable"
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+                    
                 }
                 MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
               #  FOMs[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, representation = representation, analyte = analyte, modality = modality, obs_subset = obs_subset, feature_subset = feature_subset, oid = oid, fid = fid, obs = obs, fea = fea)
