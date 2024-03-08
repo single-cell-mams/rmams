@@ -15,15 +15,16 @@ check_MAMS <- function(mams_object){
     }
 
     #Check 2. Check to see all required fields for each MAMS class (FOM, ONG, etc.) exist
-    required_field_list = list(FOM = c("id", "dataset_id", "data_type", "analyte"),
-                               ONG = c("id", "dataset_id"),
-                               FEA = c("id", "dataset_id", "feature_modality"),
-                               OBS = c("id", "dataset_id"),
-                               FID = c("id", "dataset_id"),
-                               OID = c("id", "dataset_id"),
+    #3/8/2024 - To any future developers: Please add/remove required fields as necessary
+    required_field_list = list(FOM = c("id", "data_type", "analyte"),
+                               ONG = c("id"),
+                               FEA = c("id", "feature_modality"),
+                               OBS = c("id"),
+                               FID = c("id"),
+                               OID = c("id"),
                                REC = c("record_package_name", "record_package_version",
                                        "record_function_name"),
-                               FNG = c("id", "dataset_id"))
+                               FNG = c("id"))
 
     #Q1. What ID do I refer to when returning error message?
     #Q2. What is the correct way for the user to input the missing information?
