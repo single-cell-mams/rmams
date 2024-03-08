@@ -195,9 +195,7 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
     stop("MAMS must be a MAMS object , or a list of MAMS objects")
   )
   names(list_to_write) = names(MAMS)
-  json_data <- jsonlite::toJSON(list_to_write, pretty = TRUE)
-  #return(json_data)
-  jsonlite::writeLines(json_data, filepath)
+  jsonlite::write_json(list_to_write, filepath)
 }
 
 
