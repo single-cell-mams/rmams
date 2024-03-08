@@ -26,6 +26,13 @@ author:
   affiliation:
   - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
   - Program in Bioinformatics, Boston University, Boston, MA
+- name: Natasha Gurevich
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Tomoki Motegi
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
 
 - name: Joshua D. Campbell
   affiliation: 
@@ -278,7 +285,7 @@ result@ONG
 # Step 3 Validating MAMS object
 
 ```{r}
-
+check_MAMS(mams_object = result)
 ```
 
 
