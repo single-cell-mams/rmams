@@ -75,9 +75,7 @@ create_MAMS_from_JSON <- function(JSON){
         OID_list[j] = create_OID_object(id = JSON[[i]][["OID"]][[j]][['id']],
                                         dataset_id = JSON[[i]][["OID"]][[j]][['dataset_id']],
                                         filepath = JSON[[i]][["OID"]][[j]][['filepath']],
-                                        accessor = JSON[[i]][["OID"]][[j]][['accessor']],
-                                        oid_header = JSON[[i]][["OID"]][[j]][['oid_header']], 
-                                        oid_header_delim = JSON[[i]][["OID"]][[j]][['oid_header_delim']]
+                                        accessor = JSON[[i]][["OID"]][[j]][['accessor']]
         )
       }
       names(OID_list) = names(JSON[[i]][["OID"]])
@@ -89,9 +87,7 @@ create_MAMS_from_JSON <- function(JSON){
         FID_list[j] = create_FID_object(id = JSON[[i]][["FID"]][[j]][['id']],
                                         dataset_id = JSON[[i]][["FID"]][[j]][['dataset_id']],
                                         filepath = JSON[[i]][["FID"]][[j]][['filepath']],
-                                        accessor = JSON[[i]][["FID"]][[j]][['accessor']],
-                                        fid_header = JSON[[i]][["FID"]][[j]][['fid_header']], 
-                                        fid_header_delim = JSON[[i]][["FID"]][[j]][['fid_header_delim']]
+                                        accessor = JSON[[i]][["FID"]][[j]][['accessor']]
         )
       }
       names(FID_list) = names(JSON[[i]][["FID"]])
@@ -180,7 +176,7 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
       names(list_to_write[[i]]) = c("FOM","FEA","OBS","FID","OID","ONG","FNG","REC")
     }
   }
-  else if (class(MAMS) == "MAMS"){
+  else if (is(MAMS, "MAMS")){
     list_to_write  = list("FOM"= lapply(MAMS@FOM,collapse_to_list),
                           "FEA"= lapply(MAMS@FEA,collapse_to_list),
                           "OBS"= lapply(MAMS@OBS,collapse_to_list),
@@ -197,7 +193,7 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
   names(list_to_write) = names(MAMS)
   json_data <- jsonlite::toJSON(list_to_write, pretty = TRUE)
   #return(json_data)
-  jsonlite::writeLines(json_data, filepath)
+  jsonlite::write_json(json_data, filepath)
 }
 
 

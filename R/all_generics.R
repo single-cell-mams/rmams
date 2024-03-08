@@ -121,16 +121,6 @@ setGeneric("record_runtime_end<-", function(x, value) standardGeneric("record_ru
 setGeneric("record_runtime_duration", function(x) standardGeneric("record_runtime_duration"))
 setGeneric("record_runtime_duration<-", function(x, value) standardGeneric("record_runtime_duration<-"))
 
-setGeneric("oid_header", function(x) standardGeneric("oid_header"))
-setGeneric("oid_header<-", function(x, value) standardGeneric("oid_header<-"))
-setGeneric("oid_header_delim", function(x) standardGeneric("oid_header_delim"))
-setGeneric("oid_header_delim<-", function(x, value) standardGeneric("oid_header_delim<-"))
-
-setGeneric("fid_header", function(x) standardGeneric("fid_header"))
-setGeneric("fid_header<-", function(x, value) standardGeneric("fid_header<-"))
-setGeneric("fid_header_delim", function(x) standardGeneric("fid_header_delim"))
-setGeneric("fid_header_delim<-", function(x, value) standardGeneric("fid_header_delim<-"))
-
 setGeneric("feature_modality", function(x) standardGeneric("feature_modality"))
 setGeneric("feature_modality<-", function(x, value) standardGeneric("feature_modality<-"))
 setGeneric("reference_database", function(x) standardGeneric("reference_database"))

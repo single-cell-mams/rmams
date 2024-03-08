@@ -1,5 +1,6 @@
-#' Class to create a FEA object
-#'
+# Define the FEA (feature) S4 object
+
+#' @description Stores the feature metadata
 #' @slot id character. 
 #' @slot dataset_id character. 
 #' @slot filepath character.
@@ -9,10 +10,9 @@
 #' @slot reference_organism character. 
 #' @slot record_id character. 
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @return a ONG class for use with MAMS
+#' @noRd
+
 setClass("FEA", slots = list(id = "CharOrNULL",
                              dataset_id = "CharOrNULL",
                              filepath = "CharOrNULL",

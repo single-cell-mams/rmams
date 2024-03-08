@@ -1,13 +1,17 @@
-# **ONG Class ####
-#' @description Stores observation Neighborhood Graph class
-#' @slot id 
-#' @slot dataset_id 
-#' @slot filepath
-#' @slot accessor
-#' @slot edge_metric 
-#' @slot metric_type 
-#' @keywords internal
-#' @noRd
+# Define the ONG (observation neighborhood graph) S4 object
+
+#' @description Stores observation neighborhood graph data
+#' @slot id character
+#' @slot dataset_id character
+#' @slot filepath character
+#' @slot accessor character
+#' @slot edge_metric character
+#' @slot metric_type character
+#'
+#' @return the ONG class for use with MAMS
+#' @export
+#' @noRd 
+
 setClass(
   "ONG",
   slots = list(

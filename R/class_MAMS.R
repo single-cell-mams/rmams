@@ -1,18 +1,19 @@
-#' Class to create MAMS object
+# Define the main MAMS (Matrix and Analysis Metadata Standards) S4 object, used to store all of the other objects.
+
+#' @description Stores the MAMS data as a list of lists (each of S4 objects).
+#' @slot FOM list 
+#' @slot FEA list 
+#' @slot OBS list 
+#' @slot FID list 
+#' @slot OID list 
+#' @slot REC list 
+#' @slot ONG list
+#' @slot FNG list
 #'
-#' @slot FOM list. 
-#' @slot FEA list. 
-#' @slot OBS list. 
-#' @slot FID list. 
-#' @slot OID list. 
-#' @slot REC list. 
-#' @slot ONG list.
-#' @slot FNG list.
-#'
-#' @return
+#' @return the main MAMS class
 #' @export
 #'
-#' @examples
+#' @noRd
 setClass(
   "MAMS",
   slots = list(
@@ -29,19 +30,18 @@ setClass(
 
 #' Constructor function to create a MAMS object
 #'
-#' @param FOM 
-#' @param FEA 
-#' @param OBS 
-#' @param FID 
-#' @param OID 
-#' @param REC 
-#' @param ONG
-#' @param FNG
+#' @param FOM FOM
+#' @param FEA FEA
+#' @param OBS OBS
+#' @param FID FID
+#' @param OID OID
+#' @param REC REC
+#' @param ONG ONG
+#' @param FNG FNG
 #'
-#' @return
+#' @return a MAMS object for further use
 #' @export
-#'
-#' @examples
+
 create_MAMS_object <- function(
     FOM = list(),
     FEA = list(),

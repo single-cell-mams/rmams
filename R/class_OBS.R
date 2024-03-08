@@ -1,15 +1,16 @@
-#' Class to create a OBS object
+# Define the OBS (observation) S4 object
+
+#' @description Stores the observation data.
+#' @slot id character
+#' @slot dataset_id character
+#' @slot filepath character
+#' @slot accessor character
+#' @slot record_id character 
 #'
-#' @slot id character. 
-#' @slot dataset_id character. 
-#' @slot filepath character.
-#' @slot accessor character.
-#' @slot record_id character. 
-#'
-#' @return
+#' @return the OBS class
 #' @export
 #'
-#' @examples
+#' @noRd
 setClass("OBS", slots = list(id = "CharOrNULL",
                              dataset_id = "CharOrNULL",    
                              filepath = "CharOrNULL",

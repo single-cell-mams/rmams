@@ -1,13 +1,18 @@
-# **FNG Class ####
-#' @description Stores Feature Neighborhood Graph class
-#' @slot id 
-#' @slot dataset_id 
-#' @slot filepath
-#' @slot accessor
-#' @slot edge_metric 
-#' @slot metric_type 
-#' @keywords internal
+# Define the FNG (feature neighborhood graph) S4 object
+
+#' @description Stores feature neighborhood graph data
+#' @slot id character
+#' @slot dataset_id character
+#' @slot filepath character
+#' @slot accessor character
+#' @slot edge_metric character
+#' @slot metric_type character
+#' 
+#' @return a FNG S4 object for use with MAMS
+#' @export
 #' @noRd
+
+
 setClass(
   "FNG",
   slots = list(
@@ -64,6 +69,19 @@ setMethod("metric_type<-", "FNG", function(x, value) {
   x@metric_type <- value
   x
 })
+
+#' Constructor for the FNG S4 object
+#' @description Creates the FID object and populates its subfields
+#' @param id Main ID of MAMS object
+#' @param dataset_id Parent dataset ID
+#' @param filepath Path to the data file
+#' @param accessor Accessors used
+#' @param parent Parent ID
+#' @param edge_metric Type of edge metric used
+#' @param metric_type Details of the edge metric
+#' 
+#' @return a FNG S4 object for use with MAMS
+#' @export
 
 #Create object function 
 create_FNG_object <- function(

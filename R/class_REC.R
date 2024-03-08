@@ -1,4 +1,5 @@
-# **REC Class ####
+# Define the REC (record) S4 object
+
 #' @description Stores provenance about the dataset and also other objects
 #' @slot id 
 #' @slot dataset_id 

@@ -2,13 +2,20 @@
 % Please edit documentation in R/convert_to_MAMS.R
 \name{convert_seurat_to_MAMS}
 \alias{convert_seurat_to_MAMS}
-\title{Converts Seurat object to a MAMS object}
+\title{Converts a Seurat object to a MAMS object.}
 \usage{
 convert_seurat_to_MAMS(object_list)
 }
 \arguments{
-\item{object_list}{}
+\item{object_list}{a Seurat object to be converted.}
+}
+\value{
+a MAMS object with the data from the Seurat object
 }
 \description{
-Converts Seurat object to a MAMS object
+Convert a Seurat object to a MAMS object, with metadata preserved and imported.
+}
+\examples{
+\dontrun{mams <- convert_seurat_to_mams("pbmc_seurat")}
+
 }
