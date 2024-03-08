@@ -263,8 +263,6 @@ observational_subsets<-c("filtered","nonempty","subset")
 
 ```{r}
 result<- convert_seurat_to_MAMS(object_list,observational_subsets)
-
-# View the object 
 result@FOM
 ```
 
@@ -274,9 +272,9 @@ result@FOM
 # FOM object
 result@FOM
 
-# ONG object
-
+ ONG object
 result@ONG
+
 ```
 
 
