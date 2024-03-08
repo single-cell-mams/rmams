@@ -1,5 +1,4 @@
-# Define the FEA (feature) S4 object
-
+#' Define the FEA (feature) S4 object
 #' @description Stores the feature metadata
 #' @slot id character. 
 #' @slot dataset_id character. 
@@ -10,7 +9,7 @@
 #' @slot reference_organism character. 
 #' @slot record_id character. 
 #'
-#' @return a ONG class for use with MAMS
+#' @return a FEA class for use with MAMS
 #' @noRd
 
 setClass("FEA", slots = list(id = "CharOrNULL",
@@ -22,6 +21,21 @@ setClass("FEA", slots = list(id = "CharOrNULL",
                              reference_organism = "CharOrNULL",
                              record_id = "CharOrNULL"))
 
+#' Constructor for the FEA S4 object
+#' @description Creates the FEA (feature) object and populates its subfields
+#' 
+#' @param id Parent ID
+#' @param dataset_id Parent dataset ID
+#' @param filepath Path to the data file
+#' @param accessor Accessors used
+#' @param feature_modality Modality of the feature
+#' @param reference_database Reference database used
+#' @param reference_organism Reference organism used
+#' @param record_id Record ID of object
+#' 
+#' @return a FEA S4 object for use with MAMS
+#' @export
+#' 
 create_FEA_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,    

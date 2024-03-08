@@ -17,6 +17,17 @@ setClass("OBS", slots = list(id = "CharOrNULL",
                              accessor = "CharOrNULL",
                              record_id = "CharOrNULL"))
 
+#' Constructor for the OBS (observations) S4 object
+#' @description Creates the FID object and populates its subfields
+#' @param id Main ID of MAMS object
+#' @param dataset_id Parent dataset ID
+#' @param filepath Path to the data file
+#' @param accessor Accessor
+#' @param record_id Record ID
+#' 
+#' @return a OBS S4 object for use with MAMS
+#' @export
+
 create_OBS_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,    

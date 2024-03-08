@@ -1,3 +1,11 @@
+#' Create a MAMS object from a JSON file
+#' 
+#' @param JSON a JSON file containing the MAMS data
+#' 
+#' @return a MAMS object
+#' @export
+#' 
+
 create_MAMS_from_JSON <- function(JSON){
   #loop through each datasets stored in this JSON file
   MAMS_list = list()

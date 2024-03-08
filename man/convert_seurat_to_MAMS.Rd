@@ -4,10 +4,12 @@
 \alias{convert_seurat_to_MAMS}
 \title{Converts a Seurat object to a MAMS object.}
 \usage{
-convert_seurat_to_MAMS(object_list)
+convert_seurat_to_MAMS(object_list, observation_subsets)
 }
 \arguments{
 \item{object_list}{a Seurat object to be converted.}
+
+\item{observation_subsets}{vector with the name (e.g. "filtered", "full", etc.)}
 }
 \value{
 a MAMS object with the data from the Seurat object

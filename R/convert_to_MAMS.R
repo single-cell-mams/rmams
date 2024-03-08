@@ -3,6 +3,7 @@
 #' Converts a Seurat object to a MAMS object.
 #' @description Convert a Seurat object to a MAMS object, with metadata preserved and imported.
 #' @param object_list a Seurat object to be converted.
+#' @param observation_subsets vector with the name (e.g. "filtered", "full", etc.)
 #'
 #' @return a MAMS object with the data from the Seurat object
 #' @export
@@ -10,11 +11,9 @@
 #' @examples
 #' \dontrun{mams <- convert_seurat_to_mams("pbmc_seurat")}
 #' 
-convert_seurat_to_MAMS <- function(object_list){
-    FOMs <- list()
 convert_seurat_to_MAMS <- function(object_list,observation_subsets){
-   # FOMs <- list()
-  #  ONG <- list()
+    #FOMs <- list()
+    #ONG <- list()
     FIDs <- c()
     MAMS <- create_MAMS_object()
     for(i in 1:length(object_list)){

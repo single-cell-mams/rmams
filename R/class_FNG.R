@@ -1,5 +1,4 @@
-# Define the FNG (feature neighborhood graph) S4 object
-
+#' Define the FNG (feature neighborhood graph) S4 object
 #' @description Stores feature neighborhood graph data
 #' @slot id character
 #' @slot dataset_id character
@@ -70,13 +69,14 @@ setMethod("metric_type<-", "FNG", function(x, value) {
   x
 })
 
-#' Constructor for the FNG S4 object
+#' Constructor for the FNG (feature neighborhood graph) S4 object
 #' @description Creates the FID object and populates its subfields
 #' @param id Main ID of MAMS object
 #' @param dataset_id Parent dataset ID
 #' @param filepath Path to the data file
-#' @param accessor Accessors used
-#' @param parent Parent ID
+#' @param accessor Accessor
+#' @param parent_id Parent FOM object
+#' @param record_id Record ID
 #' @param edge_metric Type of edge metric used
 #' @param metric_type Details of the edge metric
 #' 
