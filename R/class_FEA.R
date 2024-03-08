@@ -60,55 +60,132 @@ create_FEA_object <- function(
   return(obj)
 }
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("id", "FEA", function(x) x@id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("id<-", "FEA", function(x, value) {
   x@id <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("dataset_id", "FEA", function(x) x@dataset_id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("dataset_id<-", "FEA", function(x, value) {
   x@dataset_id <- value
   x
 })
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("filepath", "FEA", function(x) x@filepath)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("filepath<-", "FEA", function(x, value) { 
   x@filepath <- value
   x 
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("accessor", "FEA", function(x) x@accessor)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("accessor<-", "FEA", function(x, value) { 
   x@accessor <- value
   x 
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("feature_modality", "FEA", function(x) x@feature_modality)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("feature_modality<-", "FEA", function(x, value) {
   x@feature_modality <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("reference_database", "FEA", function(x) x@reference_database)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("reference_database<-", "FEA", function(x, value) {
   x@reference_database <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("reference_organism", "FEA", function(x) x@reference_organism)
+
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("reference_organism<-", "FEA", function(x, value) {
   x@reference_organism <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("record_id", "FEA", function(x) x@record_id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("record_id<-", "FEA", function(x, value) {
   x@record_id <- value
   x
 })
 
-
 # collapse function to sub object
+#' setMethod
+#' @description getter/setter
+#' @param collapse_to_list collapse list
+#' @param FEA feature object
+#' @export
+#' @noRd
 setMethod("collapse_to_list", "FEA", function(x) {
   collapsed_list <- mapply(function(s) slot(x, s),
                            slotNames(x),

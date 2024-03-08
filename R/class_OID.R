@@ -1,5 +1,4 @@
-# Define the OID (observation ID) S4 object
-
+#' Define the OID (observation ID) S4 object
 #' @description Stores Observation ID class
 #' @slot id character
 #' @slot dataset_id character

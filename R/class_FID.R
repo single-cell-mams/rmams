@@ -1,5 +1,5 @@
-# Define the FID (feature ID) S4 object
-
+#' Define the FID (feature ID) S4 object
+#' @title class FID
 #' @description Stores feature ID class
 #' @slot id character
 #' @slot dataset_id character
@@ -39,32 +39,71 @@ create_FID_object <- function(id = NA_character_,
     return(obj)
 }
 
-
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("id", signature("FID"), function(x) x@id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("id<-", signature("FID"), function(x, value) {
     x@id <- value
     x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("dataset_id", signature("FID"), function(x) x@dataset_id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("dataset_id<-", signature("FID"), function(x, value) {
     x@dataset_id <- value
     x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("filepath", "FID", function(x) x@filepath)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("filepath<-", "FID", function(x, value) { 
   x@filepath <- value
   x 
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("accessor", "FID", function(x) x@accessor)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("accessor<-", "FID", function(x, value) { 
   x@accessor <- value
   x 
 })
 
 # collapse function to sub object
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("collapse_to_list", "FID", function(x) {
   collapsed_list <- mapply(function(s) slot(x, s),
                            slotNames(x),

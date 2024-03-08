@@ -93,5 +93,5 @@ create_FOM_object(
 a FOM S4 object for further use with other MAMS objects and sub-objects
 }
 \description{
-Constructor function to create a FOM object
+Create the FOM object
 }

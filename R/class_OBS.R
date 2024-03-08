@@ -1,5 +1,4 @@
-# Define the OBS (observation) S4 object
-
+#' Define the OBS (observation) S4 object
 #' @description Stores the observation data.
 #' @slot id character
 #' @slot dataset_id character
