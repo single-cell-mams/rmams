@@ -1,0 +1,89 @@
+---
+title: "Introduction to rmams"
+author:
+- name: Irzam Sarfraz
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA  
+
+date: "`r Sys.Date()`"
+package: rmams
+output: 
+  rmarkdown::html_vignette
+
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Introduction 
+
+We developed the Matrix and Analysis Metadata Standards (MAMS) to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data. MAMS defines fields that describe what type of data is contained within a matrix, relationships between matrices, and provenance related to the tool or algorithm that created the matrix. These standards can serve as a roadmap for tool developers and data curators to ensure that their systems have the capability to store and retrieve relevant information needed for integration. All of the metadata fields are independent of the platform, programming language, and specific tool and thus can be used to support efforts to harmonize data across consortiums.
+
+
+
+## Working example
+
+
+## Creating seurat object
+
+
+```{r}
+
+```
+
+
+
+
+### loading data
+
+```{r}
+library(rmams)
+
+file_paths <- c("data/pbmc1k_seurat_filtered.rds", "data/pbmc1k_seurat_nonempty.rds", "data/pbmc1k_seurat_tcell.rds")
+file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
+object_list <- lapply(file_paths, readRDS)
+names(object_list) <- file_names
+observational_subsets<-c("filtered","nonempty","subset")
+```
+
+# create MAMS object
+
+```{r}
+result<- convert_seurat_to_MAMS(object_list,observational_subsets)
+```
+
+
+# Validating MAMS object
+
+```{r}
+
+```
+
+
+
+
+# Using your existing seurat data
+
+```{r}
+file_paths <- c("data/pbmc1k_seurat_filtered.rds", "data/pbmc1k_seurat_nonempty.rds", "data/Downloads/pbmc1k_seurat_tcell.rds")
+file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
+object_list <- lapply(file_paths, readRDS)
+names(object_list) <- file_names
+observational_subsets<-c("filtered","nonempty","subset")
+
+```
+
+
+
+
+
+
