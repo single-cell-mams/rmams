@@ -2,6 +2,7 @@
 #' @description Internal check function to determine if all necessary MAMS object slots
 #' exist within the object
 #' @param mams_object Input MAMS object to be checked
+#' @export
 check_MAMS <- function(mams_object){
     #Check 1. Check to see all classes exist in the object
     #The following classes are required for each MAMS object:
