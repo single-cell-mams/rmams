@@ -1,13 +1,17 @@
-# **FNG Class ####
-#' @description Stores Feature Neighborhood Graph class
-#' @slot id 
-#' @slot dataset_id 
-#' @slot filepath
-#' @slot accessor
-#' @slot edge_metric 
-#' @slot metric_type 
-#' @keywords internal
+#' Define the FNG (feature neighborhood graph) S4 object
+#' @title class FNG
+#' @description Stores feature neighborhood graph data
+#' @slot id character
+#' @slot dataset_id character
+#' @slot filepath character
+#' @slot accessor character
+#' @slot edge_metric character
+#' @slot metric_type character
+#' 
+#' @return a FNG S4 object for use with MAMS
+#' @export
 #' @noRd
+
 setClass(
   "FNG",
   slots = list(
@@ -23,47 +27,134 @@ setClass(
 )
 
 # Getter and setter functions 
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("id", "FNG", function(x) x@id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("id<-", "FNG", function(x, value) {
   x@id <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("dataset_id", "FNG", function(x) x@dataset_id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("dataset_id<-", "FNG", function(x, value) {
   x@dataset_id <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("filepath", "FNG", function(x) x@filepath)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("filepath<-", "FNG", function(x, value) { x@filepath <- value; x })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("accessor", "FNG", function(x) x@accessor)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("accessor<-", "FNG", function(x, value) { x@accessor <- value; x })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("parent_id", "FNG", function(x) x@parent_id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("parent_id<-", "FNG", function(x, value) {
   x@parent_id <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("record_id", "FNG", function(x) x@record_id)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("record_id<-", "FNG", function(x, value) {
   x@record_id <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("edge_metric", "FNG", function(x) x@edge_metric)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("edge_metric<-", "FNG", function(x, value) {
   x@edge_metric <- value
   x
 })
 
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("metric_type", "FNG", function(x) x@metric_type)
+
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("metric_type<-", "FNG", function(x, value) {
   x@metric_type <- value
   x
 })
+
+#' Constructor for the FNG (feature neighborhood graph) S4 object
+#' @description Creates the FID object and populates its subfields
+#' @param id Main ID of MAMS object
+#' @param dataset_id Parent dataset ID
+#' @param filepath Path to the data file
+#' @param accessor Accessor
+#' @param parent_id Parent FOM object
+#' @param record_id Record ID
+#' @param edge_metric Type of edge metric used
+#' @param metric_type Details of the edge metric
+#' 
+#' @return a FNG S4 object for use with MAMS
+#' @export
 
 #Create object function 
 create_FNG_object <- function(
@@ -90,6 +181,10 @@ create_FNG_object <- function(
 }
 
 # collapse function to sub object
+#' setMethod
+#' @description getter/setter
+#' @export
+#' @noRd
 setMethod("collapse_to_list", "FNG", function(x) {
   collapsed_list <- mapply(function(s) slot(x, s),
                            slotNames(x),

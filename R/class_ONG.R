@@ -1,13 +1,16 @@
-# **ONG Class ####
-#' @description Stores observation Neighborhood Graph class
-#' @slot id 
-#' @slot dataset_id 
-#' @slot filepath
-#' @slot accessor
-#' @slot edge_metric 
-#' @slot metric_type 
-#' @keywords internal
-#' @noRd
+#' Define the ONG (observation neighborhood graph) S4 object
+#' @description Stores observation neighborhood graph data
+#' @slot id character
+#' @slot dataset_id character
+#' @slot filepath character
+#' @slot accessor character
+#' @slot edge_metric character
+#' @slot metric_type character
+#'
+#' @return the ONG class for use with MAMS
+#' @export
+#' @noRd 
+
 setClass(
   "ONG",
   slots = list(
@@ -72,7 +75,20 @@ setMethod("metric_type<-", "ONG", function(x, value) {
   x
 })
 
-#Create object function 
+#Create object function
+#' Constructor for the ONG (observation neighborhood graph) S4 object
+#' @description Creates the FID object and populates its subfields
+#' @param id Main ID of MAMS object
+#' @param dataset_id Parent dataset ID
+#' @param filepath Path to the data file
+#' @param accessor Accessor
+#' @param parent_id Parent FOM object
+#' @param record_id Record ID 
+#' @param edge_metric Type of edge metric used
+#' @param metric_type Details of the edge metric
+#' 
+#' @return an ONG S4 object for use with MAMS
+#' @export
 create_ONG_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,

@@ -1,5 +1,7 @@
-#' Class to create a FOM object
-#'
+#' Define the Feature Observation Matrix (FOM) S4 object
+#' @title class FOM
+#' @description Stores the main feature observation matrix
+#' 
 #' @slot id character. 
 #' @slot dataset_id character.
 #' @slot filepath character.
@@ -28,10 +30,9 @@
 #' @slot ong character.
 #' @slot fng character.
 #'
-#' @return
+#' @return a FOM class for further use with other MAMS objects and sub-objects
 #' @export
-#'
-#' @examples
+
 setClass(
   "FOM",
   slots = c(
@@ -67,38 +68,37 @@ setClass(
 
 #' Constructor function to create a FOM object
 #'
-#' @param id 
-#' @param dataset_id 
-#' @param data_type 
-#' @param filepath
-#' @param accessor
-#' @param representation 
-#' @param representation_description 
-#' @param obs_unit 
-#' @param processing 
-#' @param processing_description 
-#' @param analyte 
-#' @param analyte_description 
-#' @param modality 
-#' @param obs_subset 
-#' @param obs_subset_description 
-#' @param feature_subset 
-#' @param feature_subset_description 
-#' @param record_id 
-#' @param parent_id 
-#' @param parent_relationship 
-#' @param parent_relationship_description 
-#' @param oid
-#' @param fid
-#' @param obs
-#' @param fea
-#' @param ong
-#' @param fng
+#' @description Create the FOM object
+#' @param id Denotes the unique id of the matrix, annotation data frame, or graph and should be unique
+#' @param dataset_id ID of the dataset
+#' @param data_type Explicitly describes the type of data stored in the FOM
+#' @param filepath Path to the file
+#' @param accessor Accessor
+#' @param representation Preferred representation of the matrix
+#' @param representation_description More detail about the representation 
+#' @param obs_unit Biological unit of the observations
+#' @param processing Used to describe the nature of the data contained within the matrix
+#' @param processing_description More detail about the nature of the data
+#' @param analyte Used to describe the biological analytes being quantified in the matrix
+#' @param analyte_description More details about the analytes 
+#' @param modality Describes the modality of the matrix, may be the same as another field or combination of other fields
+#' @param obs_subset Describes the subset of observations that are present in the FOM
+#' @param obs_subset_description More about the subset of observations
+#' @param feature_subset Describes the subset of features that are present in the FOM
+#' @param feature_subset_description More about the subset of features
+#' @param record_id Unique id to denote a combination of entries for record_package_name, record_package_version, record_function_name, and record_function_parameters
+#' @param parent_id Denotes the id(s) of the parent matrices that were used to produce the matrix
+#' @param parent_relationship 	Denotes the type of relationship with the parent matrix or matrices
+#' @param parent_relationship_description More about the type of relationship with the parent matrix or matrices
+#' @param oid Character vector or combination of character vectors used to denote the unique ID of each observation
+#' @param fid Character vector or combination of character vectors used to denote the unique ID of each feature
+#' @param obs Name of matrices or data frames with the same number of observations as its corresponding FOM
+#' @param fea Name of matrices or data frames with the same number of features as its corresponding FOM
+#' @param ong Name of observation neighborhood graph
+#' @param fng Name of feature neighborhood graph
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @return a FOM S4 object for further use with other MAMS objects and sub-objects
+
 create_FOM_object <- function(
     id = NA_character_,
     dataset_id = NA_character_,
@@ -162,13 +162,49 @@ create_FOM_object <- function(
 }
 
 ## setMethods
+#' id
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("id", "FOM", function(x) x@id)
+#' id<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("id<-", "FOM", function(x, value) { x@id <- value; x})
+#' dataset_id
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("dataset_id", "FOM", function(x) x@dataset_id)
+#' dataset_id<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("dataset_id<-", "FOM", function(x, value) { x@dataset_id <- value; x })
+#' filepath
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("filepath", "FOM", function(x) x@filepath)
+#' filepath<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("filepath<-", "FOM", function(x, value) { x@filepath <- value; x })
+#' accessor
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("accessor", "FOM", function(x) x@accessor)
+#' accessor<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("accessor<-", "FOM", function(x, value) { x@accessor <- value; x })
 
 
@@ -185,39 +221,192 @@ setMethod("accessor<-", "FOM", function(x, value) { x@accessor <- value; x })
 #setMethod("ong", "FOM", function(x) x@ong)
 #setMethod("ong<-", "FOM", function(x, value) { x@ong <- value; x })
 
+#' data_type
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("data_type", "FOM", function(x) x@data_type)
+#' data_type<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("data_type<-", "FOM", function(x, value) { x@data_type <- value; x })
+#' representation
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("representation", "FOM", function(x) x@representation)
+#' representation<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("representation<-", "FOM", function(x, value) { x@representation <- value; x })
+#' representation_description
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("representation_description", "FOM", function(x) x@representation_description)
+#' representation_description<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("representation_description<-", "FOM", function(x, value) { x@representation_description <- value; x })
+#' obs_unit
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("obs_unit", "FOM", function(x) x@obs_unit)
+#' obs_unit<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
+#' processing
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("processing", "FOM", function(x) x@processing)
+#' processing<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("processing<-", "FOM", function(x, value) { x@processing <- value; x })
+#' processing_description
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("processing_description", "FOM", function(x) x@processing_description)
+#' processing_description<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("processing_description<-", "FOM", function(x, value) { x@processing_description <- value; x })
+#' analyte
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("analyte", "FOM", function(x) x@analyte)
+#' analyte<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("analyte<-", "FOM", function(x, value) { x@analyte <- value; x })
+#' analyte_description
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("analyte_description", "FOM", function(x) x@analyte_description)
+#' analyte_description<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("analyte_description<-", "FOM", function(x, value) { x@analyte_description <- value; x })
+#' modality
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("modality", "FOM", function(x) x@modality)
+#' modality<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("modality<-", "FOM", function(x, value) { x@modality <- value; x })
+#' obs_subset
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("obs_subset", "FOM", function(x) x@obs_subset)
+#' obs_subset<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("obs_subset<-", "FOM", function(x, value) { x@obs_subset <- value; x })
+#' obs_subset_description
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("obs_subset_description", "FOM", function(x) x@obs_subset_description)
+#' obs_subset_description<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("obs_subset_description<-", "FOM", function(x, value) { x@obs_subset_description <- value; x })
+#' feature_subset
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("feature_subset", "FOM", function(x) x@feature_subset)
+#' feature_subset<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("feature_subset<-", "FOM", function(x, value) { x@feature_subset <- value; x })
+#' feature_subset_description
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("feature_subset_description", "FOM", function(x) x@feature_subset_description)
+#' feature_subset_description<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("feature_subset_description<-", "FOM", function(x, value) { x@feature_subset_description <- value; x })
+#' record_id
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("record_id", "FOM", function(x) x@record_id)
+#' record_id<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("record_id<-", "FOM", function(x, value) { x@record_id <- value; x })
+#' parent_id
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("parent_id", "FOM", function(x) x@parent_id)
+#' parent_id<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("parent_id<-", "FOM", function(x, value) { x@parent_id <- value; x })
+#' parent_relationship
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("parent_relationship", "FOM", function(x) x@parent_relationship)
+#' parent_relationship<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("parent_relationship<-", "FOM", function(x, value) { x@parent_relationship <- value; x })
+#' parent_relationship_description
+#' @description getter
+#' @param x FOM object
+#' @export
 setMethod("parent_relationship_description", "FOM", function(x) x@parent_relationship_description)
+#' parent_relationship_description<-
+#' @description setter
+#' @param x FOM object
+#' @param value value
+#' @export
 setMethod("parent_relationship_description<-", "FOM", function(x, value) { x@parent_relationship_description <- value; x })
 
 
