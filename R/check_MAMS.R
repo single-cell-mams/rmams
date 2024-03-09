@@ -64,7 +64,7 @@ check_MAMS <- function(mams_object){
             identifier_info = identifier_info[which(check_result != "")]
             check_result = check_result[which(check_result != "")]
 
-            message("Error: Please use the setter functions to add the missing field information for the following slots: \n(Ex. If missing 'filepath' for fom1, then 'filepath(mams_object@FOM$fom1) <- ...')\n:")
+            message("Error: Please use the setter functions to add the missing field information for the following slots: \n(Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') <- ...')\n:")
             stop(paste0(paste0(names(check_result), "(ID:",identifier_info,")"), ' is missing the field(s): ', check_result, '\n'))
 
         }
