@@ -1,11 +1,10 @@
-# Converts Seurat object to a MAMS object
-
-#' Converts a Seurat object to a MAMS object.
-#' @description Convert a Seurat object to a MAMS object, with metadata preserved and imported.
-#' @param object_list a Seurat object to be converted.
-#' @param observation_subsets vector with the name (e.g. "filtered", "full", etc.)
-#'
-#' @return a MAMS object with the data from the Seurat object
+#' Converts Seurat object to a MAMS object
+#' 
+#' @param object_list A named list of Seurat objects to be converted to MAMS format
+#' @param observation_subsets A vector with same length as object_list indicating the
+#' observation subset for each Seurat object. One of: full, filtered, threshold, detected,
+#' nonartifact, clean.
+#' @return A MAMS object containing all the extracted metadata fields.
 #' @export
 #'
 #' @examples
@@ -61,6 +60,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                     MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
                     
                 }
+                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
               #  FOMs[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, representation = representation, analyte = analyte, modality = modality, obs_subset = obs_subset, feature_subset = feature_subset, oid = oid, fid = fid, obs = obs, fea = fea)
             }
         }
@@ -74,7 +74,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                 processing <- "Embedding"
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
+            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
            # FOMs[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
          }
         ## Graph
