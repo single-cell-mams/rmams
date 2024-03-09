@@ -2,6 +2,8 @@
 #' @title class FOM
 #' @description Stores the main feature observation matrix
 #' 
+#' @importFrom methods is new slot slot<- slotNames
+#' 
 #' @slot id character. 
 #' @slot dataset_id character.
 #' @slot filepath character.
@@ -162,250 +164,327 @@ create_FOM_object <- function(
 }
 
 ## setMethods
+
 #' id
 #' @description getter
+#' @rdname id-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("id", "FOM", function(x) x@id)
+
 #' id<-
 #' @description setter
+#' @rdname id-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("id<-", "FOM", function(x, value) { x@id <- value; x})
 #' dataset_id
 #' @description getter
+#' @rdname dataset_id-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("dataset_id", "FOM", function(x) x@dataset_id)
+
 #' dataset_id<-
 #' @description setter
+#' @rdname dataset_id-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("dataset_id<-", "FOM", function(x, value) { x@dataset_id <- value; x })
+
 #' filepath
 #' @description getter
+#' @rdname filepath-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("filepath", "FOM", function(x) x@filepath)
+
 #' filepath<-
 #' @description setter
+#' @rdname filepath-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("filepath<-", "FOM", function(x, value) { x@filepath <- value; x })
+
 #' accessor
 #' @description getter
+#' @rdname accessor-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("accessor", "FOM", function(x) x@accessor)
+
 #' accessor<-
 #' @description setter
+#' @rdname accessor-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("accessor<-", "FOM", function(x, value) { x@accessor <- value; x })
 
-
-#setMethod("fid", "FOM", function(x) x@fid)
-#setMethod("fid<-", "FOM", function(x, value) { x@fid <- value; x })
-#setMethod("oid", "FOM", function(x) x@oid)
-#setMethod("oid<-", "FOM", function(x, value) { x@oid <- value; x })
-#setMethod("fea", "FOM", function(x) x@fea)
-#setMethod("fea<-", "FOM", function(x, value) { x@fea <- value; x })
-#setMethod("obs", "FOM", function(x) x@obs)
-#setMethod("obs<-", "FOM", function(x, value) { x@obs <- value; x })
-#setMethod("fng", "FOM", function(x) x@fng)
-#setMethod("fng<-", "FOM", function(x, value) { x@fng <- value; x })
-#setMethod("ong", "FOM", function(x) x@ong)
-#setMethod("ong<-", "FOM", function(x, value) { x@ong <- value; x })
-
 #' data_type
 #' @description getter
+#' @rdname data_type-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("data_type", "FOM", function(x) x@data_type)
 #' data_type<-
 #' @description setter
+#' @rdname data_type-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("data_type<-", "FOM", function(x, value) { x@data_type <- value; x })
 #' representation
 #' @description getter
+#' @rdname representation-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("representation", "FOM", function(x) x@representation)
 #' representation<-
 #' @description setter
+#' @rdname representation-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("representation<-", "FOM", function(x, value) { x@representation <- value; x })
 #' representation_description
 #' @description getter
+#' @rdname representation_description-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("representation_description", "FOM", function(x) x@representation_description)
 #' representation_description<-
 #' @description setter
+#' @rdname representation_description-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("representation_description<-", "FOM", function(x, value) { x@representation_description <- value; x })
 #' obs_unit
 #' @description getter
+#' @rdname obs_unit-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("obs_unit", "FOM", function(x) x@obs_unit)
 #' obs_unit<-
 #' @description setter
+#' @rdname obs_unit-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
 #' processing
 #' @description getter
+#' @rdname processing-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("processing", "FOM", function(x) x@processing)
 #' processing<-
 #' @description setter
+#' @rdname processing-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("processing<-", "FOM", function(x, value) { x@processing <- value; x })
 #' processing_description
 #' @description getter
+#' @rdname processing_description-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("processing_description", "FOM", function(x) x@processing_description)
 #' processing_description<-
 #' @description setter
+#' @rdname processing_description-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("processing_description<-", "FOM", function(x, value) { x@processing_description <- value; x })
 #' analyte
 #' @description getter
+#' @rdname analyte-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("analyte", "FOM", function(x) x@analyte)
 #' analyte<-
 #' @description setter
+#' @rdname analyte-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("analyte<-", "FOM", function(x, value) { x@analyte <- value; x })
 #' analyte_description
 #' @description getter
+#' @rdname analyte-description-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("analyte_description", "FOM", function(x) x@analyte_description)
 #' analyte_description<-
 #' @description setter
+#' @rdname analyte_description-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("analyte_description<-", "FOM", function(x, value) { x@analyte_description <- value; x })
 #' modality
 #' @description getter
+#' @rdname modality-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("modality", "FOM", function(x) x@modality)
 #' modality<-
 #' @description setter
+#' @rdname modality-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("modality<-", "FOM", function(x, value) { x@modality <- value; x })
 #' obs_subset
 #' @description getter
+#' @rdname obs_subset-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("obs_subset", "FOM", function(x) x@obs_subset)
 #' obs_subset<-
 #' @description setter
+#' @rdname obs_subset-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("obs_subset<-", "FOM", function(x, value) { x@obs_subset <- value; x })
 #' obs_subset_description
 #' @description getter
+#' @rdname obs_subset-description-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("obs_subset_description", "FOM", function(x) x@obs_subset_description)
 #' obs_subset_description<-
 #' @description setter
+#' @rdname obs_subset_description-FOM-get
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("obs_subset_description<-", "FOM", function(x, value) { x@obs_subset_description <- value; x })
 #' feature_subset
 #' @description getter
+#' @rdname feature_subset-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("feature_subset", "FOM", function(x) x@feature_subset)
 #' feature_subset<-
 #' @description setter
+#' @rdname feature_subset-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("feature_subset<-", "FOM", function(x, value) { x@feature_subset <- value; x })
 #' feature_subset_description
 #' @description getter
+#' @rdname feature_subset_description-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("feature_subset_description", "FOM", function(x) x@feature_subset_description)
 #' feature_subset_description<-
 #' @description setter
+#' @rdname feature_subset_description-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("feature_subset_description<-", "FOM", function(x, value) { x@feature_subset_description <- value; x })
 #' record_id
 #' @description getter
+#' @rdname record_id-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("record_id", "FOM", function(x) x@record_id)
 #' record_id<-
 #' @description setter
+#' @rdname record_id-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("record_id<-", "FOM", function(x, value) { x@record_id <- value; x })
 #' parent_id
 #' @description getter
+#' @rdname parent_id-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("parent_id", "FOM", function(x) x@parent_id)
 #' parent_id<-
 #' @description setter
+#' @rdname parent_id-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("parent_id<-", "FOM", function(x, value) { x@parent_id <- value; x })
 #' parent_relationship
 #' @description getter
+#' @rdname parent_relationship-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("parent_relationship", "FOM", function(x) x@parent_relationship)
 #' parent_relationship<-
 #' @description setter
+#' @rdname parent_relationship-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("parent_relationship<-", "FOM", function(x, value) { x@parent_relationship <- value; x })
 #' parent_relationship_description
 #' @description getter
+#' @rdname parent_relationship_description-FOM-get
 #' @param x FOM object
+#' @return the value
 #' @export
 setMethod("parent_relationship_description", "FOM", function(x) x@parent_relationship_description)
 #' parent_relationship_description<-
 #' @description setter
+#' @rdname parent_relationship_description-FOM-set
 #' @param x FOM object
 #' @param value value
+#' @return nothing (setter)
 #' @export
 setMethod("parent_relationship_description<-", "FOM", function(x, value) { x@parent_relationship_description <- value; x })
 

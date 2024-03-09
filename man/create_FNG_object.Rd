@@ -24,7 +24,7 @@ create_FNG_object(
 
 \item{accessor}{Accessor}
 
-\item{parent_id}{Parent FOM object}
+\item{parent_id}{Parent FNG object}
 
 \item{record_id}{Record ID}
 

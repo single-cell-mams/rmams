@@ -1,6 +1,7 @@
 #' Define the main MAMS (Matrix and Analysis Metadata Standards) S4 object, used to store all of the other objects.
 #' @title class MAMS
 #' @description Stores the MAMS data as a list of lists (each of S4 objects).
+#' 
 #' @slot FOM list 
 #' @slot FEA list 
 #' @slot OBS list 
@@ -13,7 +14,7 @@
 #' @return the main MAMS class
 #' @export
 #'
-#' @noRd
+#' 
 setClass(
   "MAMS",
   slots = list(
@@ -67,10 +68,14 @@ create_MAMS_object <- function(
   return(mams_obj)
 }
 
-# fom function to get attributes
-#' @description getter/setter
+#' fom
+#' @description FOM getter
+#' @rdname fom-MAMS-get
+#' @param mams MAMS object
+#' @param fom_id FOM subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("fom", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fom_id, key) {
     if (is.null(mams@FOM[[fom_id]])){
         stop("No FOM object with the provided fom_id exists.")
@@ -78,10 +83,15 @@ setMethod("fom", signature(mams = "MAMS", fom_id = "character", key = "character
     slot(mams@FOM[[fom_id]], key) 
 })
 
-# fom function to set attributes
-#' @description getter/setter
+#' fom<-
+#' @description FOM setter
+#' @rdname fom-MAMS-set
+#' @param mams MAMS object
+#' @param fom_id FOM subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("fom<-", signature(mams = "MAMS", fom_id = "character", key = "character"), function(mams, fom_id, key, value) {
     if (is.null(mams@FOM[[fom_id]])){
         mams@FOM[[fom_id]] <- create_FOM_object(id = fom_id)
@@ -90,10 +100,14 @@ setMethod("fom<-", signature(mams = "MAMS", fom_id = "character", key = "charact
     return(mams)
 })
 
-# fid function to get attributes
-#' @description getter/setter
+#' fid
+#' @description FID getter
+#' @rdname fid-MAMS-get
+#' @param mams MAMS object
+#' @param fid_id FID subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("fid", signature(mams = "MAMS", fid_id = "character", key = "character"), function(mams, fid_id, key) {
     if (is.null(mams@FID[[fid_id]])){
         stop("No FID object with the provided fid_id exists.")
@@ -101,10 +115,15 @@ setMethod("fid", signature(mams = "MAMS", fid_id = "character", key = "character
     slot(mams@FID[[fid_id]], key) 
 })
 
-# fid function to set attributes
-#' @description getter/setter
+#' fid<-
+#' @description FID setter
+#' @rdname fid-MAMS-set
+#' @param mams MAMS object
+#' @param fid_id FID subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("fid<-", signature(mams = "MAMS", fid_id = "character", key = "character"), function(mams, fid_id, key, value) {
     if (is.null(mams@FID[[fid_id]])){
         mams@FID[[fid_id]] <- create_FID_object(id = fid_id)
@@ -113,10 +132,14 @@ setMethod("fid<-", signature(mams = "MAMS", fid_id = "character", key = "charact
     return(mams)
 })
 
-# oid function to get attributes
-#' @description getter/setter
+#' oid
+#' @description OID getter
+#' @rdname oid-MAMS-get
+#' @param mams MAMS object
+#' @param oid_id OID subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("oid", signature(mams = "MAMS", oid_id = "character", key = "character"), function(mams, oid_id, key) {
     if (is.null(mams@OID[[oid_id]])){
         stop("No OID object with the provided oid_id exists.")
@@ -124,10 +147,15 @@ setMethod("oid", signature(mams = "MAMS", oid_id = "character", key = "character
     slot(mams@OID[[oid_id]], key) 
 })
 
-# oid function to set attributes
-#' @description getter/setter
+#' oid<-
+#' @description OID setter
+#' @rdname oid-MAMS-set
+#' @param mams MAMS object
+#' @param oid_id OID subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("oid<-", signature(mams = "MAMS", oid_id = "character", key = "character"), function(mams, oid_id, key, value) {
     if (is.null(mams@OID[[oid_id]])){
         mams@OID[[oid_id]] <- create_OID_object(id = oid_id)
@@ -136,10 +164,14 @@ setMethod("oid<-", signature(mams = "MAMS", oid_id = "character", key = "charact
     return(mams)
 })
 
-# fea function to get attributes
-#' @description getter/setter
+#' fea
+#' @description FEA getter
+#' @rdname fea-MAMS-get
+#' @param mams MAMS object
+#' @param fea_id FEA subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("fea", signature(mams = "MAMS", fea_id = "character", key = "character"), function(mams, fea_id, key) {
     if (is.null(mams@FEA[[fea_id]])){
         stop("No FEA object with the provided fea_id exists.")
@@ -147,10 +179,15 @@ setMethod("fea", signature(mams = "MAMS", fea_id = "character", key = "character
     slot(mams@FEA[[fea_id]], key) 
 })
 
-# fea function to set attributes
-#' @description getter/setter
+#' fea<-
+#' @description FEA setter
+#' @rdname fea-MAMS-set
+#' @param mams MAMS object
+#' @param fea_id FEA subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("fea<-", signature(mams = "MAMS", fea_id = "character", key = "character"), function(mams, fea_id, key, value) {
     if (is.null(mams@FEA[[fea_id]])){
         mams@FEA[[fea_id]] <- create_FEA_object(id = fea_id)
@@ -159,10 +196,14 @@ setMethod("fea<-", signature(mams = "MAMS", fea_id = "character", key = "charact
     return(mams)
 })
 
-# obs function to get attributes
-#' @description getter/setter
+#' obs
+#' @description OBS getter
+#' @rdname obs-MAMS-get
+#' @param mams MAMS object
+#' @param obs_id OBS subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("obs", signature(mams = "MAMS", obs_id = "character", key = "character"), function(mams, obs_id, key) {
     if (is.null(mams@OBS[[obs_id]])){
         stop("No OBS object with the provided obs_id exists.")
@@ -170,10 +211,15 @@ setMethod("obs", signature(mams = "MAMS", obs_id = "character", key = "character
     slot(mams@OBS[[obs_id]], key) 
 })
 
-# obs function to set attributes
-#' @description getter/setter
+#' obs<-
+#' @description OBS setter
+#' @rdname obs-MAMS-set
+#' @param mams MAMS object
+#' @param obs_id OBS subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("obs<-", signature(mams = "MAMS", obs_id = "character", key = "character"), function(mams, obs_id, key, value) {
     if (is.null(mams@OBS[[obs_id]])){
         mams@OBS[[obs_id]] <- create_OBS_object(id = obs_id)
@@ -182,10 +228,14 @@ setMethod("obs<-", signature(mams = "MAMS", obs_id = "character", key = "charact
     return(mams)
 })
 
-# rec function to get attributes
-#' @description getter/setter
+#' rec
+#' @description REC getter
+#' @rdname rec-MAMS-get
+#' @param mams MAMS object
+#' @param rec_id REC subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("rec", signature(mams = "MAMS", rec_id = "character", key = "character"), function(mams, rec_id, key) {
     if (is.null(mams@REC[[rec_id]])){
         stop("No REC object with the provided rec_id exists.")
@@ -193,10 +243,15 @@ setMethod("rec", signature(mams = "MAMS", rec_id = "character", key = "character
     slot(mams@REC[[rec_id]], key) 
 })
 
-# rec function to set attributes
-#' @description getter/setter
+#' rec<-
+#' @description REC setter
+#' @rdname rec-MAMS-set
+#' @param mams MAMS object
+#' @param rec_id REC subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("rec<-", signature(mams = "MAMS", rec_id = "character", key = "character"), function(mams, rec_id, key, value) {
     if (is.null(mams@REC[[rec_id]])){
         mams@REC[[rec_id]] <- create_REC_object(id = rec_id)
@@ -205,10 +260,14 @@ setMethod("rec<-", signature(mams = "MAMS", rec_id = "character", key = "charact
     return(mams)
 })
 
-# ong function to get attributes
-#' @description getter/setter
+#' ong
+#' @description ONG getter
+#' @rdname ong-MAMS-get
+#' @param mams MAMS object
+#' @param ong_id ONG subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("ong", signature(mams = "MAMS", ong_id = "character", key = "character"), function(mams, ong_id, key) {
     if (is.null(mams@ONG[[ong_id]])){
         stop("No ONG object with the provided ong_id exists.")
@@ -216,10 +275,15 @@ setMethod("ong", signature(mams = "MAMS", ong_id = "character", key = "character
     slot(mams@ONG[[ong_id]], key) 
 })
 
-# ong function to set attributes
-#' @description getter/setter
+#' ong<-
+#' @description ONG setter
+#' @rdname ong-MAMS-set
+#' @param mams MAMS object
+#' @param ong_id ONG subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("ong<-", signature(mams = "MAMS", ong_id = "character", key = "character"), function(mams, ong_id, key, value) {
     if (is.null(mams@ONG[[ong_id]])){
         mams@ONG[[ong_id]] <- create_ONG_object(id = ong_id)
@@ -228,21 +292,29 @@ setMethod("ong<-", signature(mams = "MAMS", ong_id = "character", key = "charact
     return(mams)
 })
 
-# fng function to get attributes
-#' @description getter/setter
+#' fng
+#' @description FNG getter
+#' @rdname fng-MAMS-set
+#' @param mams MAMS object
+#' @param fng_id FNG subobject ID
+#' @param key key
+#' @return value of key
 #' @export
-#' @noRd
 setMethod("fng", signature(mams = "MAMS", fng_id = "character", key = "character"), function(mams, fng_id, key) {
     if (is.null(mams@FNG[[fng_id]])){
         stop("No FNG object with the provided fng_id exists.")
     }
     slot(mams@FNG[[fng_id]], key) 
 })
-
-# fng function to set attributes
-#' @description getter/setter
+#' fng<-
+#' @description FNG setter
+#' @rdname fng-MAMS-set
+#' @param mams MAMS object
+#' @param fng_id FNG subobject ID
+#' @param key key
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("fng<-", signature(mams = "MAMS", fng_id = "character", key = "character"), function(mams, fng_id, key, value) {
     if (is.null(mams@FNG[[fng_id]])){
         mams@FNG[[fng_id]] <- create_FNG_object(id = fng_id)

@@ -1,5 +1,9 @@
 #' Define the OBS (observation) S4 object
+#' @title class OBS
 #' @description Stores the observation data.
+#' 
+#' @importFrom methods is new slot slot<- slotNames
+#' 
 #' @slot id character
 #' @slot dataset_id character
 #' @slot filepath character
@@ -9,7 +13,7 @@
 #' @return the OBS class
 #' @export
 #'
-#' @noRd
+#' 
 setClass("OBS", slots = list(id = "CharOrNULL",
                              dataset_id = "CharOrNULL",    
                              filepath = "CharOrNULL",
@@ -45,31 +49,92 @@ create_OBS_object <- function(
   return(obj)
 }
 
+#' id
+#' @description getter
+#' @rdname id-OBS-get
+#' @param x OBS object
+#' @return value
+#' @export
 setMethod("id", "OBS", function(x) x@id)
+#' id<-
+#' @description setter
+#' @rdname id-OBS-set
+#' @param x OBS object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("id<-", "OBS", function(x, value) {
   x@id <- value
   x
 })
-
+#' dataset_id
+#' @description getter
+#' @rdname dataset_id-OBS-get
+#' @param x OBS object
+#' @return value
+#' @export
 setMethod("dataset_id", "OBS", function(x) x@dataset_id)
+#' dataset_id<-
+#' @description setter
+#' @rdname dataset_id-OBS-set
+#' @param x OBS object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("dataset_id<-", "OBS", function(x, value) {
   x@dataset_id <- value
   x
 })
-
+#' filepath
+#' @description getter
+#' @rdname filepath-OBS-get
+#' @param x OBS object
+#' @return value
+#' @export
 setMethod("filepath", "OBS", function(x) x@filepath)
+#' filepath<-
+#' @description setter
+#' @rdname filepath-OBS-set
+#' @param x OBS object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("filepath<-", "OBS", function(x, value) { 
   x@filepath <- value
   x 
 })
-
+#' accessor
+#' @description getter
+#' @rdname accessor-OBS-get
+#' @param x OBS object
+#' @return value
+#' @export
 setMethod("accessor", "OBS", function(x) x@accessor)
+#' accessor<-
+#' @description setter
+#' @rdname accessor-OBS-set
+#' @param x OBS object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("accessor<-", "OBS", function(x, value) { 
   x@accessor <- value
   x 
 })
-
+#' record_id
+#' @description setter
+#' @rdname record_id-OBS-get
+#' @param x OBS object
+#' @return value
+#' @export
 setMethod("record_id", "OBS", function(x) x@record_id)
+#' record_id<-
+#' @description setter
+#' @rdname record_id-OBS-set
+#' @param x OBS object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("record_id<-", "OBS", function(x, value) {
   x@record_id <- value
   x
