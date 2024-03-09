@@ -12,7 +12,7 @@
 #' @slot record_id character. 
 #'
 #' @return a FEA class for use with MAMS
-#' @noRd
+#' @export
 
 setClass("FEA", slots = list(id = "CharOrNULL",
                              dataset_id = "CharOrNULL",
