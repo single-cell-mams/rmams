@@ -13,25 +13,151 @@
     <loc>https://single-cell-mams.github.io/rmams/index.html</loc>
   </url>
   <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FEA-class.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FEA-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FEA-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FID-class.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FID-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FID-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FNG-class.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FNG-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FNG-set-generic.html</loc>
+  </url>
+  <url>
     <loc>https://single-cell-mams.github.io/rmams/reference/FOM-class.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FOM-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/FOM-set-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/MAMS-class.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/OBS-class.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/analyte_description-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/OBS-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/analyte_description-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/OBS-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/OID-class.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/OID-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/OID-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/ONG-class.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/ONG-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/ONG-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/REC-class.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/REC-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/REC-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FNG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FNG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-OBS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-OBS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-OID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-OID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/accessor-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-description-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte_description-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte_description-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/analyte_description-set-generic.html</loc>
   </url>
   <url>
     <loc>https://single-cell-mams.github.io/rmams/reference/check_MAMS.html</loc>
@@ -70,114 +196,597 @@
     <loc>https://single-cell-mams.github.io/rmams/reference/create_REC_object.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/data_type-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/data_type-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/data_type-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/data_type-FOM-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/data_type-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/data_type-set-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FEA-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FEA-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset_description-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FID-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset_description-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FID-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FNG-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FNG-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/id-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/id-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-OBS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-OBS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-OID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-OID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/dataset_id-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/edge_metric-FNG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/edge_metric-FNG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/edge_metric-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/edge_metric-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/edge_metric-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/edge_metric-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fea-MAMS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fea-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_modality-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_modality-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_modality-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_modality-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset_description-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset_description-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset_description-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/feature_subset_description-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fid-MAMS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fid-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FNG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FNG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-OBS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-OBS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-OID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-OID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/filepath-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fng-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fom-MAMS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/fom-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FNG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FNG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-OBS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-OBS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-OID-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-OID-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/id-set-generic.html</loc>
   </url>
   <url>
     <loc>https://single-cell-mams.github.io/rmams/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/modality-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/metric_type-FNG-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/modality-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/metric_type-FNG-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/metric_type-ONG-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/metric_type-ONG-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset_description-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/metric_type-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset_description-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/metric_type-set-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/obs_unit-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/modality-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/obs_unit-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/modality-FOM-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/modality-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/modality-set-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs-MAMS-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs-MAMS-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship_description-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship_description-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-FOM-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/processing-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-description-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/processing-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/processing_description-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset-set-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/processing_description-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset_description-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset_description-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_subset_description-set-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/representation-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_unit-FOM-get.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/representation-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_unit-FOM-set.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/representation_description-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_unit-get-generic.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/reference/representation_description-set-FOM-method.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/reference/obs_unit-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/oid-MAMS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/oid-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/ong-MAMS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/ong-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-FNG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-FNG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_id-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship_description-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship_description-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship_description-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/parent_relationship_description-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing_description-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing_description-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing_description-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/processing_description-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/rec-MAMS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/rec-MAMS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_name-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_name-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_name-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_name-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_parameters-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_parameters-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_parameters-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_function_parameters-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FNG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FNG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-OBS-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-OBS-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-ONG-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-ONG-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_id-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_name-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_name-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_name-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_name-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_version-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_version-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_version-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_package_version-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_duration-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_duration-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_duration-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_duration-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_end-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_end-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_end-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_end-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_start-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_start-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_start-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_runtime_start-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_workflow_link-REC-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_workflow_link-REC-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_workflow_link-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/record_workflow_link-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_database-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_database-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_database-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_database-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_organism-FEA-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_organism-FEA-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_organism-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/reference_organism-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation-set-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation_description-FOM-get.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation_description-FOM-set.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation_description-get-generic.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/representation_description-set-generic.html</loc>
   </url>
 </urlset>
