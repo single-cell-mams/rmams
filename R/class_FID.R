@@ -1,6 +1,9 @@
 #' Define the FID (feature ID) S4 object
 #' @title class FID
 #' @description Stores feature ID class
+#' 
+#' @importFrom methods is new slot slot<- slotNames
+#' 
 #' @slot id character
 #' @slot dataset_id character
 #' @slot filepath character
@@ -8,7 +11,6 @@
 #' 
 #' @return a FEA class for use with MAMS
 #' @export
-#' @noRd
 
 setClass("FID", slots = list(id = "CharOrNULL",
                              dataset_id = "CharOrNULL",
@@ -39,71 +41,80 @@ create_FID_object <- function(id = NA_character_,
     return(obj)
 }
 
-#' setMethod
-#' @description getter/setter
+#' id
+#' @description getter
+#' @rdname id-FID-set
+#' @param x FID object
+#' @return the value
 #' @export
-#' @noRd
 setMethod("id", signature("FID"), function(x) x@id)
-
-#' setMethod
-#' @description getter/setter
+#' id<-
+#' @description setter
+#' @rdname id-FID-get
+#' @param x FID object
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("id<-", signature("FID"), function(x, value) {
     x@id <- value
     x
 })
-
-#' setMethod
-#' @description getter/setter
+#' dataset_id
+#' @description getter
+#' @rdname dataset_id-FID-set
+#' @param x FID object
+#' @return the value
 #' @export
-#' @noRd
 setMethod("dataset_id", signature("FID"), function(x) x@dataset_id)
-
-#' setMethod
-#' @description getter/setter
+#' dataset_id<-
+#' @description setter
+#' @rdname dataset_id-FID-get
+#' @param x FID object
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("dataset_id<-", signature("FID"), function(x, value) {
     x@dataset_id <- value
     x
 })
-
-#' setMethod
-#' @description getter/setter
+#' filepath
+#' @description getter
+#' @rdname filepath-FID-set
+#' @param x FID object
+#' @return the value
 #' @export
-#' @noRd
 setMethod("filepath", "FID", function(x) x@filepath)
-
-#' setMethod
-#' @description getter/setter
+#' filepath<-
+#' @description setter
+#' @rdname filepath-FID-get
+#' @param x FID object
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("filepath<-", "FID", function(x, value) { 
   x@filepath <- value
   x 
 })
-
-#' setMethod
-#' @description getter/setter
+#' accessor
+#' @description getter
+#' @rdname accessor-FID-set
+#' @param x FID object
+#' @return the value
 #' @export
-#' @noRd
 setMethod("accessor", "FID", function(x) x@accessor)
-
-#' setMethod
-#' @description getter/setter
+#' accessor<-
+#' @description setter
+#' @rdname accessor-FID-get
+#' @param x FID object
+#' @param value value
+#' @return nothing (setter)
 #' @export
-#' @noRd
 setMethod("accessor<-", "FID", function(x, value) { 
   x@accessor <- value
   x 
 })
 
 # collapse function to sub object
-#' setMethod
-#' @description getter/setter
-#' @export
-#' @noRd
 setMethod("collapse_to_list", "FID", function(x) {
   collapsed_list <- mapply(function(s) slot(x, s),
                            slotNames(x),

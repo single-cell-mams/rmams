@@ -1,5 +1,9 @@
 #' Define the OID (observation ID) S4 object
+#' @title class OID
 #' @description Stores Observation ID class
+#' 
+#' @importFrom methods is new slot slot<- slotNames
+#' 
 #' @slot id character
 #' @slot dataset_id character
 #' @slot filepath character
@@ -8,32 +12,81 @@
 #' @return the OID class
 #' @export
 #'
-#' @noRd
+#'
 
 setClass("OID", slots = list(id = "CharOrNULL",
                              dataset_id = "CharOrNULL",                             
                              filepath = "CharOrNULL",
                              accessor = "CharOrNULL"))
 
+#' id
+#' @description setter
+#' @rdname id-OID-get
+#' @param x OID object
+#' @return value
+#' @export
 setMethod("id", signature("OID"), function(x) x@id)
+#' id<-
+#' @description setter
+#' @rdname id-OID-set
+#' @param x OID object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("id<-", signature("OID"), function(x, value) {
     x@id <- value
     x
 })
-
+#' dataset_id
+#' @description getter
+#' @rdname dataset_id-OID-get
+#' @param x OID object
+#' @return value
+#' @export
 setMethod("dataset_id", signature("OID"), function(x) x@dataset_id)
+#' dataset_id<-
+#' @description setter
+#' @rdname dataset_id-OID-set
+#' @param x OID object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("dataset_id<-", signature("OID"), function(x, value) {
     x@dataset_id <- value
     x
 })
-
+#' filepath
+#' @description getter
+#' @rdname filepath-OID-get
+#' @param x OID object
+#' @return value
+#' @export
 setMethod("filepath", "OID", function(x) x@filepath)
+#' filepath<-
+#' @description setter
+#' @rdname filepath-OID-set
+#' @param x OID object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("filepath<-", "OID", function(x, value) { 
   x@filepath <- value
   x 
 })
-
+#' accessor
+#' @description getter
+#' @rdname accessor-OID-get
+#' @param x OID object
+#' @return value
+#' @export
 setMethod("accessor", "OID", function(x) x@accessor)
+#' accessor<-
+#' @description setter
+#' @rdname accessor-OID-set
+#' @param x OID object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("accessor<-", "OID", function(x, value) { 
   x@accessor <- value
   x 
