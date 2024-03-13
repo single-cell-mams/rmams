@@ -68,13 +68,14 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
         for(dimred in names(object@reductions)){ 
             fom <- paste0("fom", length(MAMS@FOM)+1)
             reduction <- object@reductions[[dimred]]
+            data_type = "double"
             if(grepl("pca|ica", dimred, ignore.case = TRUE)){
                 processing<- "Reduction"
             } else if (grepl("tsne|umap", dimred, ignore.case = TRUE)){
                 processing <- "Embedding"
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset,dataset_id = dataset_id)
+            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset,dataset_id = dataset_id,data_type = data_type)
            # FOMs[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
          }
         ## Graph
