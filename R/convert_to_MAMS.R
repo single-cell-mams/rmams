@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{mams <- convert_seurat_to_mams("pbmc_seurat")}
 #' 
-convert_seurat_to_MAMS <- function(object_list,observation_subsets){
+convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
     #FOMs <- list()
     #ONG <- list()
     FIDs <- c()
@@ -43,21 +43,21 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                     representation <- "sparse"
                     processing <- "counts"
                     feature_subset <- "full"
-                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, data_type = data_type)
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, data_type = data_type,dataset_id = dataset_id)
                     
                 }else if(assay == "data"){
                     data_type <- "double"
                     representation <- "sparse"
                     processing <- "lognormalized"
                     feature_subset <- "full"
-                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, data_type = data_type)
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, data_type = data_type,dataset_id = dataset_id)
                     
                 }else if(assay == "scale.data"){
                     data_type <- "double"
                     representation <- "dense"
                     processing <- "scaled"
                     feature_subset <- "variable"
-                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, data_type = data_type)
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, data_type = data_type,dataset_id = dataset_id)
                     
                 }
                # MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
@@ -74,7 +74,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
                 processing <- "Embedding"
             }
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset)
+            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte, obs_subset = obs_subset,dataset_id = dataset_id)
            # FOMs[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
          }
         ## Graph
@@ -91,7 +91,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
             else if(substr(graph, 1, 3) == "wsn"||substr(graph, 1, 3) == "wkn"){
                 record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
             }
-            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
+            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type,dataset_id = dataset_id)
            # ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
         }
         ## Neighbor
@@ -102,7 +102,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets){
             metric_type <- "distance"
             accessor <- paste0("Neighbors(", substr(filepath, 1, nchar(filepath)-4), ', \"', neighbor, '\")')
             record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
-            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
+            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type,dataset_id = dataset_id)
             #ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
         }
     }
