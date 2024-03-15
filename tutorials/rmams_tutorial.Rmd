@@ -3,13 +3,48 @@ title: "Introduction to rmams"
 author:
 - name: Irzam Sarfraz
   affiliation: 
-  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA  
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA 
+- name: Yusuke Koga
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Salam Abdullatif
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+- name: Ming Liu
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Amulya Shastry
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Tao Guo
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+- name: Jingwen Xu
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Natasha Gurevich
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+- name: Tomoki Motegi
+  affiliation:
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+
+- name: Joshua D. Campbell
+  affiliation: 
+  - The Section of Computational Biomedicine, Boston University School of Medicine, Boston, MA
+  - Program in Bioinformatics, Boston University, Boston, MA
+  email: camp@bu.edu  
 
 date: "`r Sys.Date()`"
 package: rmams
 output: 
-  rmarkdown::html_vignette
-  toc:TRUE
+  html_document:
+    toc: TRUE
 
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -222,14 +257,13 @@ file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_pat
 object_list <- lapply(file_paths, readRDS)
 names(object_list) <- file_names
 observational_subsets<-c("filtered","nonempty","subset")
+datasetid = "example"
 ```
 
 ### Create MAMS object
 
 ```{r}
-result<- convert_seurat_to_MAMS(object_list,observational_subsets)
-
-# View the object 
+result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid)
 result@FOM
 ```
 
@@ -239,9 +273,8 @@ result@FOM
 # FOM object
 result@FOM
 
-# ONG object
-
 result@ONG
+
 ```
 
 
@@ -250,7 +283,7 @@ result@ONG
 # Step 3 Validating MAMS object
 
 ```{r}
-
+check_MAMS(mams_object = result)
 ```
 
 
