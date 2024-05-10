@@ -13,11 +13,14 @@ Authors@R:
     person(given="Tomoki",family="Motegi",email="tmotegi@bu.edu", role=c("aut")),
     person(given="Jingwen",family="Xu",email="xjw@bu.edu", role=c("aut")),
     person(given="Tao",family="Guo",email="taoguo@bu.edu", role=c("aut")),
+    person(given="Junxiang",family="Xu",email="junxiang@bu.edu",role=c("aut")),
     person(given=c("Joshua", "David"), family="Campbell", email="camp@bu.edu", role=c("aut", "cre"),
              comment = c(ORCID = "0000-0003-0780-8662"))
              )
 Depends: 
-    R (>= 3.5.0)
+    R (>= 3.5.0),
+    Seurat (>= 4.0),
+    rmdformats (>= 1.0.4)
 Imports:
     SeuratObject,
     jsonlite,
