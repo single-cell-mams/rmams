@@ -1,3 +1,5 @@
+library(Seurat)
+
 test_that("Test MAMS functions", {
     # create seurat object
     counts <- matrix(rnorm(50000), nrow = 5000, ncol = 10, dimnames = list(paste0("Row", 1:5000), paste0("Col", 1:10)))
