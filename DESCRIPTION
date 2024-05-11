@@ -1,6 +1,6 @@
 Package: rmams
 Title: R Matrix and Analysis Metadata Standards
-Version: 1.0
+Version: 1.0.0
 Authors@R: 
     c(
     person(given="Irzam", family="Sarfraz", email="isarfraz@bu.edu", role=c("aut"),
