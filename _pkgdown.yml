@@ -16,6 +16,26 @@ reference:
     - create_OID_object
     - create_ONG_object
     - create_REC_object
+  - title: "Internal classes & functions"
+    contents:
+    - FEA-class
+    - fea
+    - fea<-
+    - FID-class
+    - fid
+    - fid<-
+    - FNG-class
+    - fng
+    - fng<-
+    - FOM-class
+    - fom
+    - fom<-
+    - MAMS-class
+    - OBS-class
+    - obs
+    - obs<-
+    - OID-class
+    - oid
   - title: internal
     contents:
     - has_keyword("internal")
