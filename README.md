@@ -27,4 +27,4 @@ print(mams)
 **You can access a detailed tutorial on how to use the rmams package [here](https://single-cell-mams.github.io/rmams/articles/rmams_tutorial.html).**
 
 ### Citation
-Wang Y, Sarfraz I, Teh WK, Sokolov A, Herb BR, Creasy HH, Virshup I, Dries R, Degatano K, Mahurkar A, Schnell DJ, Madrigal P, Hilton J, Gehlenborg N, Tickle T, Campbell JD. Matrix and analysis metadata standards (MAMS) to facilitate harmonization and reproducibility of single-cell data. bioRxiv [Preprint]. 2023 Mar 7:2023.03.06.531314. doi: 10.1101/2023.03.06.531314. PMID: 36945543; PMCID: PMC10028847.
+> Wang Y, Sarfraz I, Teh WK, Sokolov A, Herb BR, Creasy HH, Virshup I, Dries R, Degatano K, Mahurkar A, Schnell DJ, Madrigal P, Hilton J, Gehlenborg N, Tickle T, Campbell JD. Matrix and analysis metadata standards (MAMS) to facilitate harmonization and reproducibility of single cell data. bioRxiv [Preprint]. 2023 Mar 7:2023.03.06.531314. doi: 10.1101/2023.03.06.531314. PMID: 36945543; PMCID: PMC10028847.
