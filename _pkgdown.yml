@@ -36,6 +36,24 @@ reference:
     - obs<-
     - OID-class
     - oid
+    - oid<-
+    - ONG-class
+    - ong
+    - ong<-
+    - REC-class
+    - rec
+    - rec<-
+    - accessor,FEA-method
+    - accessor<-,FEA-method
+    - accessor<-,FID-method
+    - accessor,FID-method
+    - accessor,FNG-method
+    - accessor<-,FNG-method
+    - accessor,FOM-method
+    - accessor<-,FOM-method
+    - accessor,OBS-method
+    - accessor<-,OBS-method
+    - accessor,OID-method
   - title: internal
     contents:
     - has_keyword("internal")
