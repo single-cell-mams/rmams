@@ -40,7 +40,7 @@ jobs:
         run: sudo apt-get install libglpk-dev
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck", "Seurat"))
+          install.packages(c("remotes", "testthat", "rcmdcheck", "Seurat"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Check
