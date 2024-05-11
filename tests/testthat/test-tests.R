@@ -1,4 +1,5 @@
 library(Seurat)
+options(Seurat.object.assay.version = "v4")
 
 test_that("Test MAMS functions", {
     # create seurat object
