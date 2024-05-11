@@ -16,6 +16,7 @@ test_that("Test MAMS functions", {
                                    observation_subsets = c("full", "subset"), dataset_id = "dataset1")
     # test if its a mam object
     expect_is(mams, "MAMS")
+    print(mams)
     # test if first fom is counts
     expect_equal(mams@FOM$fom1@processing, "counts")
     # test if third fom is scaled
