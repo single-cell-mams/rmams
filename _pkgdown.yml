@@ -1,7 +1,8 @@
 url: https://single-cell-mams.github.io/rmams/
 template:
   bootstrap: 5
-contents:
-  - starts_with("create")
-  - starts_with("convert")
-  - starts_with("check")
+reference:
+  contents:
+    - starts_with("create")
+    - starts_with("convert")
+    - starts_with("check")
