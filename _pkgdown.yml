@@ -72,6 +72,26 @@ reference:
     - dataset_id,FOM-method
     - dataset_id<-,FOM-method
     - dataset_id,OBS-method
+    - dataset_id<-,OBS-method
+    - dataset_id,OID-method
+    - dataset_id<-,OID-method
+    - dataset_id,ONG-method
+    - dataset_id<-,ONG-method
+    - dataset_id,REC-method
+    - dataset_id<-,REC-method
+    - edge_metric,FNG-method
+    - edge_metric<-,FNG-method
+    - edge_metric,ONG-method
+    - edge_metric<-,ONG-method
+    - fea,MAMS,character,character-method
+    - fea<-,MAMS,character,character-method
+    - feature_modality,FEA-method
+    - feature_modality<-,FEA-method
+    - feature_subset,FOM-method
+    - feature_subset<-,FOM-method
+    - feature_subset_description,FOM-method
+    - representation_description,FOM-method
+    - representation_description<-,FOM-method
   - title: internal
     contents:
     - has_keyword("internal")
