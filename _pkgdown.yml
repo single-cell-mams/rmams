@@ -132,6 +132,26 @@ reference:
     - id<-,REC-method
     - reference_organism,FEA-method
     - reference_organism<-,FEA-method
+    - metric_type,FNG-method
+    - metric_type<-,FNG-method
+    - metric_type,ONG-method
+    - metric_type<-,ONG-method
+    - modality,FOM-method
+    - modality<-,FOM-method
+    - obs,MAMS,character,character-method
+    - obs<-,MAMS,character,character-method
+    - obs_subset,FOM-method
+    - obs_subset<-,FOM-method
+    - obs_subset_description,FOM-method
+    - obs_subset_description<-,FOM-method
+    - obs_unit,FOM-method
+    - obs_unit<-,FOM-method
+    - oid,MAMS,character,character-method
+    - oid<-,MAMS,character,character-method
+    - ong,MAMS,character,character-method
+    - ong<-,MAMS,character,character-method
+    - reference_database,FEA-method
+    - reference_database<-,FEA-method
   - title: internal
     contents:
     - has_keyword("internal")
