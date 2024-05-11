@@ -54,6 +54,24 @@ reference:
     - accessor,OBS-method
     - accessor<-,OBS-method
     - accessor,OID-method
+    - accessor<-,OID-method
+    - accessor,ONG-method
+    - accessor<-,ONG-method
+    - analyte,FOM-method
+    - analyte<-,FOM-method
+    - analyte_description,FOM-method
+    - analyte_description<-,FOM-method
+    - data_type,FOM-method
+    - data_type<-,FOM-method
+    - dataset_id,FEA-method
+    - dataset_id<-,FEA-method
+    - dataset_id<-,FID-method
+    - dataset_id,FID-method
+    - dataset_id,FNG-method
+    - dataset_id<-,FNG-method
+    - dataset_id,FOM-method
+    - dataset_id<-,FOM-method
+    - dataset_id,OBS-method
   - title: internal
     contents:
     - has_keyword("internal")
