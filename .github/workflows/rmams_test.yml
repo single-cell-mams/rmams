@@ -38,8 +38,8 @@ jobs:
         run: sudo apt-get install libglpk-dev
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck", "testthat"))
           install.packages("https://cran.r-project.org/src/contrib/Archive/Matrix/Matrix_1.6-1.tar.gz")
+          install.packages(c("remotes", "curl", "rcmdcheck", "testthat"))
           remotes::install_version("SeuratObject", "4.1.4", repos = c("https://satijalab.r-universe.dev", getOption("repos")))
           install.packages("scattermore")
           install.packages("sctransform")
