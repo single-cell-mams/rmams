@@ -18,7 +18,7 @@ reference:
     - create_REC_object
   - title: internal
     contents:
-    - "*"
+    - ".*"
     - "!convert_seurat_to_MAMS"
     - "!create_MAMS_from_JSON"
     - "!create_MAMS_object"
