@@ -192,6 +192,10 @@ reference:
     - record_package_version<-,REC-method
     - record_runtime_start,REC-method
     - record_runtime_start<-,REC-method
+    - record_runtime_duration,REC-method
+    - record_runtime_duration<-,REC-method
+    - record_runtime_end,REC-method
+    - record_runtime_end<-,REC-method
   - title: internal
     contents:
     - has_keyword("internal")
