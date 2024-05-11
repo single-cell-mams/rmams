@@ -152,6 +152,26 @@ reference:
     - ong<-,MAMS,character,character-method
     - reference_database,FEA-method
     - reference_database<-,FEA-method
+    - parent_id,FNG-method
+    - parent_id<-,FNG-method
+    - parent_id,FOM-method
+    - parent_id<-,FOM-method
+    - parent_id,ONG-method
+    - parent_id<-,ONG-method
+    - parent_relationship,FOM-method
+    - parent_relationship<-,FOM-method
+    - parent_relationship_description,FOM-method
+    - parent_relationship_description<-,FOM-method
+    - processing,FOM-method
+    - processing<-,FOM-method
+    - processing_description,FOM-method
+    - processing_description<-,FOM-method
+    - rec,MAMS,character,character-method
+    - rec<-,MAMS,character,character-method
+    - record_function_name,REC-method
+    - record_function_name<-,REC-method
+    - record_workflow_link,REC-method
+    - record_workflow_link<-,REC-method
   - title: internal
     contents:
     - has_keyword("internal")
