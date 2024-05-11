@@ -161,6 +161,7 @@ setClassUnion("ListOrNULL", c("list", "NULL"))
 #' @description generic getter for id field
 #' @param x the id to get
 #' @return the value
+#' @keyword internal           
 setGeneric("id", function(x) standardGeneric("id"))
 #' id<-
 #' @rdname id-set-generic
@@ -168,12 +169,14 @@ setGeneric("id", function(x) standardGeneric("id"))
 #' @param x the id to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("id<-", function(x, value) standardGeneric("id<-"))
 #' dataset_id
 #' @rdname dataset_id-get-generic
 #' @description generic getter for dataset_id field
 #' @param x the dataset_id to get
 #' @return the value
+#' @keyword internal           
 setGeneric("dataset_id", function(x) standardGeneric("dataset_id"))
 #' dataset_id<-
 #' @rdname dataset_id-set-generic
@@ -181,12 +184,14 @@ setGeneric("dataset_id", function(x) standardGeneric("dataset_id"))
 #' @param x the dataset_id to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("dataset_id<-", function(x, value) standardGeneric("dataset_id<-"))
 #' filepath
 #' @rdname filepath-get-generic
 #' @description generic getter for filepath field
 #' @param x the filepath to get
 #' @return the value
+#' @keyword internal           
 setGeneric("filepath", function(x) standardGeneric("filepath"))
 #' filepath<-
 #' @rdname filepath-set-generic
@@ -194,12 +199,14 @@ setGeneric("filepath", function(x) standardGeneric("filepath"))
 #' @param x the filepath to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("filepath<-", function(x, value) standardGeneric("filepath<-"))
 #' accessor
 #' @rdname accessor-get-generic
 #' @description generic getter for accessor field
 #' @param x the accessor to get
 #' @return the value
+#' @keyword internal           
 setGeneric("accessor", function(x) standardGeneric("accessor"))
 #' accessor<-
 #' @rdname accessor-set-generic
@@ -207,6 +214,7 @@ setGeneric("accessor", function(x) standardGeneric("accessor"))
 #' @param x the accessor to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("accessor<-", function(x, value) standardGeneric("accessor<-"))
 
 # Define a generic function and method for 'data_type'
@@ -215,6 +223,7 @@ setGeneric("accessor<-", function(x, value) standardGeneric("accessor<-"))
 #' @description generic getter for data_type field
 #' @param x the data_type to get
 #' @return the value
+#' @keyword internal           
 setGeneric("data_type", function(x) standardGeneric("data_type"))
 #' data_type<-
 #' @rdname data_type-set-generic
@@ -222,6 +231,7 @@ setGeneric("data_type", function(x) standardGeneric("data_type"))
 #' @param x the data_type to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("data_type<-", function(x, value) standardGeneric("data_type<-"))
 # Define a generic function and method for 'representation'
 #' representation
@@ -229,6 +239,7 @@ setGeneric("data_type<-", function(x, value) standardGeneric("data_type<-"))
 #' @description generic getter for representation field
 #' @param x the representation to get
 #' @return the value
+#' @keyword internal           
 setGeneric("representation", function(x) standardGeneric("representation"))
 #' representation<-
 #' @rdname representation-set-generic
@@ -236,6 +247,7 @@ setGeneric("representation", function(x) standardGeneric("representation"))
 #' @param x the representation to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("representation<-", function(x, value) standardGeneric("representation<-"))
 # Define a generic function and method for 'representation_description'
 #' representation_description
@@ -243,6 +255,7 @@ setGeneric("representation<-", function(x, value) standardGeneric("representatio
 #' @description generic getter for representation_description field
 #' @param x the representation_description to get
 #' @return the value
+#' @keyword internal           
 setGeneric("representation_description", function(x) standardGeneric("representation_description"))
 #' representation_description<-
 #' @rdname representation_description-set-generic
@@ -250,6 +263,7 @@ setGeneric("representation_description", function(x) standardGeneric("representa
 #' @param x the representation_description to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("representation_description<-", function(x, value) standardGeneric("representation_description<-"))
 # Define a generic function and method for 'obs_unit'
 #' obs_unit
@@ -257,6 +271,7 @@ setGeneric("representation_description<-", function(x, value) standardGeneric("r
 #' @description generic getter for obs_unit field
 #' @param x the obs_unit to get
 #' @return the value
+#' @keyword internal           
 setGeneric("obs_unit", function(x) standardGeneric("obs_unit"))
 #' obs_unit<-
 #' @rdname obs_unit-set-generic
@@ -264,6 +279,7 @@ setGeneric("obs_unit", function(x) standardGeneric("obs_unit"))
 #' @param x the obs_unit to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("obs_unit<-", function(x, value) standardGeneric("obs_unit<-"))
 
 # Define a generic function and method for 'processing'
@@ -272,6 +288,7 @@ setGeneric("obs_unit<-", function(x, value) standardGeneric("obs_unit<-"))
 #' @description generic getter for processing field
 #' @param x the processing to get
 #' @return the value
+#' @keyword internal           
 setGeneric("processing", function(x) standardGeneric("processing"))
 #' processing<-
 #' @rdname processing-set-generic
@@ -279,6 +296,7 @@ setGeneric("processing", function(x) standardGeneric("processing"))
 #' @param x the processing to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("processing<-", function(x, value) standardGeneric("processing<-"))
 
 # Define a generic function and method for 'processing_description'
@@ -287,6 +305,7 @@ setGeneric("processing<-", function(x, value) standardGeneric("processing<-"))
 #' @description generic getter for processing_description field
 #' @param x the processing_description to get
 #' @return the value
+#' @keyword internal           
 setGeneric("processing_description", function(x) standardGeneric("processing_description"))
 #' processing_description<-
 #' @rdname processing_description-set-generic
@@ -294,6 +313,7 @@ setGeneric("processing_description", function(x) standardGeneric("processing_des
 #' @param x the processing_description to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("processing_description<-", function(x, value) standardGeneric("processing_description<-"))
 
 # Define a generic function and method for 'analyte'
@@ -302,6 +322,7 @@ setGeneric("processing_description<-", function(x, value) standardGeneric("proce
 #' @description generic getter for analyte field
 #' @param x the analyte to get
 #' @return the value
+#' @keyword internal           
 setGeneric("analyte", function(x) standardGeneric("analyte"))
 #' analyte<-
 #' @rdname analyte-set-generic
@@ -309,6 +330,7 @@ setGeneric("analyte", function(x) standardGeneric("analyte"))
 #' @param x the analyte to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("analyte<-", function(x, value) standardGeneric("analyte<-"))
 
 # Define a generic function and method for 'analyte_description'
@@ -317,6 +339,7 @@ setGeneric("analyte<-", function(x, value) standardGeneric("analyte<-"))
 #' @description generic getter for analyte_description field
 #' @param x the analyte_description to get
 #' @return the value
+#' @keyword internal           
 setGeneric("analyte_description", function(x) standardGeneric("analyte_description"))
 #' analyte_description<-
 #' @rdname analyte_description-set-generic
@@ -324,6 +347,7 @@ setGeneric("analyte_description", function(x) standardGeneric("analyte_descripti
 #' @param x the analyte_description to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("analyte_description<-", function(x, value) standardGeneric("analyte_description<-"))
 
 # Define a generic function and method for 'modality'
@@ -332,6 +356,7 @@ setGeneric("analyte_description<-", function(x, value) standardGeneric("analyte_
 #' @description generic getter for modality field
 #' @param x the modality to get
 #' @return the value
+#' @keyword internal           
 setGeneric("modality", function(x) standardGeneric("modality"))
 #' modality<-
 #' @rdname modality-set-generic
@@ -339,6 +364,7 @@ setGeneric("modality", function(x) standardGeneric("modality"))
 #' @param x the modality to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("modality<-", function(x, value) standardGeneric("modality<-"))
 
 # Define a generic function and method for 'obs_subset'
@@ -347,6 +373,7 @@ setGeneric("modality<-", function(x, value) standardGeneric("modality<-"))
 #' @description generic getter for obs_subset field
 #' @param x the obs_subset to get
 #' @return the value
+#' @keyword internal           
 setGeneric("obs_subset", function(x) standardGeneric("obs_subset"))
 #' obs_subset<-
 #' @rdname obs_subset-set-generic
@@ -354,6 +381,7 @@ setGeneric("obs_subset", function(x) standardGeneric("obs_subset"))
 #' @param x the obs_subset to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("obs_subset<-", function(x, value) standardGeneric("obs_subset<-"))
 
 # Define a generic function and method for 'obs_subset_description'
@@ -362,6 +390,7 @@ setGeneric("obs_subset<-", function(x, value) standardGeneric("obs_subset<-"))
 #' @description generic getter for obs_subset_description field
 #' @param x the obs_subset_description to get
 #' @return the value
+#' @keyword internal           
 setGeneric("obs_subset_description", function(x) standardGeneric("obs_subset_description"))
 #' obs_subset_description<-
 #' @rdname obs_subset_description-set-generic
@@ -369,6 +398,7 @@ setGeneric("obs_subset_description", function(x) standardGeneric("obs_subset_des
 #' @param x the obs_subset_description to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("obs_subset_description<-", function(x, value) standardGeneric("obs_subset_description<-"))
 
 # Define a generic function and method for 'feature_subset'
@@ -377,6 +407,7 @@ setGeneric("obs_subset_description<-", function(x, value) standardGeneric("obs_s
 #' @description generic getter for feature_subset field
 #' @param x the feature_subset to get
 #' @return the value
+#' @keyword internal           
 setGeneric("feature_subset", function(x) standardGeneric("feature_subset"))
 #' feature_subset<-
 #' @rdname feature_subset-set-generic
@@ -384,6 +415,7 @@ setGeneric("feature_subset", function(x) standardGeneric("feature_subset"))
 #' @param x the feature_subset to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("feature_subset<-", function(x, value) standardGeneric("feature_subset<-"))
 
 # Define a generic function and method for 'feature_subset_description'
@@ -392,6 +424,7 @@ setGeneric("feature_subset<-", function(x, value) standardGeneric("feature_subse
 #' @description generic getter for feature_subset_description field
 #' @param x the obs_subset_descrifeature_subset_descriptionption to get
 #' @return the value
+#' @keyword internal           
 setGeneric("feature_subset_description", function(x) standardGeneric("feature_subset_description"))
 #' feature_subset_description<-
 #' @rdname feature_subset_description-set-generic
@@ -399,6 +432,7 @@ setGeneric("feature_subset_description", function(x) standardGeneric("feature_su
 #' @param x the feature_subset_description to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("feature_subset_description<-", function(x, value) standardGeneric("feature_subset_description<-"))
 
 # Define a generic function and method for 'record_id'
@@ -407,6 +441,7 @@ setGeneric("feature_subset_description<-", function(x, value) standardGeneric("f
 #' @description generic getter for record_id field
 #' @param x the record_id to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_id", function(x) standardGeneric("record_id"))
 #' record_id<-
 #' @rdname record_id-set-generic
@@ -414,6 +449,7 @@ setGeneric("record_id", function(x) standardGeneric("record_id"))
 #' @param x the record_id to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
 
 # Define a generic function and method for 'parent_id'
@@ -422,6 +458,7 @@ setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
 #' @description generic getter for parent_id field
 #' @param x the parent_id to get
 #' @return the value
+#' @keyword internal           
 setGeneric("parent_id", function(x) standardGeneric("parent_id"))
 #' parent_id<-
 #' @rdname parent_id-set-generic
@@ -429,6 +466,7 @@ setGeneric("parent_id", function(x) standardGeneric("parent_id"))
 #' @param x the parent_id to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("parent_id<-", function(x, value) standardGeneric("parent_id<-"))
 
 # Define a generic function and method for 'parent_relationship'
@@ -437,6 +475,7 @@ setGeneric("parent_id<-", function(x, value) standardGeneric("parent_id<-"))
 #' @description generic getter for parent_relationship field
 #' @param x the parent_relationship to get
 #' @return the value
+#' @keyword internal           
 setGeneric("parent_relationship", function(x) standardGeneric("parent_relationship"))
 #' parent_relationship<-
 #' @rdname parent_relationship-set-generic
@@ -444,6 +483,7 @@ setGeneric("parent_relationship", function(x) standardGeneric("parent_relationsh
 #' @param x the parent_relationship to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("parent_relationship<-", function(x, value) standardGeneric("parent_relationship<-"))
 
 # Define a generic function and method for 'parent_relationship_description'
@@ -452,6 +492,7 @@ setGeneric("parent_relationship<-", function(x, value) standardGeneric("parent_r
 #' @description generic getter for parent_relationship_description field
 #' @param x the parent_relationship_description to get
 #' @return the value
+#' @keyword internal           
 setGeneric("parent_relationship_description", function(x) standardGeneric("parent_relationship_description"))
 #' parent_relationship_description<-
 #' @rdname parent_relationship_description-set-generic
@@ -459,6 +500,7 @@ setGeneric("parent_relationship_description", function(x) standardGeneric("paren
 #' @param x the parent_relationship_description to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("parent_relationship_description<-", function(x, value) standardGeneric("parent_relationship_description<-"))
 
 #' edge_metric
@@ -466,6 +508,7 @@ setGeneric("parent_relationship_description<-", function(x, value) standardGener
 #' @description generic getter for edge_metric field
 #' @param x the edge_metric to get
 #' @return the value
+#' @keyword internal           
 setGeneric("edge_metric", function(x) standardGeneric("edge_metric"))
 #' edge_metric<-
 #' @rdname edge_metric-set-generic
@@ -473,6 +516,7 @@ setGeneric("edge_metric", function(x) standardGeneric("edge_metric"))
 #' @param x the edge_metric to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("edge_metric<-", function(x, value) standardGeneric("edge_metric<-"))
 
 #' metric_type
@@ -480,6 +524,7 @@ setGeneric("edge_metric<-", function(x, value) standardGeneric("edge_metric<-"))
 #' @description generic getter for metric_type field
 #' @param x the metric_type to get
 #' @return the value
+#' @keyword internal           
 setGeneric("metric_type", function(x) standardGeneric("metric_type"))
 #' metric_type<-
 #' @rdname metric_type-set-generic
@@ -487,6 +532,7 @@ setGeneric("metric_type", function(x) standardGeneric("metric_type"))
 #' @param x the metric_type to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("metric_type<-", function(x, value) standardGeneric("metric_type<-"))
 
 #' record_id
@@ -494,6 +540,7 @@ setGeneric("metric_type<-", function(x, value) standardGeneric("metric_type<-"))
 #' @description generic getter for record_id field
 #' @param x the record_id to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_id", function(x) standardGeneric("record_id"))
 #' record_id<-
 #' @rdname record_id-set-generic
@@ -501,6 +548,7 @@ setGeneric("record_id", function(x) standardGeneric("record_id"))
 #' @param x the record_id to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
 
 #' record_package_name
@@ -508,6 +556,7 @@ setGeneric("record_id<-", function(x, value) standardGeneric("record_id<-"))
 #' @description generic getter for record_package_name field
 #' @param x the record_package_name to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_package_name", function(x) standardGeneric("record_package_name"))
 #' record_package_name<-
 #' @rdname record_package_name-set-generic
@@ -515,6 +564,7 @@ setGeneric("record_package_name", function(x) standardGeneric("record_package_na
 #' @param x the record_package_name to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_package_name<-", function(x, value) standardGeneric("record_package_name<-"))
 
 #' record_package_version
@@ -522,6 +572,7 @@ setGeneric("record_package_name<-", function(x, value) standardGeneric("record_p
 #' @description generic getter for record_package_version field
 #' @param x the record_package_version to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_package_version", function(x) standardGeneric("record_package_version"))
 #' record_package_version<-
 #' @rdname record_package_version-set-generic
@@ -529,6 +580,7 @@ setGeneric("record_package_version", function(x) standardGeneric("record_package
 #' @param x the record_package_version to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_package_version<-", function(x, value) standardGeneric("record_package_version<-"))
 
 #' record_function_name
@@ -536,6 +588,7 @@ setGeneric("record_package_version<-", function(x, value) standardGeneric("recor
 #' @description generic getter for record_function_name field
 #' @param x the record_function_name to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_function_name", function(x) standardGeneric("record_function_name"))
 #' record_function_name<-
 #' @rdname record_function_name-set-generic
@@ -543,6 +596,7 @@ setGeneric("record_function_name", function(x) standardGeneric("record_function_
 #' @param x the record_function_name to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_function_name<-", function(x, value) standardGeneric("record_function_name<-"))
 
 #' record_function_parameters
@@ -550,6 +604,7 @@ setGeneric("record_function_name<-", function(x, value) standardGeneric("record_
 #' @description generic getter for record_function_parameters field
 #' @param x the record_function_parameters to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_function_parameters", function(x) standardGeneric("record_function_parameters"))
 #' record_function_parameters<-
 #' @rdname record_function_parameters-set-generic
@@ -557,6 +612,7 @@ setGeneric("record_function_parameters", function(x) standardGeneric("record_fun
 #' @param x the record_function_parameters to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_function_parameters<-", function(x, value) standardGeneric("record_function_parameters<-"))
 
 #' record_workflow_link
@@ -564,6 +620,7 @@ setGeneric("record_function_parameters<-", function(x, value) standardGeneric("r
 #' @description generic getter for record_workflow_link field
 #' @param x the record_workflow_link to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_workflow_link", function(x) standardGeneric("record_workflow_link"))
 #' record_workflow_link<-
 #' @rdname record_workflow_link-set-generic
@@ -571,6 +628,7 @@ setGeneric("record_workflow_link", function(x) standardGeneric("record_workflow_
 #' @param x the record_workflow_link to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_workflow_link<-", function(x, value) standardGeneric("record_workflow_link<-"))
 
 #' record_runtime_start
@@ -578,6 +636,7 @@ setGeneric("record_workflow_link<-", function(x, value) standardGeneric("record_
 #' @description generic getter for record_runtime_start field
 #' @param x the record_runtime_start to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_runtime_start", function(x) standardGeneric("record_runtime_start"))
 #' record_runtime_start<-
 #' @rdname record_runtime_start-set-generic
@@ -585,6 +644,7 @@ setGeneric("record_runtime_start", function(x) standardGeneric("record_runtime_s
 #' @param x the record_runtime_start to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_runtime_start<-", function(x, value) standardGeneric("record_runtime_start<-"))
 
 #' record_runtime_end
@@ -592,6 +652,7 @@ setGeneric("record_runtime_start<-", function(x, value) standardGeneric("record_
 #' @description generic getter for record_runtime_end field
 #' @param x the record_runtime_end to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_runtime_end", function(x) standardGeneric("record_runtime_end"))
 #' record_runtime_end<-
 #' @rdname record_runtime_end-set-generic
@@ -599,6 +660,7 @@ setGeneric("record_runtime_end", function(x) standardGeneric("record_runtime_end
 #' @param x the record_runtime_end to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_runtime_end<-", function(x, value) standardGeneric("record_runtime_end<-"))
 
 #' record_runtime_duration
@@ -606,6 +668,7 @@ setGeneric("record_runtime_end<-", function(x, value) standardGeneric("record_ru
 #' @description generic getter for record_runtime_duration field
 #' @param x the record_runtime_duration to get
 #' @return the value
+#' @keyword internal           
 setGeneric("record_runtime_duration", function(x) standardGeneric("record_runtime_duration"))
 #' record_runtime_duration<-
 #' @rdname record_runtime_duration-set-generic
@@ -613,6 +676,7 @@ setGeneric("record_runtime_duration", function(x) standardGeneric("record_runtim
 #' @param x the record_runtime_duration to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("record_runtime_duration<-", function(x, value) standardGeneric("record_runtime_duration<-"))
 
 #' feature_modality
@@ -620,6 +684,7 @@ setGeneric("record_runtime_duration<-", function(x, value) standardGeneric("reco
 #' @description generic getter for feature_modality field
 #' @param x the feature_modality to get
 #' @return the value
+#' @keyword internal           
 setGeneric("feature_modality", function(x) standardGeneric("feature_modality"))
 #' feature_modality<-
 #' @rdname feature_modality-set-generic
@@ -627,6 +692,7 @@ setGeneric("feature_modality", function(x) standardGeneric("feature_modality"))
 #' @param x the feature_modality to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("feature_modality<-", function(x, value) standardGeneric("feature_modality<-"))
 
 #' reference_database
@@ -634,6 +700,7 @@ setGeneric("feature_modality<-", function(x, value) standardGeneric("feature_mod
 #' @description generic getter for reference_database field
 #' @param x the reference_database to get
 #' @return the value
+#' @keyword internal           
 setGeneric("reference_database", function(x) standardGeneric("reference_database"))
 #' reference_database<-
 #' @rdname reference_database-set-generic
@@ -641,6 +708,7 @@ setGeneric("reference_database", function(x) standardGeneric("reference_database
 #' @param x the reference_database to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("reference_database<-", function(x, value) standardGeneric("reference_database<-"))
 
 #' reference_organism
@@ -648,6 +716,7 @@ setGeneric("reference_database<-", function(x, value) standardGeneric("reference
 #' @description generic getter for reference_organism field
 #' @param x the reference_organism to get
 #' @return the value
+#' @keyword internal           
 setGeneric("reference_organism", function(x) standardGeneric("reference_organism"))
 #' reference_organism<-
 #' @rdname reference_organism-set-generic
@@ -655,6 +724,7 @@ setGeneric("reference_organism", function(x) standardGeneric("reference_organism
 #' @param x the reference_organism to get
 #' @param value the new value
 #' @return nothing (setter)
+#' @keyword internal           
 setGeneric("reference_organism<-", function(x, value) standardGeneric("reference_organism<-"))
 
 
