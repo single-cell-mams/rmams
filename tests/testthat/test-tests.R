@@ -10,7 +10,8 @@ test_that("Test MAMS functions", {
     
     # subset
     subset_srt <- srt[1:2000, ]
-    
+    print(srt)
+    print(subset_srt)
     # Test convert_seurat_to_MAMS
     mams <- convert_seurat_to_MAMS(object_list = list(srt = srt, subset_srt = subset_srt), 
                                    observation_subsets = c("full", "subset"), dataset_id = "dataset1")
