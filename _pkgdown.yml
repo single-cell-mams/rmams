@@ -112,6 +112,26 @@ reference:
     - fng,MAMS,character,character-method
     - representation,FOM-method
     - representation<-,FOM-method
+    - fom,MAMS,character,character-method
+    - fom<-,MAMS,character,character-method
+    - id,FEA-method
+    - id<-,FEA-method
+    - id<-,FID-method
+    - id,FID-method
+    - id,FNG-method
+    - id<-,FNG-method
+    - id,FOM-method
+    - id<-,FOM-method
+    - id,OBS-method
+    - id<-,OBS-method
+    - id,OID-method
+    - id<-,OID-method
+    - id,ONG-method
+    - id<-,ONG-method
+    - id,REC-method
+    - id<-,REC-method
+    - reference_organism,FEA-method
+    - reference_organism<-,FEA-method
   - title: internal
     contents:
     - has_keyword("internal")
