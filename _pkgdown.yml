@@ -172,6 +172,26 @@ reference:
     - record_function_name<-,REC-method
     - record_workflow_link,REC-method
     - record_workflow_link<-,REC-method
+    - record_function_parameters,REC-method
+    - record_function_parameters<-,REC-method
+    - record_id,FEA-method
+    - record_id<-,FEA-method
+    - record_id,FNG-method
+    - record_id<-,FNG-method
+    - record_id,FOM-method
+    - record_id<-,FOM-method
+    - record_id,OBS-method
+    - record_id<-,OBS-method
+    - record_id,ONG-method
+    - record_id<-,ONG-method
+    - record_id,REC-method
+    - record_id<-,REC-method
+    - record_package_name,REC-method
+    - record_package_name<-,REC-method
+    - record_package_version,REC-method
+    - record_package_version<-,REC-method
+    - record_runtime_start,REC-method
+    - record_runtime_start<-,REC-method
   - title: internal
     contents:
     - has_keyword("internal")
