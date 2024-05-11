@@ -17,5 +17,5 @@ reference:
     - create_ONG_object
     - create_REC_object
   - title: internal
-  contents:
+    contents:
     - has_keyword("internal")
