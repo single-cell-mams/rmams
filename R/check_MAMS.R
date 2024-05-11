@@ -1,4 +1,4 @@
-#' Constructor function to create a FOM object
+#' Validate mams object
 #' @description Internal check function to determine if all necessary MAMS object slots
 #' exist within the object
 #' @param mams_object Input MAMS object to be checked
