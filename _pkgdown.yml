@@ -1,33 +1,3 @@
 url: https://single-cell-mams.github.io/rmams/
 template:
   bootstrap: 5
-reference:
-  - title: "Functions to manipulate rmams"
-    contents:
-    - convert_seurat_to_MAMS
-    - create_MAMS_from_JSON
-    - create_MAMS_object
-    - check_MAMS
-    - create_FEA_object
-    - create_FID_object
-    - create_FNG_object
-    - create_FOM_object
-    - create_OBS_object
-    - create_OID_object
-    - create_ONG_object
-    - create_REC_object
-  - title: internal
-    contents:
-    - ".*"
-    - "!convert_seurat_to_MAMS"
-    - "!create_MAMS_from_JSON"
-    - "!create_MAMS_object"
-    - "!check_MAMS"
-    - "!create_FEA_object"
-    - "!create_FID_object"
-    - "!create_FNG_object"
-    - "!create_FOM_object"
-    - "!create_OBS_object"
-    - "!create_OID_object"
-    - "!create_ONG_object"
-    - "!create_REC_object"
