@@ -16,6 +16,6 @@ reference:
     - create_OID_object
     - create_ONG_object
     - create_REC_object
-- title: internal
+  - title: internal
   contents:
     - has_keyword("internal")
