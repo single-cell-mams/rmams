@@ -92,6 +92,26 @@ reference:
     - feature_subset_description,FOM-method
     - representation_description,FOM-method
     - representation_description<-,FOM-method
+    - feature_subset_description<-,FOM-method
+    - fid,MAMS,character,character-method
+    - fid<-,MAMS,character,character-method
+    - filepath,FEA-method
+    - filepath<-,FEA-method
+    - filepath<-,FID-method
+    - filepath,FID-method
+    - filepath,FNG-method
+    - filepath<-,FNG-method
+    - filepath,FOM-method
+    - filepath<-,FOM-method
+    - filepath,OBS-method
+    - filepath<-,OBS-method
+    - filepath,OID-method
+    - filepath<-,OID-method
+    - filepath,ONG-method
+    - filepath<-,ONG-method
+    - fng,MAMS,character,character-method
+    - representation,FOM-method
+    - representation<-,FOM-method
   - title: internal
     contents:
     - has_keyword("internal")
