@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for modality field
 }
+\keyword{internal}

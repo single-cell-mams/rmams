@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for modality field
 }
+\keyword{internal}

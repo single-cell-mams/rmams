@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for feature_modality field
 }
+\keyword{internal}

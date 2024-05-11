@@ -19,8 +19,7 @@ Authors@R:
              )
 Depends: 
     R (>= 3.5.0),
-    Seurat (>= 4.0),
-    rmdformats (>= 1.0.4)
+    Seurat (>= 4.0)
 Imports:
     SeuratObject,
     jsonlite,

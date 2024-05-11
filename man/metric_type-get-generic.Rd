@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for metric_type field
 }
+\keyword{internal}

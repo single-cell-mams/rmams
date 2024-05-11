@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for record_runtime_end field
 }
+\keyword{internal}

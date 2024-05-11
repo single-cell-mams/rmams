@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for record_workflow_link field
 }
+\keyword{internal}

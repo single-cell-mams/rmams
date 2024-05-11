@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for record_function_name field
 }
+\keyword{internal}

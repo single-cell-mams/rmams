@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for analyte field
 }
+\keyword{internal}

@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for analyte field
 }
+\keyword{internal}

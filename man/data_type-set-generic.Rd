@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for data_type field
 }
+\keyword{internal}

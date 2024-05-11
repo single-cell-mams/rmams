@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for representation field
 }
+\keyword{internal}

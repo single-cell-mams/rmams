@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_MAMS.R
 \name{check_MAMS}
 \alias{check_MAMS}
-\title{Constructor function to create a FOM object}
+\title{Validate mams object}
 \usage{
 check_MAMS(mams_object)
 }

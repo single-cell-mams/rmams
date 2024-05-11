@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for record_package_name field
 }
+\keyword{internal}

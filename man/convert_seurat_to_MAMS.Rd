@@ -4,7 +4,7 @@
 \alias{convert_seurat_to_MAMS}
 \title{Converts Seurat object to a MAMS object}
 \usage{
-convert_seurat_to_MAMS(object_list, observation_subsets)
+convert_seurat_to_MAMS(object_list, observation_subsets, dataset_id)
 }
 \arguments{
 \item{object_list}{A named list of Seurat objects to be converted to MAMS format}

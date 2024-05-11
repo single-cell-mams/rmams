@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for obs_subset_description field
 }
+\keyword{internal}

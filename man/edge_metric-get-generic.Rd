@@ -15,3 +15,4 @@ the value
 \description{
 generic getter for edge_metric field
 }
+\keyword{internal}

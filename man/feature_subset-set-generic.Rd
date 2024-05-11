@@ -17,3 +17,4 @@ nothing (setter)
 \description{
 generic getter for feature_subset field
 }
+\keyword{internal}
