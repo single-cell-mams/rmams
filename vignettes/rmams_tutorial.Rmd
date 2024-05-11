@@ -1,5 +1,5 @@
 ---
-title: "Tutorial "
+title: "Tutorial for using rmams "
 date: "`r Sys.Date()`"
 package: rmams
 output:
@@ -197,7 +197,7 @@ saveRDS(data.tcell, "../data/pbmc1k_seurat_tcell.rds")
 
 
 
-## Step 2 Creating the MAMS object from seurat object
+## Step 2: Creating the MAMS object from seurat object
 
 ### Loading data
 
@@ -229,7 +229,7 @@ result@FOM[1]
 
 
 
-## Step 3 Validating MAMS object
+## Step 3: Validating MAMS object
 
 ```{r validate_mams,message = FALSE, warning=FALSE}
 check_MAMS(mams_object = result)
