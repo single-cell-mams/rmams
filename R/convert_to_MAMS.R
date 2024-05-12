@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-# \dontrun # {mams <- convert_seurat_to_mams("pbmc_seurat")}
+#' \dontrun # {mams <- convert_seurat_to_mams("pbmc_seurat")}
 #' 
 convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
     #FOMs <- list()

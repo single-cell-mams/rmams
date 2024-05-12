@@ -260,6 +260,11 @@ check_MAMS(mams_object = result)
 ```
 
 
+### Step 4 Saving MAMS object to JSON
+
+```{r}
+write_MAMS_to_JSON(MAMS=result, filepath = "../data/pbmc1k_rna_adt_seurat_mams.json")
+```
 
 
 ## Using your existing seurat data

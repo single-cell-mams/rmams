@@ -8,6 +8,8 @@ create_MAMS_from_JSON(JSON)
 }
 \arguments{
 \item{JSON}{a JSON file containing the MAMS data}
+
+\item{MAMS}{a mams object}
 }
 \value{
 a MAMS object
