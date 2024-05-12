@@ -218,12 +218,22 @@ saveRDS(data.tcell, "../data/pbmc1k_seurat_tcell.rds")
 ```{r create_mams_object,message = FALSE, warning=FALSE}
 library(rmams)
 
+# get the file paths of seurat objects
+
 file_paths <- c("../data/pbmc1k_seurat_filtered.rds", "../data/pbmc1k_seurat_nonempty.rds", "../data/pbmc1k_seurat_tcell.rds")
+
+# get the names of these objects 
 file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
+
+# save the seurat objects onto the object_list by reading the object from file path.
 object_list <- lapply(file_paths, readRDS)
+
+# name the list objects using previously generated file_names.
 names(object_list) <- file_names
+
+# define the type of each subset
 observational_subsets<-c("filtered","nonempty","subset")
-datasetid = "example"
+datasetid = "PBMC1K"
 ```
 
 ### Create MAMS object
@@ -235,8 +245,8 @@ result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid)
 ### Accessing data 
 
 ```{r show_results}
-# FOM object
-result@FOM[1]
+# Get the dataset_id from the first fom
+fom(result,"fom1","dataset_id")
 
 ```
 
