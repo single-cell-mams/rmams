@@ -15,10 +15,10 @@ remotes::install_github("single-cell-mams/rmams")
 ```
 library(Seurat)
 options(Seurat.object.assay.version = "v3")
-counts <- matrix(rnorm(50000), nrow = 5000, ncol = 10, dimnames = list(paste0("Row", 1:5000), paste0("Col", 1:10)))
+counts <- matrix(rpois(50000), nrow = 500, ncol = 200, dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
 srt <- CreateSeuratObject(counts = counts)
 srt <- NormalizeData(srt)
-subset_srt <- srt[1:2000, ]
+subset_srt <- srt[, 1:100]
 mams <- convert_seurat_to_MAMS(object_list = list(srt = srt, subset_srt = subset_srt),
   observation_subsets = c("full", "subset"), dataset_id = "dataset1")
 print(mams)
