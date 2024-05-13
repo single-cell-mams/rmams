@@ -63,7 +63,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Creating MAMS from Seurat</h1>
             
-            <h4 data-toc-skip class="date">2024-05-12</h4>
+            <h4 data-toc-skip class="date">2024-05-13</h4>
       
       
       <div class="d-none name"><code>rmams_tutorial.Rmd</code></div>
@@ -267,12 +267,22 @@ txt or mtx file as well.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://single-cell-mams.github.io/rmams/">rmams</a></span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># get the file paths of seurat objects</span></span>
+<span></span>
 <span><span class="va">file_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"../data/pbmc1k_seurat_filtered.rds"</span>, <span class="st">"../data/pbmc1k_seurat_nonempty.rds"</span>, <span class="st">"../data/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># get the names of these objects </span></span>
 <span><span class="va">file_names</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.rds$"</span>, replacement <span class="op">=</span> <span class="st">""</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">file_paths</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># save the seurat objects onto the object_list by reading the object from file path.</span></span>
 <span><span class="va">object_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">file_paths</span>, <span class="va">readRDS</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># name the list objects using previously generated file_names.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">object_list</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">file_names</span></span>
+<span></span>
+<span><span class="co"># define the type of each subset</span></span>
 <span><span class="va">observational_subsets</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"filtered"</span>,<span class="st">"nonempty"</span>,<span class="st">"subset"</span><span class="op">)</span></span>
-<span><span class="va">datasetid</span> <span class="op">=</span> <span class="st">"example"</span></span></code></pre></div>
+<span><span class="va">datasetid</span> <span class="op">=</span> <span class="st">"PBMC1K"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="create-mams-object">Create MAMS object<a class="anchor" aria-label="anchor" href="#create-mams-object"></a>
@@ -284,90 +294,9 @@ txt or mtx file as well.</p>
 <h4 id="accessing-data">Accessing data<a class="anchor" aria-label="anchor" href="#accessing-data"></a>
 </h4>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># FOM object</span></span>
-<span><span class="va">result</span><span class="op">@</span><span class="va">FOM</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="co">#&gt; $fom1</span></span>
-<span><span class="co">#&gt; An object of class "FOM"</span></span>
-<span><span class="co">#&gt; Slot "id":</span></span>
-<span><span class="co">#&gt; [1] "fom1"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "dataset_id":</span></span>
-<span><span class="co">#&gt; [1] "example"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "filepath":</span></span>
-<span><span class="co">#&gt; [1] "pbmc1k_seurat_filtered.rds"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "accessor":</span></span>
-<span><span class="co">#&gt; [1] "GetAssayData(object = pbmc1k_seurat_filtered, slot = \"counts\" assay = \"ADT\")"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "data_type":</span></span>
-<span><span class="co">#&gt; [1] "int"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "representation":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "representation_description":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "obs_unit":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "processing":</span></span>
-<span><span class="co">#&gt; [1] "counts"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "processing_description":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "analyte":</span></span>
-<span><span class="co">#&gt; [1] "protein"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "analyte_description":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "modality":</span></span>
-<span><span class="co">#&gt; [1] "protein"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "obs_subset":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "obs_subset_description":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "feature_subset":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "feature_subset_description":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "record_id":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "parent_id":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "parent_relationship":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "parent_relationship_description":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "oid":</span></span>
-<span><span class="co">#&gt; [1] "oid1"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "fid":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "obs":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "fea":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "ong":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Slot "fng":</span></span>
-<span><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Get the dataset_id from the first fom</span></span>
+<span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"dataset_id"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "PBMC1K"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -375,16 +304,12 @@ txt or mtx file as well.</p>
 </h3>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/check_MAMS.html">check_MAMS</a></span><span class="op">(</span>mams_object <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<div class="section level4">
-<h4 id="using-your-existing-seurat-data">Using your existing seurat data<a class="anchor" aria-label="anchor" href="#using-your-existing-seurat-data"></a>
-</h4>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># file_paths &lt;- c("data/pbmc1k_seurat_filtered.rds", "data/pbmc1k_seurat_nonempty.rds", "data/Downloads/pbmc1k_seurat_tcell.rds")</span></span>
-<span><span class="co"># file_names &lt;-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))</span></span>
-<span><span class="co"># object_list &lt;- lapply(file_paths, readRDS)</span></span>
-<span><span class="co"># names(object_list) &lt;- file_names</span></span>
-<span><span class="co"># observational_subsets&lt;-c("filtered","nonempty","subset")</span></span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="step-4-saving-mams-object-to-json">Step 4 Saving MAMS object to JSON<a class="anchor" aria-label="anchor" href="#step-4-saving-mams-object-to-json"></a>
+</h3>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/write_MAMS_to_JSON.html">write_MAMS_to_JSON</a></span><span class="op">(</span>MAMS<span class="op">=</span><span class="va">result</span>, filepath <span class="op">=</span> <span class="st">"../data/pbmc1k_rna_adt_seurat_mams.json"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
