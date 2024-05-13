@@ -2,13 +2,13 @@
 #' 
 #' @param object_list A named list of Seurat objects to be converted to MAMS format
 #' @param observation_subsets A vector with same length as object_list indicating the
-#' observation subset for each Seurat object. One of: full, filtered, threshold, detected,
+#' observation subset name for each Seurat object. One of: full, filtered, threshold, detected,
 #' nonartifact, clean.
 #' @return A MAMS object containing all the extracted metadata fields.
 #' @export
 #'
 #' @examples
-#' \dontrun{mams <- convert_seurat_to_mams("pbmc_seurat")}
+#' \dontrun # {mams <- convert_seurat_to_mams("pbmc_seurat")}
 #' 
 convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
     #FOMs <- list()

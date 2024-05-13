@@ -1,7 +1,7 @@
 #' Create a MAMS object from a JSON file
 #' 
 #' @param JSON a JSON file containing the MAMS data
-#' 
+#' @param  MAMS a mams object 
 #' @return a MAMS object
 #' @export
 #' 
@@ -167,6 +167,14 @@ create_MAMS_from_JSON <- function(JSON){
   }
   return(MAMS_list)
 }
+
+#' Create a JSON object from MAMS
+#' 
+#' @rdname write_MAMS_to_JSON
+#' @param  MAMS a mams object 
+#' @return a JSON object
+#' @export
+
 
 write_MAMS_to_JSON<-function(MAMS,filepath){
   if (is.list(MAMS)){

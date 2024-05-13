@@ -10,7 +10,7 @@ convert_seurat_to_MAMS(object_list, observation_subsets, dataset_id)
 \item{object_list}{A named list of Seurat objects to be converted to MAMS format}
 
 \item{observation_subsets}{A vector with same length as object_list indicating the
-observation subset for each Seurat object. One of: full, filtered, threshold, detected,
+observation subset name for each Seurat object. One of: full, filtered, threshold, detected,
 nonartifact, clean.}
 }
 \value{
@@ -20,6 +20,6 @@ A MAMS object containing all the extracted metadata fields.
 Converts Seurat object to a MAMS object
 }
 \examples{
-\dontrun{mams <- convert_seurat_to_mams("pbmc_seurat")}
+\dontrun # {mams <- convert_seurat_to_mams("pbmc_seurat")}
 
 }
