@@ -8,6 +8,8 @@ write_MAMS_to_JSON(MAMS, filepath)
 }
 \arguments{
 \item{MAMS}{a mams object}
+
+\item{filepath}{specify an output filepath}
 }
 \value{
 a JSON object

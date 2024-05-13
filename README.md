@@ -15,7 +15,7 @@ remotes::install_github("single-cell-mams/rmams")
 ```
 library(Seurat)
 options(Seurat.object.assay.version = "v3")
-counts <- matrix(rpois(50000), nrow = 500, ncol = 200, dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
+counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
 srt <- CreateSeuratObject(counts = counts)
 srt <- NormalizeData(srt)
 subset_srt <- srt[, 1:100]

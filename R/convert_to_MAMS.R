@@ -4,11 +4,22 @@
 #' @param observation_subsets A vector with same length as object_list indicating the
 #' observation subset name for each Seurat object. One of: full, filtered, threshold, detected,
 #' nonartifact, clean.
+#' @param dataset_id Specify id of the dataset
 #' @return A MAMS object containing all the extracted metadata fields.
 #' @export
 #'
 #' @examples
-#' \dontrun # {mams <- convert_seurat_to_mams("pbmc_seurat")}
+#' library(Seurat)
+#' options(Seurat.object.assay.version = "v3")
+#' counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
+#'     dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
+#' srt <- CreateSeuratObject(counts = counts)
+#' srt <- NormalizeData(srt)
+#' subset_srt <- srt[, 1:100]
+#' mams <- convert_seurat_to_MAMS(object_list = list(srt = srt, 
+#'     subset_srt = subset_srt), observation_subsets = c("full", "subset"), 
+#'     dataset_id = "dataset1")
+#' print(mams)
 #' 
 convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
     #FOMs <- list()
@@ -79,7 +90,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
            # FOMs[[fom]] <- create_FOM_object(id = fom, filepath=filepath, accessor=accessor, oid=oid, processing=processing, modality=modality, analyte=analyte)
          }
         ## Graph
-        for(graph in Graphs(object)){
+        for(graph in SeuratObject::Graphs(object)){
             #filepath <- paste0(names(object_list)[[i]], ".rds")
             ogr <- paste0("ogr", length(MAMS@ONG)+1)
             graphname <- paste("FindNeighbors", mod, dimred, sep = ".")
@@ -96,7 +107,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
            # ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
         }
         ## Neighbor
-        for(neighbor in Neighbors(object)){
+        for(neighbor in SeuratObject::Neighbors(object)){
             ogr <- paste0("ogr", length(MAMS@ONG)+1)
             graphname <- paste("FindNeighbors", mod, dimred, sep = ".")
             edge_metric <- object@commands[[graphname]]$annoy.metric
