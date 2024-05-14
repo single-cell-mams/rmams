@@ -260,6 +260,33 @@ write_MAMS_to_JSON(MAMS=result, filepath = "../data/pbmc1k_rna_adt_seurat_mams.j
 
 
 
+## Support for Seurat V5 objects
+#### In this example we show how we can extract counts from Seurat V5 object and make a V3 object that can be used with rmams pacakge
+
+```{r, warning=FALSE,message=FALSE}
+library(Seurat)
+library(SeuratData)
+library(dplyr)
+options(Seurat.object.assay.version = "v5")
+pbmc3k <- LoadData("pbmc3k")
+
+
+pbmc.counts <- Read10X(data.dir = "../data/filtered_feature_bc_matrix/")
+pbmc <- CreateSeuratObject(counts = pbmc.counts)
+class(pbmc[["RNA"]])
+
+# Extract counts from v5
+v3_counts = LayerData(pbmc3k, assay="RNA", layer='counts')
+
+# make v3 object 
+
+options(Seurat.object.assay.version = "v3")
+pbmc_v3 <- CreateSeuratObject(counts = v3_counts)
+class(pbmc_v3[["RNA"]])
+
+# This pbmc_v3 can now be used with rmams pacakge
+
+```
 
 
 
