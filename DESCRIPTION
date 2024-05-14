@@ -8,7 +8,7 @@ Authors@R:
     person(given="Ming", family="Liu", email="mingl@bu.edu", role=c("aut")),
     person(given="Salam", family="Alabdullatif", email="salamha@bu.edu", role=c("aut")),
     person(given="Yusuke", family="Koga", email="ykoga07@bu.edu", role=c("aut")),
-    person(given="Amulya", family="Shastry", email="shastrya@bu.edu", role=c("aut")),
+    person(given="Amulya", family="Shastry", email="shastrya@bu.edu", role=c("aut"), comment = c(ORCID="0009-0007-8866-2357")),
     person(given="Natasha", family="Gurevich", email="nqg@bu.edu", role=c("aut")),
     person(given="Junxiang",family="Xu",email="junxiang@bu.edu",role=c("aut")),
     person(given="Tomoki",family="Motegi",email="tmotegi@bu.edu", role=c("aut")),

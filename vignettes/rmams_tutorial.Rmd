@@ -238,12 +238,21 @@ fom(result,"fom1","dataset_id")
 
 ## Step 3: Validating MAMS object
 
-```{r validate_mams,message = FALSE, warning=FALSE}
+```{r validate_mams,message=TRUE,warning=TRUE}
 check_MAMS(mams_object = result)
 ```
 
 ## Step 4: Saving MAMS object to JSON
+### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
 
 ```{r}
 write_MAMS_to_JSON(MAMS=result, filepath = "../data/pbmc1k_rna_adt_seurat_mams.json")
 ```
+
+
+
+
+
+
+
+
