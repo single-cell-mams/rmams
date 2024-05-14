@@ -105,8 +105,16 @@ check_MAMS <- function(mams_object){
                 check_warning_fields<- lapply(slot_obj, function(x){
                     warning_fields <- c()
                     for(fields in warn_field_list[[mams_class]]){
-                        if(is.na(methods::slot(x, fields)) | methods::slot(x, fields) == ""){
+                        lst <- list(methods::slot(x, fields))
+                        #methods::slot(x, fields) %in% c("","NA")
+                        if(is.null(methods::slot(x, fields))){
+                           # print(fields)
                             warning_fields <- c(warning_fields, fields)
+                        }
+                        else {
+                            if(is.na(methods::slot(x, fields)) | methods::slot(x, fields) == "") {
+                                warning_fields <- c(warning_fields, fields)
+                            }
                         }
                     }
                     if(!is.null(warning_fields)){
@@ -154,9 +162,12 @@ check_MAMS <- function(mams_object){
                 
             }
             
+            else{
+                #If passes to here, all clear
+                message("All clear!")
+            }
             
         }
     }
-    #If passes to here, all clear
-    message("All clear!")
+   
 }
