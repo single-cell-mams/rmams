@@ -7,7 +7,7 @@ Many molecular datasets are being generated across cancer types that contain mul
 ### Installation
 The `rmams` package can be installed with the `remotes` package using the following command:
 ```
-remotes::install_github("single-cell-mams/rmams")
+devtools::install_github("single-cell-mams/rmams")
 ```
 
 ### Quick Usage
