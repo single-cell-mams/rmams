@@ -169,14 +169,15 @@ create_MAMS_from_JSON <- function(JSON){
 
 #' Create a JSON object from MAMS
 #' 
-#' @rdname write_MAMS_to_JSON
+#' @rdname write_MAMS_to_output
 #' @param MAMS a mams object 
 #' @param filepath specify an output filepath
+#' @param format specify if the output needed is YAML or JSON
 #' @return a JSON object
 #' @export
 
 
-write_MAMS_to_JSON<-function(MAMS,filepath){
+write_MAMS_to_output<-function(MAMS,filepath,format){
   if (is.list(MAMS)){
     list_to_write = list()
     for (i in 1:length(MAMS)){
@@ -207,7 +208,14 @@ write_MAMS_to_JSON<-function(MAMS,filepath){
     stop("MAMS must be a MAMS object , or a list of MAMS objects")
   )
   names(list_to_write) = names(MAMS)
+  
+  if(format == "JSON"){
   jsonlite::write_json(list_to_write, filepath)
+  }
+  else if(format == "YAML"){
+  file = yaml::as.yaml(list_to_write)
+  write(file,filepath)
+  }
 }
 
 

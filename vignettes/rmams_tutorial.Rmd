@@ -189,10 +189,10 @@ DimPlot(data.tcell, reduction = 'wnn.tcell.umap', label = TRUE, repel = TRUE)
 The data matrices stored within a Seurat object will be saved to an "rds" file. Note that we could extract and save each matrix in a basic txt or mtx file as well.
 
 ```{r save_data,message = FALSE, warning=FALSE}
-saveRDS(data.raw, "../data/pbmc1k_seurat_raw.rds")
-saveRDS(data.nonempty, "../data/pbmc1k_seurat_nonempty.rds")
-saveRDS(data, "../data/pbmc1k_seurat_filtered.rds")
-saveRDS(data.tcell, "../data/pbmc1k_seurat_tcell.rds")
+saveRDS(data.raw, "../inst/extdata/pbmc1k_seurat_raw.rds")
+saveRDS(data.nonempty, "../inst/extdata/pbmc1k_seurat_nonempty.rds")
+saveRDS(data, "../inst/extdata/pbmc1k_seurat_filtered.rds")
+saveRDS(data.tcell, "../inst/extdata/pbmc1k_seurat_tcell.rds")
 ```
 
 
@@ -206,7 +206,7 @@ library(rmams)
 
 # get the file paths of seurat objects
 
-file_paths <- c("../data/pbmc1k_seurat_filtered.rds", "../data/pbmc1k_seurat_nonempty.rds", "../data/pbmc1k_seurat_tcell.rds")
+file_paths <- c("../inst/extdata/pbmc1k_seurat_filtered.rds", "../inst/extdata/pbmc1k_seurat_nonempty.rds", "../inst/extdata/pbmc1k_seurat_tcell.rds")
 
 # get the names of these objects 
 file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
@@ -238,12 +238,63 @@ fom(result,"fom1","dataset_id")
 
 ## Step 3: Validating MAMS object
 
-```{r validate_mams,message = FALSE, warning=FALSE}
+```{r validate_mams,message=TRUE,warning=TRUE, error=TRUE}
 check_MAMS(mams_object = result)
 ```
 
-## Step 4: Saving MAMS object to JSON
+### Step 4: Filling the missing field
 
 ```{r}
-write_MAMS_to_JSON(MAMS=result, filepath = "../data/pbmc1k_rna_adt_seurat_mams.json")
+fom(result,"fom1","representation") <-"example"
 ```
+
+
+
+
+## Step 4: Saving MAMS object to JSON
+### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.JSON",format = "JSON")
+
+```
+
+
+## Step 5: Saving MAMS as YAML
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.yml",format = "YAML")
+
+```
+
+
+
+
+## Support for Seurat V5 objects
+#### In this example we show how we can extract counts from Seurat V5 object and make a V3 object that can be used with rmams pacakge
+
+```{r, warning=FALSE,message=FALSE}
+options(Seurat.object.assay.version = "v5")
+
+
+pbmc.counts <- Read10X(data.dir = "../data/filtered_feature_bc_matrix/")
+pbmc <- CreateSeuratObject(counts = pbmc.counts)
+class(pbmc[["RNA"]])
+
+# Extract counts from v5
+v3_counts = LayerData(pbmc, assay="RNA", layer='counts')
+
+# make v3 object 
+
+options(Seurat.object.assay.version = "v3")
+pbmc_v3 <- CreateSeuratObject(counts = v3_counts)
+class(pbmc_v3[["RNA"]])
+
+# This pbmc_v3 can now be used with rmams pacakge
+
+```
+
+
+
+
+
