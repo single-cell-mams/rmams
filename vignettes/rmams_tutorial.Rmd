@@ -255,8 +255,18 @@ fom(result,"fom1","representation") <-"example"
 ### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
 
 ```{r}
-write_MAMS_to_JSON(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.json")
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.JSON",format = "JSON")
+
 ```
+
+
+## Step 5: Saving MAMS as YAML
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.yml",format = "YAML")
+
+```
+
 
 
 

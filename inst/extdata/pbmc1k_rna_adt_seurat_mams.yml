@@ -1,0 +1,798 @@
+- fom1:
+    id: fom1
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_filtered, slot = "counts" assay
+      = "ADT")
+    data_type: int
+    representation: example
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: counts
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom2:
+    id: fom2
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_filtered, slot = "data" assay =
+      "ADT")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: lognormalized
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom3:
+    id: fom3
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_filtered, slot = "scale.data" assay
+      = "ADT")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: scaled
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom4:
+    id: fom4
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Reduction(object = pbmc1k_seurat_filtered, reduction = "pca")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Reduction
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: filtered
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom5:
+    id: fom5
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Embedding(object = pbmc1k_seurat_filtered, reduction = "rna.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: filtered
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom6:
+    id: fom6
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Reduction(object = pbmc1k_seurat_filtered, reduction = "apca")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Reduction
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: filtered
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom7:
+    id: fom7
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Embedding(object = pbmc1k_seurat_filtered, reduction = "adt.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: filtered
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom8:
+    id: fom8
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Embedding(object = pbmc1k_seurat_filtered, reduction = "wnn.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: filtered
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid1
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom9:
+    id: fom9
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_nonempty.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_nonempty, slot = "counts" assay
+      = "ADT")
+    data_type: int
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: counts
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid2
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom10:
+    id: fom10
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_nonempty.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_nonempty, slot = "data" assay =
+      "ADT")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: lognormalized
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid2
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom11:
+    id: fom11
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_nonempty.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_nonempty, slot = "scale.data" assay
+      = "ADT")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: scaled
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid2
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom12:
+    id: fom12
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_tcell, slot = "counts" assay = "ADT")
+    data_type: int
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: counts
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom13:
+    id: fom13
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_tcell, slot = "data" assay = "ADT")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: lognormalized
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom14:
+    id: fom14
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: GetAssayData(object = pbmc1k_seurat_tcell, slot = "scale.data" assay
+      = "ADT")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: scaled
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: .na.character
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom15:
+    id: fom15
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Reduction(object = pbmc1k_seurat_tcell, reduction = "pca")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Reduction
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom16:
+    id: fom16
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Embedding(object = pbmc1k_seurat_tcell, reduction = "rna.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom17:
+    id: fom17
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Reduction(object = pbmc1k_seurat_tcell, reduction = "apca")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Reduction
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom18:
+    id: fom18
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Embedding(object = pbmc1k_seurat_tcell, reduction = "adt.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom19:
+    id: fom19
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Embedding(object = pbmc1k_seurat_tcell, reduction = "wnn.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom20:
+    id: fom20
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Reduction(object = pbmc1k_seurat_tcell, reduction = "pca.tcell")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Reduction
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom21:
+    id: fom21
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Embedding(object = pbmc1k_seurat_tcell, reduction = "rna.tcell.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom22:
+    id: fom22
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Reduction(object = pbmc1k_seurat_tcell, reduction = "apca.tcell")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Reduction
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom23:
+    id: fom23
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Embedding(object = pbmc1k_seurat_tcell, reduction = "adt.tcell.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+  fom24:
+    id: fom24
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Embedding(object = pbmc1k_seurat_tcell, reduction = "wnn.tcell.umap")
+    data_type: double
+    representation: .na.character
+    representation_description: .na.character
+    obs_unit: .na.character
+    processing: Embedding
+    processing_description: .na.character
+    analyte: protein
+    analyte_description: .na.character
+    modality: protein
+    obs_subset: subset
+    obs_subset_description: .na.character
+    feature_subset: .na.character
+    feature_subset_description: .na.character
+    record_id: .na.character
+    parent_id: .na.character
+    parent_relationship: .na.character
+    parent_relationship_description: .na.character
+    oid: oid3
+    fid: .na.character
+    obs: .na.character
+    fea: .na.character
+    ong: .na.character
+    fng: .na.character
+- []
+- []
+- []
+- []
+- ogr1:
+    id: ogr1
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Graphs(pbmc1k_seurat_filtered, "RNA_nn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.umap.filtered
+    metric_type: distance
+  ogr2:
+    id: ogr2
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Graphs(pbmc1k_seurat_filtered, "RNA_snn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.umap.filtered
+    metric_type: distance
+  ogr3:
+    id: ogr3
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Graphs(pbmc1k_seurat_filtered, "ADT_nn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.umap.filtered
+    metric_type: distance
+  ogr4:
+    id: ogr4
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Graphs(pbmc1k_seurat_filtered, "ADT_snn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.umap.filtered
+    metric_type: distance
+  ogr5:
+    id: ogr5
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Graphs(pbmc1k_seurat_filtered, "wknn")
+    parent_id: .na.character
+    record_id: FindMultiModalNeighbors.filtered
+    metric_type: distance
+  ogr6:
+    id: ogr6
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Graphs(pbmc1k_seurat_filtered, "wsnn")
+    parent_id: .na.character
+    record_id: FindMultiModalNeighbors.filtered
+    metric_type: distance
+  ogr7:
+    id: ogr7
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_filtered.rds
+    accessor: Neighbors(pbmc1k_seurat_filtered, "weighted.nn")
+    parent_id: .na.character
+    record_id: FindMultiModalNeighbors.filtered
+    metric_type: distance
+  ogr8:
+    id: ogr8
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Graphs(pbmc1k_seurat_tcell, "RNA_nn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.tcell.umap.tcell
+    metric_type: distance
+  ogr9:
+    id: ogr9
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Graphs(pbmc1k_seurat_tcell, "RNA_snn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.tcell.umap.tcell
+    metric_type: distance
+  ogr10:
+    id: ogr10
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Graphs(pbmc1k_seurat_tcell, "ADT_nn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.tcell.umap.tcell
+    metric_type: distance
+  ogr11:
+    id: ogr11
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Graphs(pbmc1k_seurat_tcell, "ADT_snn")
+    parent_id: .na.character
+    record_id: FindNeighbors.ADT.wnn.tcell.umap.tcell
+    metric_type: distance
+  ogr12:
+    id: ogr12
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Graphs(pbmc1k_seurat_tcell, "wknn")
+    parent_id: .na.character
+    record_id: FindMultiModalNeighbors.tcell
+    metric_type: distance
+  ogr13:
+    id: ogr13
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Graphs(pbmc1k_seurat_tcell, "wsnn")
+    parent_id: .na.character
+    record_id: FindMultiModalNeighbors.tcell
+    metric_type: distance
+  ogr14:
+    id: ogr14
+    dataset_id: PBMC1K
+    filepath: pbmc1k_seurat_tcell.rds
+    accessor: Neighbors(pbmc1k_seurat_tcell, "weighted.nn")
+    parent_id: .na.character
+    record_id: FindMultiModalNeighbors.tcell
+    metric_type: distance
+- []
+- []
+
