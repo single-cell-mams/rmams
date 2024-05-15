@@ -21,7 +21,6 @@ Depends:
     R (>= 3.5.0)
 Imports:
     SeuratObject,
-    SeuratData,
     jsonlite,
     methods
 Suggests:
