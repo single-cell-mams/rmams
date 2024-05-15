@@ -265,7 +265,6 @@ write_MAMS_to_JSON(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seura
 
 ```{r, warning=FALSE,message=FALSE}
 options(Seurat.object.assay.version = "v5")
-pbmc3k <- LoadData("pbmc3k")
 
 
 pbmc.counts <- Read10X(data.dir = "../data/filtered_feature_bc_matrix/")
