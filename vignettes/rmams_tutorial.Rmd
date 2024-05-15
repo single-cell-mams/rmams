@@ -41,7 +41,6 @@ This workflow demonstrates how different subsets of cells/observations are produ
 library(dplyr)
 library(Seurat)
 library(patchwork)
-library(SeuratData)
 ```
 
 First, we will import raw/droplet and filtered/cell matrices:
