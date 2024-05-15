@@ -63,7 +63,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Creating MAMS from Seurat</h1>
             
-            <h4 data-toc-skip class="date">2024-05-13</h4>
+            <h4 data-toc-skip class="date">2024-05-15</h4>
       
       
       <div class="d-none name"><code>rmams_tutorial.Rmd</code></div>
@@ -251,10 +251,10 @@ The data matrices stored within a Seurat object will be saved to an
 “rds” file. Note that we could extract and save each matrix in a basic
 txt or mtx file as well.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.raw</span>, <span class="st">"../data/pbmc1k_seurat_raw.rds"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.nonempty</span>, <span class="st">"../data/pbmc1k_seurat_nonempty.rds"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"../data/pbmc1k_seurat_filtered.rds"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.tcell</span>, <span class="st">"../data/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.raw</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_raw.rds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.nonempty</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonempty.rds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_filtered.rds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.tcell</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -269,7 +269,7 @@ txt or mtx file as well.</p>
 <span></span>
 <span><span class="co"># get the file paths of seurat objects</span></span>
 <span></span>
-<span><span class="va">file_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"../data/pbmc1k_seurat_filtered.rds"</span>, <span class="st">"../data/pbmc1k_seurat_nonempty.rds"</span>, <span class="st">"../data/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span>
+<span><span class="va">file_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"../inst/extdata/pbmc1k_seurat_filtered.rds"</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonempty.rds"</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># get the names of these objects </span></span>
 <span><span class="va">file_names</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.rds$"</span>, replacement <span class="op">=</span> <span class="st">""</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">file_paths</span><span class="op">)</span><span class="op">)</span></span>
@@ -303,13 +303,115 @@ txt or mtx file as well.</p>
 <h3 id="step-3-validating-mams-object">Step 3: Validating MAMS object<a class="anchor" aria-label="anchor" href="#step-3-validating-mams-object"></a>
 </h3>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_MAMS.html">check_MAMS</a></span><span class="op">(</span>mams_object <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_MAMS.html">check_MAMS</a></span><span class="op">(</span>mams_object <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
+<span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
+<span><span class="co">#&gt; :</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom1 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom2 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom3 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom4 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom5 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom6 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom7 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom8 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom9 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom10 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom11 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom12 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom13 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom14 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom15 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom16 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom17 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom18 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom19 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom20 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom21 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom22 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom23 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; fom24 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
+<span><span class="co">#&gt; All clear!</span></span>
+<span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
+<span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
+<span><span class="co">#&gt; :</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr1 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr2 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr3 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr4 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr5 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr6 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr7 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr8 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr9 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr10 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr11 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr12 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr13 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; ogr14 is missing the field(s): c("parent_id", "edge_metric")</span></span>
+<span><span class="co">#&gt; All clear!</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FEA</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: OBS</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FID</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: OID</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: REC</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FNG</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="step-4-filling-the-missing-field">Step 4: Filling the missing field<a class="anchor" aria-label="anchor" href="#step-4-filling-the-missing-field"></a>
+</h4>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"representation"</span><span class="op">)</span> <span class="op">&lt;-</span><span class="st">"example"</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="step-4-saving-mams-object-to-json">Step 4: Saving MAMS object to JSON<a class="anchor" aria-label="anchor" href="#step-4-saving-mams-object-to-json"></a>
 </h3>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/write_MAMS_to_JSON.html">write_MAMS_to_JSON</a></span><span class="op">(</span>MAMS<span class="op">=</span><span class="va">result</span>, filepath <span class="op">=</span> <span class="st">"../data/pbmc1k_rna_adt_seurat_mams.json"</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="here-we-show-how-you-can-convert-the-mams-object-to-the-json-format-for-export--mams-and-json-formats-are-interchangeable-">Here we show how you can convert the MAMS object to the JSON format
+for export. MAMS and JSON formats are interchangeable.<a class="anchor" aria-label="anchor" href="#here-we-show-how-you-can-convert-the-mams-object-to-the-json-format-for-export--mams-and-json-formats-are-interchangeable-"></a>
+</h4>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/write_MAMS_to_output.html">write_MAMS_to_output</a></span><span class="op">(</span>MAMS<span class="op">=</span><span class="va">result</span>, filepath <span class="op">=</span> <span class="st">"../inst/extdata/pbmc1k_rna_adt_seurat_mams.JSON"</span>,format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="step-5-saving-mams-as-yaml">Step 5: Saving MAMS as YAML<a class="anchor" aria-label="anchor" href="#step-5-saving-mams-as-yaml"></a>
+</h3>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/write_MAMS_to_output.html">write_MAMS_to_output</a></span><span class="op">(</span>MAMS<span class="op">=</span><span class="va">result</span>, filepath <span class="op">=</span> <span class="st">"../inst/extdata/pbmc1k_rna_adt_seurat_mams.yml"</span>,format <span class="op">=</span> <span class="st">"YAML"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="support-for-seurat-v5-objects">Support for Seurat V5 objects<a class="anchor" aria-label="anchor" href="#support-for-seurat-v5-objects"></a>
+</h3>
+<div class="section level5">
+<h5 id="in-this-example-we-show-how-we-can-extract-counts-from-seurat-v5-object-and-make-a-v3-object-that-can-be-used-with-rmams-pacakge">In this example we show how we can extract counts from Seurat V5
+object and make a V3 object that can be used with rmams pacakge<a class="anchor" aria-label="anchor" href="#in-this-example-we-show-how-we-can-extract-counts-from-seurat-v5-object-and-make-a-v3-object-that-can-be-used-with-rmams-pacakge"></a>
+</h5>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>Seurat.object.assay.version <span class="op">=</span> <span class="st">"v5"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">pbmc.counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Read10X.html" class="external-link">Read10X</a></span><span class="op">(</span>data.dir <span class="op">=</span> <span class="st">"../data/filtered_feature_bc_matrix/"</span><span class="op">)</span></span>
+<span><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">pbmc.counts</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">[[</span><span class="st">"RNA"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Assay5"</span></span>
+<span><span class="co">#&gt; attr(,"package")</span></span>
+<span><span class="co">#&gt; [1] "SeuratObject"</span></span>
+<span></span>
+<span><span class="co"># Extract counts from v5</span></span>
+<span><span class="va">v3_counts</span> <span class="op">=</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/Layers.html" class="external-link">LayerData</a></span><span class="op">(</span><span class="va">pbmc</span>, assay<span class="op">=</span><span class="st">"RNA"</span>, layer<span class="op">=</span><span class="st">'counts'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make v3 object </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>Seurat.object.assay.version <span class="op">=</span> <span class="st">"v3"</span><span class="op">)</span></span>
+<span><span class="va">pbmc_v3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">v3_counts</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">pbmc_v3</span><span class="op">[[</span><span class="st">"RNA"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Assay"</span></span>
+<span><span class="co">#&gt; attr(,"package")</span></span>
+<span><span class="co">#&gt; [1] "SeuratObject"</span></span>
+<span></span>
+<span><span class="co"># This pbmc_v3 can now be used with rmams pacakge</span></span></code></pre></div>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
