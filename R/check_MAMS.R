@@ -145,24 +145,34 @@ check_MAMS <- function(mams_object){
             # Prepare to print warnings/errors if the lists aren't empty
             if(length(list_of_warning_fields)!=0){
                 message("Warning: Please use the setter functions to add the missing field information for the following slots: \n(Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') <- ...')\n:")
-                warning(paste0(paste0(names(list_of_warning_fields), ' is missing the field(s): ',list_of_warning_fields, '\n')))
-                
+                for (i in names(list_of_warning_fields)){
+                     warning(paste0(i,' is missing the fields:',''))
+                     warning(paste0(for(j in list_of_warning_fields[i]){print(j)},'\n'))
+                }
             }
             
             if(length(list_of_missing_ids)!=0){
                 
                 message("Error: Please use the setter functions to add the missing field information for the following slots: \n(Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') <- ...')\n:")
-                stop(paste0(paste0(names(list_of_missing_ids), ' is missing the field(s): ',list_of_missing_ids, '\n')))
+                for (i in names(list_of_missing_ids)){
+                    stop(paste0(i,' is missing the fields:',''))
+                    stop(paste0(for(j in list_of_missing_ids[i]){print(j)},'\n'))
+                }
+             #   stop(paste0(paste0(names(list_of_missing_ids), ' is missing the field(s): ','\n',list_of_missing_ids, '\n')))
             }
             
             
             if(length(list_of_missing_fields)!=0){
                 message("Error: Please use the setter functions to add the missing field information for the following slots: \n(Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') <- ...')\n:")
-                stop(paste0(paste0(names(list_of_missing_fields), ' is missing the field(s): ',list_of_missing_fields, '\n')))
+                for (i in names(list_of_missing_fields)){
+                    warning(paste0(i,' is missing the fields:',''))
+                    warning(paste0(for(j in list_of_missing_fields[i]){print(j)},'\n'))
+                }
+              #  stop(paste0(paste0(names(list_of_missing_fields), ' is missing the field(s): ',for(i in list_of_missing_fields){print (paste(i))}, '\n')))
                 
             }
             
-            else{
+            else if ( all(lengths(c(list_of_warning_fields,list_of_missing_ids,list_of_missing_fields))) %in% c(0)) {
                 #If passes to here, all clear
                 message("All clear!")
             }
