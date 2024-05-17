@@ -63,7 +63,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Creating MAMS from Seurat</h1>
             
-            <h4 data-toc-skip class="date">2024-05-15</h4>
+            <h4 data-toc-skip class="date">2024-05-17</h4>
       
       
       <div class="d-none name"><code>rmams_tutorial.Rmd</code></div>
@@ -117,14 +117,16 @@ repository</a></p>
 <p>First, we will import raw/droplet and filtered/cell matrices:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raw.matrices</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Read10X.html" class="external-link">Read10X</a></span><span class="op">(</span>data.dir <span class="op">=</span> <span class="st">"../data/raw_feature_bc_matrix/"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 10X data contains more than one type and is being returned as a list containing matrices of each type.</span></span>
-<span><span class="va">data.raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">raw.matrices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, project <span class="op">=</span> <span class="st">"pbmc1k"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10X data contains more than one type and is being returned as a list containing matrices of each type.</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data.raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">raw.matrices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, project <span class="op">=</span> <span class="st">"pbmc1k"</span><span class="op">)</span></span>
 <span><span class="va">adt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateAssayObject.html" class="external-link">CreateAssayObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">raw.matrices</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">data.raw</span><span class="op">[[</span><span class="st">"ADT"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">adt</span></span>
 <span></span>
 <span><span class="va">nonempty.matrices</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Read10X.html" class="external-link">Read10X</a></span><span class="op">(</span>data.dir <span class="op">=</span> <span class="st">"../data/filtered_feature_bc_matrix"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 10X data contains more than one type and is being returned as a list containing matrices of each type.</span></span>
-<span><span class="va">data.nonempty</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">nonempty.matrices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, project <span class="op">=</span> <span class="st">"pbmc1k"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10X data contains more than one type and is being returned as a list containing matrices of each type.</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data.nonempty</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">nonempty.matrices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, project <span class="op">=</span> <span class="st">"pbmc1k"</span><span class="op">)</span></span>
 <span><span class="va">adt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateAssayObject.html" class="external-link">CreateAssayObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">nonempty.matrices</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">data.nonempty</span><span class="op">[[</span><span class="st">"ADT"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">adt</span></span></code></pre></div>
 </div>
@@ -133,7 +135,7 @@ repository</a></p>
 </h4>
 <p>The filtered matrix will be further subsetted based on mitochondrial
 percentage and total number of features detected:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data.nonempty</span><span class="op">[[</span><span class="st">"percent.mt"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/PercentageFeatureSet.html" class="external-link">PercentageFeatureSet</a></span><span class="op">(</span><span class="va">data.nonempty</span>, pattern <span class="op">=</span> <span class="st">"^MT-"</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">data.nonempty</span>, subset <span class="op">=</span> <span class="va">nFeature_RNA</span> <span class="op">&gt;</span> <span class="fl">200</span> <span class="op">&amp;</span> <span class="va">percent.mt</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -151,21 +153,21 @@ re-cluster the T-cells by themselves.</p>
 <div class="section level5">
 <h5 id="rna-only-clustering-of-all-cells">RNA only clustering of all cells<a class="anchor" aria-label="anchor" href="#rna-only-clustering-of-all-cells"></a>
 </h5>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/DefaultAssay.html" class="external-link">DefaultAssay</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'RNA'</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindVariableFeatures.html" class="external-link">FindVariableFeatures</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://satijalab.org/seurat/reference/ScaleData.html" class="external-link">ScaleData</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunPCA.html" class="external-link">RunPCA</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html" class="external-link">FindNeighbors</a></span><span class="op">(</span><span class="va">data</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">'pca'</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, assay <span class="op">=</span> <span class="st">'RNA'</span>, </span>
 <span>              reduction.name <span class="op">=</span> <span class="st">'rna.umap'</span>, reduction.key <span class="op">=</span> <span class="st">'rnaUMAP_'</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">'rna.umap'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_rna-1.png" width="700"></p>
 </div>
 <div class="section level5">
 <h5 id="adt-only-clustering-of-all-cells">ADT only clustering of all cells<a class="anchor" aria-label="anchor" href="#adt-only-clustering-of-all-cells"></a>
 </h5>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/DefaultAssay.html" class="external-link">DefaultAssay</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'ADT'</span></span>
 <span><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/VariableFeatures.html" class="external-link">VariableFeatures</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="st">"ADT"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span><span class="va">data</span>, normalization.method <span class="op">=</span> <span class="st">'CLR'</span>, margin <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -174,25 +176,25 @@ re-cluster the T-cells by themselves.</p>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data</span>, graph.name <span class="op">=</span> <span class="st">"ADT_snn"</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">'apca'</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, </span>
 <span>              reduction.name <span class="op">=</span> <span class="st">'adt.umap'</span>, reduction.key <span class="op">=</span> <span class="st">'adtUMAP_'</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">'adt.umap'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_adt-1.png" width="700"></p>
 </div>
 <div class="section level5">
 <h5 id="multimodal-clustering-of-all-cells">Multimodal clustering of all cells<a class="anchor" aria-label="anchor" href="#multimodal-clustering-of-all-cells"></a>
 </h5>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindMultiModalNeighbors.html" class="external-link">FindMultiModalNeighbors</a></span><span class="op">(</span></span>
 <span>  <span class="va">data</span>, reduction.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"pca"</span>, <span class="st">"apca"</span><span class="op">)</span>, </span>
 <span>  dims.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, modality.weight.name <span class="op">=</span> <span class="st">"RNA.weight"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span><span class="va">data</span>, nn.name <span class="op">=</span> <span class="st">"weighted.nn"</span>, reduction.name <span class="op">=</span> <span class="st">"wnn.umap"</span>, reduction.key <span class="op">=</span> <span class="st">"wnnUMAP_"</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data</span>, graph.name <span class="op">=</span> <span class="st">"wsnn"</span>, algorithm <span class="op">=</span> <span class="fl">3</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">data</span>, reduction <span class="op">=</span> <span class="st">'wnn.umap'</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_multimodal-1.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/FeaturePlot.html" class="external-link">FeaturePlot</a></span><span class="op">(</span><span class="va">data</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adt_CD3"</span>,<span class="st">"rna_CD3E"</span><span class="op">)</span>, reduction <span class="op">=</span> <span class="st">'wnn.umap'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_multimodal-2.png" width="700"></p>
 </div>
@@ -200,26 +202,26 @@ re-cluster the T-cells by themselves.</p>
 <div class="section level4">
 <h4 id="analysis-of-t-cell-subset">Analysis of T-cell subset<a class="anchor" aria-label="anchor" href="#analysis-of-t-cell-subset"></a>
 </h4>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">seurat_clusters</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">0</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span></span></code></pre></div>
 <div class="section level5">
 <h5 id="rna-only-clustering-of-t-cells">RNA only clustering of T-cells<a class="anchor" aria-label="anchor" href="#rna-only-clustering-of-t-cells"></a>
 </h5>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/DefaultAssay.html" class="external-link">DefaultAssay</a></span><span class="op">(</span><span class="va">data.tcell</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'RNA'</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span><span class="va">data.tcell</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindVariableFeatures.html" class="external-link">FindVariableFeatures</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://satijalab.org/seurat/reference/ScaleData.html" class="external-link">ScaleData</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunPCA.html" class="external-link">RunPCA</a></span><span class="op">(</span>reduction.name <span class="op">=</span> <span class="st">"pca.tcell"</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html" class="external-link">FindNeighbors</a></span><span class="op">(</span><span class="va">data.tcell</span>, reduction <span class="op">=</span> <span class="st">"pca.tcell"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data.tcell</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span><span class="va">data.tcell</span>, reduction <span class="op">=</span> <span class="st">'pca.tcell'</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, assay <span class="op">=</span> <span class="st">'RNA'</span>, </span>
 <span>              reduction.name <span class="op">=</span> <span class="st">'rna.tcell.umap'</span>, reduction.key <span class="op">=</span> <span class="st">'rnaTcellUMAP_'</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">data.tcell</span>, reduction <span class="op">=</span> <span class="st">'rna.tcell.umap'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_rna_tcell-1.png" width="700"></p>
 </div>
 <div class="section level5">
 <h5 id="adt-only-clustering-of-t-cells">ADT only clustering of T-cells<a class="anchor" aria-label="anchor" href="#adt-only-clustering-of-t-cells"></a>
 </h5>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/DefaultAssay.html" class="external-link">DefaultAssay</a></span><span class="op">(</span><span class="va">data.tcell</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'ADT'</span></span>
 <span><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/VariableFeatures.html" class="external-link">VariableFeatures</a></span><span class="op">(</span><span class="va">data.tcell</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">data.tcell</span><span class="op">[[</span><span class="st">"ADT"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span><span class="va">data.tcell</span>, normalization.method <span class="op">=</span> <span class="st">'CLR'</span>, margin <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -229,28 +231,28 @@ re-cluster the T-cells by themselves.</p>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html" class="external-link">FindNeighbors</a></span><span class="op">(</span><span class="va">data.tcell</span>, reduction <span class="op">=</span> <span class="st">"apca.tcell"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data.tcell</span>, graph.name <span class="op">=</span> <span class="st">"ADT_snn"</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data.tcell</span>, algorithm <span class="op">=</span> <span class="fl">3</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">data.tcell</span>, reduction <span class="op">=</span> <span class="st">'adt.tcell.umap'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_adt_tcell-1.png" width="700"></p>
 </div>
 <div class="section level5">
 <h5 id="multimodal-clustering-of-t-cells">Multimodal clustering of T-cells<a class="anchor" aria-label="anchor" href="#multimodal-clustering-of-t-cells"></a>
 </h5>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindMultiModalNeighbors.html" class="external-link">FindMultiModalNeighbors</a></span><span class="op">(</span></span>
 <span>  <span class="va">data.tcell</span>, reduction.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"pca.tcell"</span>, <span class="st">"apca.tcell"</span><span class="op">)</span>,</span>
 <span>  dims.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, modality.weight.name <span class="op">=</span> <span class="st">"RNA.weight"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span><span class="va">data.tcell</span>, nn.name <span class="op">=</span> <span class="st">"weighted.nn"</span>, reduction.name <span class="op">=</span> <span class="st">"wnn.tcell.umap"</span>, reduction.key <span class="op">=</span> <span class="st">"wnnTcellUMAP_"</span><span class="op">)</span></span>
 <span><span class="va">data.tcell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">data.tcell</span>, graph.name <span class="op">=</span> <span class="st">"wsnn"</span>, algorithm <span class="op">=</span> <span class="fl">3</span>, resolution <span class="op">=</span> <span class="fl">2</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">data.tcell</span>, reduction <span class="op">=</span> <span class="st">'wnn.tcell.umap'</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="rmams_tutorial_files/figure-html/plot_multimodal_tcell-1.png" width="700">
 The data matrices stored within a Seurat object will be saved to an
 “rds” file. Note that we could extract and save each matrix in a basic
 txt or mtx file as well.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.raw</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_raw.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.nonempty</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonempty.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_filtered.rds"</span><span class="op">)</span></span>
@@ -264,7 +266,7 @@ txt or mtx file as well.</p>
 <div class="section level4">
 <h4 id="loading-data">Loading data<a class="anchor" aria-label="anchor" href="#loading-data"></a>
 </h4>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://single-cell-mams.github.io/rmams/">rmams</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># get the file paths of seurat objects</span></span>
@@ -287,13 +289,13 @@ txt or mtx file as well.</p>
 <div class="section level4">
 <h4 id="create-mams-object">Create MAMS object<a class="anchor" aria-label="anchor" href="#create-mams-object"></a>
 </h4>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/convert_seurat_to_MAMS.html">convert_seurat_to_MAMS</a></span><span class="op">(</span><span class="va">object_list</span>,<span class="va">observational_subsets</span>,<span class="va">datasetid</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="accessing-data">Accessing data<a class="anchor" aria-label="anchor" href="#accessing-data"></a>
 </h4>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get the dataset_id from the first fom</span></span>
 <span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"dataset_id"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "PBMC1K"</span></span></code></pre></div>
@@ -302,54 +304,320 @@ txt or mtx file as well.</p>
 <div class="section level3">
 <h3 id="step-3-validating-mams-object">Step 3: Validating MAMS object<a class="anchor" aria-label="anchor" href="#step-3-validating-mams-object"></a>
 </h3>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/check_MAMS.html">check_MAMS</a></span><span class="op">(</span>mams_object <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
 <span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
 <span><span class="co">#&gt; :</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom1 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom2 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom3 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom4 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom5 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom6 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom7 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom8 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom9 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom10 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom11 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom12 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom13 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom14 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom15 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom16 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom17 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom18 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom19 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom20 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom21 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom22 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom23 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; fom24 is missing the field(s): c("representation", "representation_description", "obs_unit", "processing_description", "analyte_description", "obs_subset_description", "feature_subset", "feature_subset_description", "record_id", "parent_id", "parent_relationship", "parent_relationship_description", "fid", "obs", "fea", "ong", "fng")</span></span>
-<span><span class="co">#&gt; All clear!</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom1 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom2 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom3 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom4 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom5 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom6 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom7 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom8 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom9 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom10 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom11 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom12 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom13 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom14 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
+<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
+<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
+<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
+<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
+<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom15 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom16 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom17 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom18 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom19 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom20 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom21 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom22 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom23 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom24 is missing the fields:</span></span>
+<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
+<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
+<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
+<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
+<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
+<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
+<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
+<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
+<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
 <span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
 <span><span class="co">#&gt; :</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr1 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr2 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr3 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr4 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr5 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr6 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr7 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr8 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr9 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr10 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr11 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr12 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr13 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; ogr14 is missing the field(s): c("parent_id", "edge_metric")</span></span>
-<span><span class="co">#&gt; All clear!</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr1 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr2 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr3 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr4 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr5 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr6 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr7 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr8 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr9 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr10 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr11 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr12 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr13 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr14 is missing the fields:</span></span>
+<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FEA</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: OBS</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FID</span></span>
@@ -359,7 +627,7 @@ txt or mtx file as well.</p>
 <div class="section level4">
 <h4 id="step-4-filling-the-missing-field">Step 4: Filling the missing field<a class="anchor" aria-label="anchor" href="#step-4-filling-the-missing-field"></a>
 </h4>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"representation"</span><span class="op">)</span> <span class="op">&lt;-</span><span class="st">"example"</span></span></code></pre></div>
 </div>
 </div>
@@ -370,14 +638,14 @@ txt or mtx file as well.</p>
 <h4 id="here-we-show-how-you-can-convert-the-mams-object-to-the-json-format-for-export--mams-and-json-formats-are-interchangeable-">Here we show how you can convert the MAMS object to the JSON format
 for export. MAMS and JSON formats are interchangeable.<a class="anchor" aria-label="anchor" href="#here-we-show-how-you-can-convert-the-mams-object-to-the-json-format-for-export--mams-and-json-formats-are-interchangeable-"></a>
 </h4>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/write_MAMS_to_output.html">write_MAMS_to_output</a></span><span class="op">(</span>MAMS<span class="op">=</span><span class="va">result</span>, filepath <span class="op">=</span> <span class="st">"../inst/extdata/pbmc1k_rna_adt_seurat_mams.JSON"</span>,format <span class="op">=</span> <span class="st">"JSON"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="step-5-saving-mams-as-yaml">Step 5: Saving MAMS as YAML<a class="anchor" aria-label="anchor" href="#step-5-saving-mams-as-yaml"></a>
 </h3>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/write_MAMS_to_output.html">write_MAMS_to_output</a></span><span class="op">(</span>MAMS<span class="op">=</span><span class="va">result</span>, filepath <span class="op">=</span> <span class="st">"../inst/extdata/pbmc1k_rna_adt_seurat_mams.yml"</span>,format <span class="op">=</span> <span class="st">"YAML"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -387,7 +655,7 @@ for export. MAMS and JSON formats are interchangeable.<a class="anchor" aria-lab
 <h5 id="in-this-example-we-show-how-we-can-extract-counts-from-seurat-v5-object-and-make-a-v3-object-that-can-be-used-with-rmams-pacakge">In this example we show how we can extract counts from Seurat V5
 object and make a V3 object that can be used with rmams pacakge<a class="anchor" aria-label="anchor" href="#in-this-example-we-show-how-we-can-extract-counts-from-seurat-v5-object-and-make-a-v3-object-that-can-be-used-with-rmams-pacakge"></a>
 </h5>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>Seurat.object.assay.version <span class="op">=</span> <span class="st">"v5"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
@@ -396,8 +664,9 @@ object and make a V3 object that can be used with rmams pacakge<a class="anchor"
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">[[</span><span class="st">"RNA"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Assay5"</span></span>
 <span><span class="co">#&gt; attr(,"package")</span></span>
-<span><span class="co">#&gt; [1] "SeuratObject"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "SeuratObject"</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Extract counts from v5</span></span>
 <span><span class="va">v3_counts</span> <span class="op">=</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/Layers.html" class="external-link">LayerData</a></span><span class="op">(</span><span class="va">pbmc</span>, assay<span class="op">=</span><span class="st">"RNA"</span>, layer<span class="op">=</span><span class="st">'counts'</span><span class="op">)</span></span>
 <span></span>
@@ -408,8 +677,9 @@ object and make a V3 object that can be used with rmams pacakge<a class="anchor"
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">pbmc_v3</span><span class="op">[[</span><span class="st">"RNA"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Assay"</span></span>
 <span><span class="co">#&gt; attr(,"package")</span></span>
-<span><span class="co">#&gt; [1] "SeuratObject"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "SeuratObject"</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># This pbmc_v3 can now be used with rmams pacakge</span></span></code></pre></div>
 </div>
 </div>
