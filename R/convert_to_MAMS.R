@@ -122,29 +122,6 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
     return(MAMS)
 }
 
-#' Converts Seurat object to a MAMS object
-#' 
-#' @param object_list A named list of Seurat objects to be converted to MAMS format
-#' @param observation_subsets A vector with same length as object_list indicating the
-#' observation subset name for each Seurat object. One of: full, filtered, threshold, detected,
-#' nonartifact, clean.
-#' @param dataset_id Specify id of the dataset
-#' @return A MAMS object containing all the extracted metadata fields.
-#' @export
-#'
-#' @examples
-#' library(Seurat)
-#' options(Seurat.object.assay.version = "v3")
-#' counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
-#'     dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
-#' srt <- CreateSeuratObject(counts = counts)
-#' srt <- NormalizeData(srt)
-#' subset_srt <- srt[, 1:100]
-#' mams <- convert_seurat_to_MAMS(object_list = list(srt = srt, 
-#'     subset_srt = subset_srt), observation_subsets = c("full", "subset"), 
-#'     dataset_id = "dataset1")
-#' print(mams)
-
 
 #' Converts a SingleCellExperiment object to a MAMS object 
 #' 
