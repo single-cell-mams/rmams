@@ -24,6 +24,7 @@ A MAMS object containing all the extracted metadata fields.
 Converts a AnnData object to a MAMS object
 }
 \examples{
+\dontrun{
 library(reticulate)
 anndata <- import("anndata")
 counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
@@ -34,4 +35,5 @@ adata$obsm[["X_tsne"]] <- counts[, 3:4]
 mams <- convert_AnnData_to_MAMS(object_list = list(adata = adata), 
     observation_subsets = c("full"), dataset_id = "dataset1")
 print(mams)
+}
 }
