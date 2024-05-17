@@ -233,6 +233,7 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(reticulate)
 #' anndata <- import("anndata")
 #' counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
@@ -243,6 +244,7 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 #' mams <- convert_AnnData_to_MAMS(object_list = list(adata = adata), 
 #'     observation_subsets = c("full"), dataset_id = "dataset1")
 #' print(mams)
+#' }
 convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     # Create emoty mams object
     MAMS <- create_MAMS_object()
