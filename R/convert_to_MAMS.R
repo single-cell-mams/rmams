@@ -33,6 +33,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
         oid <- paste0("oid", i)
         obs <- paste0("obs", i)
         obs_subset <- observation_subsets[[i]]
+        obs_subset_description<-obs_sub_desc[[obs_subset]]
         
         for(mod in SeuratObject::Assays(object)){
             fid <- paste0("fid", length(FIDs)+1)
@@ -85,6 +86,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
                                                          representation_description = representation_description,
                                                          obs_unit=obs_unit,
                                                          obs_unit_description=obs_unit_description,
+                                                         obs_subset=obs_subset,
+                                                         obs_subset_description=obs_subset_description,
                                                          dataset_id = dataset_id)
                     
                 }else if(assay == "data"){
@@ -119,6 +122,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
                                                          representation_description = representation_description,
                                                          obs_unit=obs_unit,
                                                          obs_unit_description=obs_unit_description,
+                                                         obs_subset=obs_subset,
+                                                         obs_subset_description=obs_subset_description,
                                                          dataset_id = dataset_id)
                     
                 }else if(assay == "scale.data"){
@@ -152,6 +157,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
                                                          analyte_description=analyte_description,
                                                          obs_unit=obs_unit,
                                                          obs_unit_description=obs_unit_description,
+                                                         obs_subset=obs_subset,
+                                                         obs_subset_description=obs_subset_description,
                                                          data_type = data_type,
                                                          dataset_id = dataset_id)
                     
@@ -241,5 +248,11 @@ fea_desc<-list("full" = "Features have not been filtered or subsetted.",
                "detected"= "Features that have a minimum level of detection across observations. Only including features with at least 3 counts in at least 3 observations.",	
                "variable" = "Features that have minimum level of variability across all cells")
 
+obs_sub_desc<-list("full"=	"Observations have not been filtered or subsetted.",	
+                   'filtered' =	"Observations that have enough signal above background.Droplets (or cell barcodes) that have enough counts to be considered to be non-empty. Similar to the “filtered” matrix from CellRanger.",
+                   "threshold" = "Observations that have a total signal above a certain threshold. Filtering to include cells with a total UMI or read count above a certain threshold across features.",
+                   "detected" = "Observations that have minimum levels of detection across features.Filtering include cells with at least 3 counts in at least 3 genes.",
+                   "nonartifact"= "A general term to describe filtering that may occur due other quality control metrics.	Artifacts in single cell RNA-seq data include high contamination from ambient material, high mitochondrial percentage, or doublets/multiplets.",
+                   "clean"=	"An “analysis ready” set of observations.")
 
         
