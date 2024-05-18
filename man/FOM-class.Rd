@@ -32,6 +32,8 @@ Define the Feature Observation Matrix (FOM) S4 object
 
 \item{\code{obs_unit}}{character.}
 
+\item{\code{obs_unit_description}}{character.}
+
 \item{\code{processing}}{character.}
 
 \item{\code{processing_description}}{character.}
