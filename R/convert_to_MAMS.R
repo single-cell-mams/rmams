@@ -136,6 +136,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(SingleCellExperiment)
 #' counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
 #'     dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
@@ -146,6 +147,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
 #'     subset_sce = subset_sce), observation_subsets = c("full", "subset"), 
 #'     dataset_id = "dataset1")
 #' print(mams)
+#' }
 convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     # Create empty mams object
     MAMS <- create_MAMS_object()

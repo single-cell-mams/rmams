@@ -24,6 +24,7 @@ A MAMS object containing all the extracted metadata fields.
 Converts a SingleCellExperiment object to a MAMS object
 }
 \examples{
+\dontrun{
 library(SingleCellExperiment)
 counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
     dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
@@ -34,4 +35,5 @@ mams <- convert_SCE_to_MAMS(object_list = list(sce = sce,
     subset_sce = subset_sce), observation_subsets = c("full", "subset"), 
     dataset_id = "dataset1")
 print(mams)
+}
 }
