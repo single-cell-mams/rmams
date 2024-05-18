@@ -12,6 +12,7 @@
 #' @slot representation character. 
 #' @slot representation_description character. 
 #' @slot obs_unit character. 
+#' @slot obs_unit_description character.
 #' @slot processing character. 
 #' @slot processing_description character. 
 #' @slot analyte character. 
@@ -46,6 +47,7 @@ setClass(
     representation = "CharOrNULL",
     representation_description = "CharOrNULL",
     obs_unit = "CharOrNULL",
+    obs_unit_description = "CharOrNULL",
     processing = "CharOrNULL",
     processing_description = "CharOrNULL",
     analyte = "CharOrNULL",
@@ -79,6 +81,7 @@ setClass(
 #' @param representation Preferred representation of the matrix
 #' @param representation_description More detail about the representation 
 #' @param obs_unit Biological unit of the observations
+#' @param obs_unit_description Used to describe the obs_unit
 #' @param processing Used to describe the nature of the data contained within the matrix
 #' @param processing_description More detail about the nature of the data
 #' @param analyte Used to describe the biological analytes being quantified in the matrix
@@ -110,6 +113,7 @@ create_FOM_object <- function(
     representation = NA_character_,
     representation_description = NA_character_,
     obs_unit = NA_character_,
+    obs_unit_description = NA_character_,
     processing = NA_character_,
     processing_description = NA_character_,
     analyte = NA_character_,
@@ -139,6 +143,7 @@ create_FOM_object <- function(
              representation = representation,
              representation_description = representation_description,
              obs_unit = obs_unit,
+             obs_unit_description = obs_unit_description,
              processing = processing,
              processing_description = processing_description,
              analyte = analyte,
@@ -291,7 +296,22 @@ setMethod("obs_unit", "FOM", function(x) x@obs_unit)
 #' @param value value
 #' @return nothing (setter)
 #' @export
+setMethod("obs_unit_description", "FOM", function(x) x@obs_unit_description)
+#' obs_unit_description<-
+#' @description setter
+#' @rdname obs_unit_description-FOM-set
+#' @param x FOM object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
+#' processing
+#' @description getter
+#' @rdname processing-FOM-get
+#' @param x FOM object
+#' @return the value
+#' @export
+setMethod("obs_unit_description<-", "FOM", function(x, value) { x@obs_unit_description <- value; x })
 #' processing
 #' @description getter
 #' @rdname processing-FOM-get
