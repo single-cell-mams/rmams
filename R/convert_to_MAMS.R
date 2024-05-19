@@ -221,6 +221,54 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     return(MAMS)
 }
 
+.representation <- function(mat){
+    num_zeros <- sum(mat == 0)
+    total_elements <- length(mat)
+    proportion_zeros <- num_zeros / total_elements
+    
+    threshold <- 0.5
+    if (proportion_zeros > threshold) {
+        return("sparse")
+    } else {
+        return("dense")
+    }
+}
+
+.data_type <- function(mat) {
+    if (typeof(mat) == "integer") {
+        return("int")
+    } else if (typeof(mat) == "double") {
+        if (all(mat == as.integer(mat))) {
+            return("int")
+        } else {
+            return("double")
+        }
+    } else {
+        return(typeof(mat))
+    }
+}
+
+.processing <- function(mat){
+    if (all(mat == as.integer(mat)) && all(mat >= 0)) {
+        return("counts")
+    }
+    
+    if (all(mat >= 0) && any(mat < 1)) {
+        return("lognormalized")
+    }
+    
+    if (mean(mat) > -0.01 && mean(mat) < 0.01 && sd(mat) > 0.9 && sd(mat) < 1.1) {
+        return("scaled")
+    }
+    return(NULL)
+}
+
+.feature_subset <- function(sce_list) {
+    n_rows <- sapply(sce_list, function(sce) nrow(sce))
+    max_rows <- max(n_rows)
+    result <- sapply(n_rows, function(n) if (n == max_rows) "full" else "variable")
+    return(result)
+}
 
 #' Converts a AnnData object to a MAMS object 
 #' 
