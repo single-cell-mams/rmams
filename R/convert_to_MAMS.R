@@ -36,9 +36,9 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
         obs_subset_description<-obs_sub_desc[[obs_subset]]
         
         for(mod in SeuratObject::Assays(object)){
-            fid <- paste0("fid", length(FIDs)+1)
-            fea <- paste0("fea", length(FIDs)+1)
-            FIDs <- c(FIDs, fid)
+            
+            
+           
             
             if(mod == "RNA"){
                 modality <- "rna"
@@ -70,9 +70,14 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
                     feature_subset_description<- fea_desc[[feature_subset]]
                     obs_unit<- "cell"
                     obs_unit_description<- obs_desc[[obs_unit]]
+                    fid <- paste0("fid", length(FIDs)+1)
+                    fea <- paste0("fea", length(FIDs)+1)
+                    FIDs <- c(FIDs, fid)
                     MAMS@FOM[[fom]] <- create_FOM_object(id = fom, 
                                                          filepath=filepath, 
                                                          accessor=accessor, 
+                                                         fid=fid,
+                                                         fea=fea,
                                                          oid=oid, 
                                                          processing=processing, 
                                                          processing_description=processing_description,
@@ -109,6 +114,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
                     MAMS@FOM[[fom]] <- create_FOM_object(id = fom, 
                                                          filepath=filepath, 
                                                          accessor=accessor,
+                                                         fid = fid,
+                                                         fea = fea,
                                                          oid=oid, 
                                                          processing=processing, 
                                                          processing_description=processing_description,
@@ -146,6 +153,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id){
                                                          filepath=filepath, 
                                                          accessor=accessor, 
                                                          oid=oid, 
+                                                         fid=fid,
+                                                         fea=fea,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
