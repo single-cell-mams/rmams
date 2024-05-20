@@ -267,6 +267,7 @@ setMethod("representation", "FOM", function(x) x@representation)
 #' @return nothing (setter)
 #' @export
 setMethod("representation<-", "FOM", function(x, value) { x@representation <- value; x })
+
 #' representation_description
 #' @description getter
 #' @rdname representation_description-FOM-get
@@ -274,6 +275,7 @@ setMethod("representation<-", "FOM", function(x, value) { x@representation <- va
 #' @return the value
 #' @export
 setMethod("representation_description", "FOM", function(x) x@representation_description)
+
 #' representation_description<-
 #' @description setter
 #' @rdname representation_description-FOM-set
@@ -282,6 +284,7 @@ setMethod("representation_description", "FOM", function(x) x@representation_desc
 #' @return nothing (setter)
 #' @export
 setMethod("representation_description<-", "FOM", function(x, value) { x@representation_description <- value; x })
+
 #' obs_unit
 #' @description getter
 #' @rdname obs_unit-FOM-get
@@ -289,6 +292,7 @@ setMethod("representation_description<-", "FOM", function(x, value) { x@represen
 #' @return the value
 #' @export
 setMethod("obs_unit", "FOM", function(x) x@obs_unit)
+
 #' obs_unit<-
 #' @description setter
 #' @rdname obs_unit-FOM-set
@@ -296,7 +300,17 @@ setMethod("obs_unit", "FOM", function(x) x@obs_unit)
 #' @param value value
 #' @return nothing (setter)
 #' @export
+setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
+
+#' obs_unit_description
+#' @description setter
+#' @rdname obs_unit_description-FOM-set
+#' @param x FOM object
+#' @param value value
+#' @return nothing (setter)
+#' @export
 setMethod("obs_unit_description", "FOM", function(x) x@obs_unit_description)
+
 #' obs_unit_description<-
 #' @description setter
 #' @rdname obs_unit_description-FOM-set
@@ -304,14 +318,8 @@ setMethod("obs_unit_description", "FOM", function(x) x@obs_unit_description)
 #' @param value value
 #' @return nothing (setter)
 #' @export
-setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
-#' processing
-#' @description getter
-#' @rdname processing-FOM-get
-#' @param x FOM object
-#' @return the value
-#' @export
 setMethod("obs_unit_description<-", "FOM", function(x, value) { x@obs_unit_description <- value; x })
+
 #' processing
 #' @description getter
 #' @rdname processing-FOM-get
@@ -319,6 +327,7 @@ setMethod("obs_unit_description<-", "FOM", function(x, value) { x@obs_unit_descr
 #' @return the value
 #' @export
 setMethod("processing", "FOM", function(x) x@processing)
+
 #' processing<-
 #' @description setter
 #' @rdname processing-FOM-set
@@ -327,6 +336,7 @@ setMethod("processing", "FOM", function(x) x@processing)
 #' @return nothing (setter)
 #' @export
 setMethod("processing<-", "FOM", function(x, value) { x@processing <- value; x })
+
 #' processing_description
 #' @description getter
 #' @rdname processing_description-FOM-get
@@ -334,6 +344,7 @@ setMethod("processing<-", "FOM", function(x, value) { x@processing <- value; x }
 #' @return the value
 #' @export
 setMethod("processing_description", "FOM", function(x) x@processing_description)
+
 #' processing_description<-
 #' @description setter
 #' @rdname processing_description-FOM-set
@@ -342,6 +353,7 @@ setMethod("processing_description", "FOM", function(x) x@processing_description)
 #' @return nothing (setter)
 #' @export
 setMethod("processing_description<-", "FOM", function(x, value) { x@processing_description <- value; x })
+
 #' analyte
 #' @description getter
 #' @rdname analyte-FOM-get

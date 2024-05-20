@@ -147,6 +147,8 @@ reference:
     - obs_subset_description<-,FOM-method
     - obs_unit,FOM-method
     - obs_unit<-,FOM-method
+    - obs_unit_description,FOM-method
+    - obs_unit_description<-,FOM-method
     - oid,MAMS,character,character-method
     - oid<-,MAMS,character,character-method
     - ong,MAMS,character,character-method
