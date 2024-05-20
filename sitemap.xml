@@ -151,6 +151,12 @@
     <loc>https://single-cell-mams.github.io/rmams/reference/check_MAMS.html</loc>
   </url>
   <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/convert_AnnData_to_MAMS.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/convert_SCE_to_MAMS.html</loc>
+  </url>
+  <url>
     <loc>https://single-cell-mams.github.io/rmams/reference/convert_seurat_to_MAMS.html</loc>
   </url>
   <url>
