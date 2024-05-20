@@ -5,6 +5,8 @@ reference:
   - title: "Functions to manipulate rmams"
     contents:
     - convert_seurat_to_MAMS
+    - convert_SCE_to_MAMS
+    - convert_AnnData_to_MAMS
     - create_MAMS_from_JSON
     - create_MAMS_object
     - check_MAMS
