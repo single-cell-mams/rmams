@@ -34,4 +34,5 @@ mams <- convert_seurat_to_MAMS(object_list = list(srt = srt,
     dataset_id = "dataset1")
 print(mams)
 
+
 }
