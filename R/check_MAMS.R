@@ -19,7 +19,7 @@ check_MAMS <- function(mams_object){
     required_field_list = list(FOM = c("id", "dataset_id", "data_type", "analyte"),
                                ONG = c("id", "dataset_id"),
                                FEA = c("id", "dataset_id", "feature_modality"),
-                               OBS = c("id", "dataset_id"),
+                               OBS = c("filename", "accessor"),
                                FID = c("id", "dataset_id"),
                                OID = c("id", "dataset_id"),
                                REC = c("record_package_name", "record_package_version",
