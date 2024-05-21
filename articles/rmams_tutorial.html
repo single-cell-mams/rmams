@@ -63,7 +63,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Creating MAMS from Seurat</h1>
             
-            <h4 data-toc-skip class="date">2024-05-20</h4>
+            <h4 data-toc-skip class="date">2024-05-21</h4>
       
       
       <div class="d-none name"><code>rmams_tutorial.Rmd</code></div>
@@ -126,9 +126,9 @@ repository</a></p>
 <span><span class="va">nonempty.matrices</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Read10X.html" class="external-link">Read10X</a></span><span class="op">(</span>data.dir <span class="op">=</span> <span class="st">"../data/filtered_feature_bc_matrix"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 10X data contains more than one type and is being returned as a list containing matrices of each type.</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data.nonempty</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">nonempty.matrices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, project <span class="op">=</span> <span class="st">"pbmc1k"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">data.nonartifact</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateSeuratObject.html" class="external-link">CreateSeuratObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">nonempty.matrices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, project <span class="op">=</span> <span class="st">"pbmc1k"</span><span class="op">)</span></span>
 <span><span class="va">adt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/CreateAssayObject.html" class="external-link">CreateAssayObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">nonempty.matrices</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">data.nonempty</span><span class="op">[[</span><span class="st">"ADT"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">adt</span></span></code></pre></div>
+<span><span class="va">data.nonartifact</span><span class="op">[[</span><span class="st">"ADT"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">adt</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="quality-control">Quality control<a class="anchor" aria-label="anchor" href="#quality-control"></a>
@@ -136,8 +136,8 @@ repository</a></p>
 <p>The filtered matrix will be further subsetted based on mitochondrial
 percentage and total number of features detected:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data.nonempty</span><span class="op">[[</span><span class="st">"percent.mt"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/PercentageFeatureSet.html" class="external-link">PercentageFeatureSet</a></span><span class="op">(</span><span class="va">data.nonempty</span>, pattern <span class="op">=</span> <span class="st">"^MT-"</span><span class="op">)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">data.nonempty</span>, subset <span class="op">=</span> <span class="va">nFeature_RNA</span> <span class="op">&gt;</span> <span class="fl">200</span> <span class="op">&amp;</span> <span class="va">percent.mt</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data.nonartifact</span><span class="op">[[</span><span class="st">"percent.mt"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/PercentageFeatureSet.html" class="external-link">PercentageFeatureSet</a></span><span class="op">(</span><span class="va">data.nonartifact</span>, pattern <span class="op">=</span> <span class="st">"^MT-"</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">data.nonartifact</span>, subset <span class="op">=</span> <span class="va">nFeature_RNA</span> <span class="op">&gt;</span> <span class="fl">200</span> <span class="op">&amp;</span> <span class="va">percent.mt</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="clustering">Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a>
@@ -254,7 +254,7 @@ The data matrices stored within a Seurat object will be saved to an
 txt or mtx file as well.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.raw</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_raw.rds"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.nonempty</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonempty.rds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.nonartifact</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonartifact.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_filtered.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">data.tcell</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -271,7 +271,7 @@ txt or mtx file as well.</p>
 <span></span>
 <span><span class="co"># get the file paths of seurat objects</span></span>
 <span></span>
-<span><span class="va">file_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"../inst/extdata/pbmc1k_seurat_filtered.rds"</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonempty.rds"</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span>
+<span><span class="va">file_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"../inst/extdata/pbmc1k_seurat_filtered.rds"</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_nonartifact.rds"</span>, <span class="st">"../inst/extdata/pbmc1k_seurat_tcell.rds"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># get the names of these objects </span></span>
 <span><span class="va">file_names</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.rds$"</span>, replacement <span class="op">=</span> <span class="st">""</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">file_paths</span><span class="op">)</span><span class="op">)</span></span>
@@ -283,14 +283,16 @@ txt or mtx file as well.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">object_list</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">file_names</span></span>
 <span></span>
 <span><span class="co"># define the type of each subset</span></span>
-<span><span class="va">observational_subsets</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"filtered"</span>,<span class="st">"nonempty"</span>,<span class="st">"subset"</span><span class="op">)</span></span>
+<span><span class="va">observational_subsets</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"filtered"</span>,<span class="st">"nonartifact"</span>,<span class="st">"subset"</span><span class="op">)</span></span>
 <span><span class="va">datasetid</span> <span class="op">=</span> <span class="st">"PBMC1K"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="create-mams-object">Create MAMS object<a class="anchor" aria-label="anchor" href="#create-mams-object"></a>
 </h4>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">result</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/convert_seurat_to_MAMS.html">convert_seurat_to_MAMS</a></span><span class="op">(</span><span class="va">object_list</span>,<span class="va">observational_subsets</span>,<span class="va">datasetid</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">parents</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>,<span class="st">"no"</span>,<span class="st">"no"</span>,<span class="st">"no"</span><span class="op">)</span></span>
+<span><span class="va">result</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/convert_seurat_to_MAMS.html">convert_seurat_to_MAMS</a></span><span class="op">(</span><span class="va">object_list</span>,<span class="va">observational_subsets</span>,<span class="va">datasetid</span>,<span class="va">parents</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Layer 'scale.data' is empty</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="accessing-data">Accessing data<a class="anchor" aria-label="anchor" href="#accessing-data"></a>
@@ -310,313 +312,97 @@ txt or mtx file as well.</p>
 <span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
 <span><span class="co">#&gt; :</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom1 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom2 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom3 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom4 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom5 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom6 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom7 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom8 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom9 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom10 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom11 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom12 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom13 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom14 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset"                     </span></span>
-<span><span class="co">#&gt;  [7] "obs_subset_description"          "feature_subset"                 </span></span>
-<span><span class="co">#&gt;  [9] "feature_subset_description"      "record_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_id"                       "parent_relationship"            </span></span>
-<span><span class="co">#&gt; [13] "parent_relationship_description" "fid"                            </span></span>
-<span><span class="co">#&gt; [15] "obs"                             "fea"                            </span></span>
-<span><span class="co">#&gt; [17] "ong"                             "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom15 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom16 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom17 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom18 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom19 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom20 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom21 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom22 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom23 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom24 is missing the fields:</span></span>
-<span><span class="co">#&gt;  [1] "representation"                  "representation_description"     </span></span>
-<span><span class="co">#&gt;  [3] "obs_unit"                        "processing_description"         </span></span>
-<span><span class="co">#&gt;  [5] "analyte_description"             "obs_subset_description"         </span></span>
-<span><span class="co">#&gt;  [7] "feature_subset"                  "feature_subset_description"     </span></span>
-<span><span class="co">#&gt;  [9] "record_id"                       "parent_id"                      </span></span>
-<span><span class="co">#&gt; [11] "parent_relationship"             "parent_relationship_description"</span></span>
-<span><span class="co">#&gt; [13] "fid"                             "obs"                            </span></span>
-<span><span class="co">#&gt; [15] "fea"                             "ong"                            </span></span>
-<span><span class="co">#&gt; [17] "fng"</span></span>
+<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
 <span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
 <span><span class="co">#&gt; :</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr1 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr2 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr3 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr4 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr5 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr6 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr7 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr8 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr9 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr10 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr11 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; [1] "parent_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr12 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr13 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr14 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"   "edge_metric"</span></span>
+<span><span class="co">#&gt; [1] "parent_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FEA</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: OBS</span></span>
