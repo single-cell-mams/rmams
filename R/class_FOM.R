@@ -23,7 +23,7 @@
 #' @slot feature_subset character. 
 #' @slot feature_subset_description character. 
 #' @slot record_id character. 
-#' @slot parent_id character. 
+#' @slot parent_id character or list. 
 #' @slot parent_relationship character. 
 #' @slot parent_relationship_description character. 
 #' @slot oid character.
@@ -58,7 +58,7 @@ setClass(
     feature_subset = "CharOrNULL",
     feature_subset_description = "CharOrNULL",
     record_id = "CharOrNULL",
-    parent_id = "CharOrNULL",
+    parent_id = "CharOrList",
     parent_relationship = "CharOrNULL",
     parent_relationship_description = "CharOrNULL",
     oid = "CharOrNULL",
