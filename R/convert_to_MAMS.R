@@ -36,6 +36,10 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
         obs <- paste0("obs", i)
         obs_subset <- observation_subsets[[i]]
         obs_subset_description<-obs_sub_desc[[obs_subset]]
+        accessor<- paste0(names(object_list)[[i]],"[[]]")
+        obs <- paste0("obs",i)
+        MAMS@OBS[[obs]]<- create_OBS_object(filepath = filepath,accessor = accessor)
+        
         for(mod in SeuratObject::Assays(object)){
             if(mod == "RNA"){
                 modality <- "rna"
@@ -86,6 +90,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                                                          fid=fid,
                                                          fea=fea,
                                                          oid=oid, 
+                                                         obs=obs,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
@@ -133,6 +138,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                                                          fid = fid,
                                                          fea = fea,
                                                          oid=oid, 
+                                                         obs=obs,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
@@ -180,6 +186,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                                                          oid=oid, 
                                                          fid=fid,
                                                          fea=fea,
+                                                         obs=obs,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
@@ -269,6 +276,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                                                  oid=oid, 
                                                  fid=fid,
                                                  fea=fea,
+                                                 obs=obs,
                                                  representation="dense",
                                                  representation_description=representation_description,
                                                  processing=processing, 
@@ -301,6 +309,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             if(substr(graph, 1, 3) == "RNA"){
                 record_id <- paste("FindNeighbors", mod, dimred, substr(filepath, 15, nchar(filepath)-4), sep = ".")
                 parent_id <- PIDs[["pca"]]
+                print(parent_id)
             }
             
             else if(substr(graph, 1, 3) == "ADT"){
@@ -430,11 +439,9 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     for (i in 1:length(object_list)) {
         object <- object_list[[i]]
         filepath <- paste0(names(object_list)[[i]], ".rds")
-        accessor<- paste0(names(object_list)[[i]],"[[]]")
         oid <- paste0("oid", i)
         obs_subset <- observation_subsets[[i]]
-        obs <- paste0("obs",i)
-        MAMS@OBS[[obs]]<- create_OBS_object(filepath = filepath,accessor = accessor)
+        
         
         # Iterate over assays
         for (mod in SummarizedExperiment::assayNames(object)) {
