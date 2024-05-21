@@ -54,7 +54,7 @@ Define the Feature Observation Matrix (FOM) S4 object
 
 \item{\code{record_id}}{character.}
 
-\item{\code{parent_id}}{character.}
+\item{\code{parent_id}}{character or list.}
 
 \item{\code{parent_relationship}}{character.}
 

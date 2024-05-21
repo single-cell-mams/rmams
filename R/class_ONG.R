@@ -24,7 +24,7 @@ setClass(
     dataset_id = "CharOrNULL",
     filepath = "CharOrNULL",
     accessor = "CharOrNULL",
-    parent_id = "CharOrNULL",
+    parent_id = "CharOrList",
     record_id = "CharOrNULL",
     edge_metric = "CharOrNULL",
     metric_type = "CharOrNULL"

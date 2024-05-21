@@ -90,9 +90,14 @@ check_MAMS <- function(mams_object){
                 check_missing_fields<- lapply(slot_obj, function(x){
                     missing_fields <- c()
                     for(fields in required_field_list[[mams_class]]){
-                        if(is.na(methods::slot(x, fields)) | methods::slot(x, fields) == ""){
+                        
+                        for (multi in methods::slot(x, fields)) { 
+                            
+                        if (is.na(multi) | multi == ""){
                             missing_fields <- c(missing_fields, fields)
                         }
+                        }
+                        
                     }
                     if(!is.null(missing_fields)){
                         return(missing_fields)
@@ -107,14 +112,17 @@ check_MAMS <- function(mams_object){
                     for(fields in warn_field_list[[mams_class]]){
                         lst <- list(methods::slot(x, fields))
                         #methods::slot(x, fields) %in% c("","NA")
-                        if(is.null(methods::slot(x, fields))){
+                        for (t in methods::slot(x, fields)){
+                            
+                            if(is.null(t)){
                            # print(fields)
-                            warning_fields <- c(warning_fields, fields)
-                        }
-                        else {
-                            if(is.na(methods::slot(x, fields)) | methods::slot(x, fields) == "") {
                                 warning_fields <- c(warning_fields, fields)
                             }
+                            else {
+                                if(is.na(t) | t == "") {
+                                    warning_fields <- c(warning_fields, fields)
+                                }
+                        }
                         }
                     }
                     if(!is.null(warning_fields)){
