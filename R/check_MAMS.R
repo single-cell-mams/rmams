@@ -17,22 +17,21 @@ check_MAMS <- function(mams_object){
     
     #Check 2. Check to see all required fields for each MAMS class (FOM, ONG, etc.) exist
     required_field_list = list(FOM = c("id", "dataset_id", "data_type", "analyte"),
-                               ONG = c("id", "dataset_id"),
-                               FEA = c("id", "dataset_id", "feature_modality"),
+                               ONG = c("filepath", "accessor"),
+                               FEA = c("filepath", "accessor"),
                                OBS = c("filepath", "accessor"),
-                               FID = c("id", "dataset_id"),
-                               OID = c("id", "dataset_id"),
-                               REC = c("record_package_name", "record_package_version",
-                                       "record_function_name"),
-                               FNG = c("id", "dataset_id"))
+                               FID = c("filepath","accessor"),
+                               OID = c("filepath","accessor"),
+                               REC = c("record_function_name","record_package_name", "record_package_version"),
+                               FNG = c())
     
     
     warn_field_list = list(FOM = c("filepath","accessor","representation","representation_description","obs_unit","processing","processing_description",
                                    "analyte","analyte_description","modality","obs_subset","obs_subset_description","feature_subset","feature_subset_description",
                                    "record_id","parent_id","parent_relationship","parent_relationship_description","oid","fid","obs", "fea"),
-                           ONG = c("filepath","accessor", "parent_id","record_id","edge_metric","metric_type"),
-                           FEA = c("id", "dataset_id", "feature_modality"),
-                           OBS = c(),
+                           ONG = c("parent_id","record_id","edge_metric","metric_type"),
+                           FEA = c("feature_modality"),
+                           OBS = c("filepath","accessor"),
                            FID = c(),
                            OID = c(),
                            REC = c(),

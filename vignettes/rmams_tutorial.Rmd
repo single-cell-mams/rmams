@@ -234,7 +234,6 @@ result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid,pare
 ```{r show_results}
 # Get the dataset_id from the first fom
 fom(result,"fom1","dataset_id")
-
 ```
 
 ## Step 3: Validating MAMS object
@@ -249,8 +248,6 @@ check_MAMS(mams_object = result)
 ```{r}
 fom(result,"fom1","dataset_id") <-"PBMC1K"
 ```
-
-
 
 
 ## Step 4: Saving MAMS object to JSON
