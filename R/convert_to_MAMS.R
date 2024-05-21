@@ -44,10 +44,11 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             if(mod == "RNA"){
                 modality <- "rna"
                 analyte <- "rna"
-            }else{
+            }else if (mod == "ADT"){
                 modality <- "protein"
                 analyte <- "protein"
             }
+            
             analyte_description<- analyte_desc[[analyte]]
             for(assay in slotNames(object@assays[[mod]])){
                 fom <- paste0("fom", length(MAMS@FOM)+1)
@@ -218,40 +219,59 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             fom <- paste0("fom", length(MAMS@FOM)+1)
             reduction <- object@reductions[[dimred]]
             data_type <- "double"
-            if(grepl("pca|ica", dimred, ignore.case = TRUE)){
+            if(grepl("^pca|^ica", dimred, ignore.case = TRUE)){
+                analyte<-"rna"
+                modality<-"rna"
+                PIDs["pca"] <- fom
+                analyte_description<-analyte_desc[analyte]
                 processing<- "reduction"
                 processing_description <- process_desc[[processing]]
                 parent_id <- PIDs[["scale.data"]]
                 record_id <- paste0("RunPCA",".",analyte)
-                if(analyte == "RNA"){
-                    PIDs["pca"] <- fom
-                    print(PIDs)
-                }
-                else if(analyte == "ADT"){
-                    PIDs["apca"] <- fom
+            }   
+            else if(grepl("^apca", dimred, ignore.case = TRUE)){
+                analyte<-"rna"
+                modality<-"rna"
+                analyte_description<-analyte_desc[analyte]
+                PIDs["pca"] <- fom
+                processing<- "reduction"
+                processing_description <- process_desc[[processing]]
+                parent_id <- PIDs[["scale.data"]]
+                record_id <- paste0("RunPCA",".",analyte)
+                PIDs["apca"] <- fom
+                
                 }
                 
-            } else if (grepl("tsne|umap", dimred, ignore.case = TRUE)){
+            else if (grepl("^tsne|^umap", dimred, ignore.case = TRUE)){
                 processing <- "embedding"
                 processing_description <- process_desc[[processing]]
-                record_id <- paste0("RunUMAP",".",analyte)
                 
-                if(analyte == "RNA"){
+                if (grepl("rna",dimred,ignore.case = TRUE)){
+                    analyte<-"rna"
+                    modality<-"rna"
+                    analyte_description<-analyte_desc[analyte]
                     parent_id <- PIDs[["pca"]]
-                    
-                }
-                else if(analyte == "ADT"){
-                    parent_id <- PIDs[["apca"]]
+                    record_id = paste0("RunUMAP",".",analyte)
                 }
                 
-            }
-            
-            if(is.list(analyte)){
-                analyte_description = list()
-                for (i in length(analyte)){
-                    analyte_description <- list(analyte_description,analyte_desc[analyte])
+                else if(grepl("adt",dimred,ignore.case = TRUE)){
+                    analyte<- "protein"
+                    modality<-"rna"
+                    analyte_description<-analyte_desc[analyte]
+                    parent_id <- PIDs[["apca"]]
+                    record_id = paste0("RunUMAP",".",analyte)
                 }
             }
+             else if (grepl("^wnn", dimred, ignore.case = TRUE)){
+                   analyte <- c("rna","protein")
+                   parent_id <- PIDs[["multimodal.graph"]]    
+                   analyte_description = list()
+                   for (i in analyte){
+                       analyte_description <- c(analyte_description,analyte_desc[[i]])
+                   }
+                   record_id <- paste0("RunUMAP",".",paste0(analyte))
+                
+                }
             
             representation_description= "The matrix contains non-zeros for the majority of the measurements"
             feature_subset <- "full"
@@ -259,14 +279,6 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             obs_unit<- "cell"
             obs_unit_description<- obs_desc[[obs_unit]]
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            
-            if(length(analyte) > 1){
-                parent_id = PIDs[["multimodal.graph"]]
-                record_id = paste0("RunUMAP",".",analyte)
-            }
-            else {
-                parent_id <- parent_id
-            }
             
             parent_relationship <- "reduction"
             parent_relationship_description<- PR_desc[[parent_relationship]]
@@ -306,10 +318,11 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             edge_metric <- object@commands[[graphname]]$annoy.metric
             metric_type <- "distance"
             accessor <- paste0("Graphs(", substr(filepath, 1, nchar(filepath)-4), ', \"', graph, '\")')
+            
             if(substr(graph, 1, 3) == "RNA"){
                 record_id <- paste("FindNeighbors", mod, dimred, substr(filepath, 15, nchar(filepath)-4), sep = ".")
                 parent_id <- PIDs[["pca"]]
-                print(parent_id)
+               
             }
             
             else if(substr(graph, 1, 3) == "ADT"){
@@ -322,6 +335,9 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                 parent_id <- list(PIDs[["pca"]],PIDs[["apca"]])
                 PIDs["multimodal.graph"] <- ogr
             }
+            
+            
+            
             MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, 
                                                  filepath = filepath, 
                                                  accessor = accessor, 
@@ -344,9 +360,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             accessor <- paste0("Neighbors(", substr(filepath, 1, nchar(filepath)-4), ', \"', neighbor, '\")')
             record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
             parent_id <- list(PIDs[["pca"]],PIDs[["apca"]])
-        
             PIDs[["multimodal.neighbor"]]<- ogr
-            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type,dataset_id = dataset_id)
+            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, parent_id = parent_id, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type,dataset_id = dataset_id)
             #ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
         }
     }

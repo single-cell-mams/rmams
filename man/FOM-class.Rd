@@ -38,11 +38,11 @@ Define the Feature Observation Matrix (FOM) S4 object
 
 \item{\code{processing_description}}{character.}
 
-\item{\code{analyte}}{character.}
+\item{\code{analyte}}{List or character.}
 
-\item{\code{analyte_description}}{character.}
+\item{\code{analyte_description}}{List or character.}
 
-\item{\code{modality}}{character.}
+\item{\code{modality}}{List or character.}
 
 \item{\code{obs_subset}}{character.}
 

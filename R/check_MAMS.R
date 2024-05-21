@@ -19,7 +19,7 @@ check_MAMS <- function(mams_object){
     required_field_list = list(FOM = c("id", "dataset_id", "data_type", "analyte"),
                                ONG = c("id", "dataset_id"),
                                FEA = c("id", "dataset_id", "feature_modality"),
-                               OBS = c("filename", "accessor"),
+                               OBS = c("filepath", "accessor"),
                                FID = c("id", "dataset_id"),
                                OID = c("id", "dataset_id"),
                                REC = c("record_package_name", "record_package_version",
@@ -29,7 +29,7 @@ check_MAMS <- function(mams_object){
     
     warn_field_list = list(FOM = c("filepath","accessor","representation","representation_description","obs_unit","processing","processing_description",
                                    "analyte","analyte_description","modality","obs_subset","obs_subset_description","feature_subset","feature_subset_description",
-                                   "record_id","parent_id","parent_relationship","parent_relationship_description","oid","fid","obs", "fea","ong","fng"),
+                                   "record_id","parent_id","parent_relationship","parent_relationship_description","oid","fid","obs", "fea"),
                            ONG = c("filepath","accessor", "parent_id","record_id","edge_metric","metric_type"),
                            FEA = c("id", "dataset_id", "feature_modality"),
                            OBS = c(),
@@ -113,17 +113,15 @@ check_MAMS <- function(mams_object){
                         lst <- list(methods::slot(x, fields))
                         #methods::slot(x, fields) %in% c("","NA")
                         for (t in methods::slot(x, fields)){
-                            
                             if(is.null(t)){
                            # print(fields)
                                 warning_fields <- c(warning_fields, fields)
                             }
-                            else {
-                                if(is.na(t) | t == "") {
+                            else if(is.na(t) | t == "") {
                                     warning_fields <- c(warning_fields, fields)
                                 }
                         }
-                        }
+                        
                     }
                     if(!is.null(warning_fields)){
                         return(warning_fields)
