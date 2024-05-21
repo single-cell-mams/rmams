@@ -383,9 +383,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             ogr <- paste0("ogr", length(MAMS@ONG)+1)
            # graphname <- paste("FindMultiModalNeighbors", mod, dimred, sep = ".")
             graphname <- paste("FindMultiModalNeighbors")
-            if(object@commands[[graphname]]$l2.norm == "TRUE"){
-                edge_metric == "euclidean"
-            }
+            edge_metric == object@commands[[graphname]]$annoy.metric
             metric_type <- "distance"
             accessor <- paste0("Neighbors(", substr(filepath, 1, nchar(filepath)-4), ', \"', neighbor, '\")')
             record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
