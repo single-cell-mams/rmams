@@ -246,12 +246,9 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 }
 
 .representation <- function(mat){
-    num_zeros <- sum(mat == 0)
-    total_elements <- length(mat)
-    proportion_zeros <- num_zeros / total_elements
-    
-    threshold <- 0.5
-    if (proportion_zeros > threshold) {
+    if (inherits(mat, "dgCMatrix")) {
+        return("sparse")
+    } else if (inherits(mat, "dgRMatrix")){
         return("sparse")
     } else {
         return("dense")
@@ -288,10 +285,14 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 }
 
 .feature_subset <- function(sce_list) {
-    n_rows <- sapply(sce_list, function(sce) nrow(sce))
-    max_rows <- max(n_rows)
-    result <- sapply(n_rows, function(n) if (n == max_rows) "full" else "variable")
-    return(result)
+    if(length(sce_list) > 1){
+        n_rows <- sapply(sce_list, function(sce) nrow(sce))
+        max_rows <- max(n_rows)
+        result <- sapply(n_rows, function(n) if (n == max_rows) "full" else "variable")
+        return(result)
+    } else{
+        return("full")
+    }
 }
 
 #' Converts a AnnData object to a MAMS object 
@@ -332,31 +333,37 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
         obs_subset <- observation_subsets[[i]]
         
         # Iterate over assays
-        assays <- list("X" = object$X, "raw.X" = if (!is.null(object$raw)) object$raw$X else NULL)
-        for (mod in names(assays)) {
+        ## raw
+        raw <- object$X
+        fid <- paste0("fid", length(FIDs) + 1)
+        fea <- paste0("fea", length(FIDs) + 1)
+        FIDs <- c(FIDs, fid)
+        modality <- "rna"
+        analyte <- "rna"
+        fom <- paste0("fom", length(MAMS@FOM) + 1)
+        accessor <- paste0("object$X")
+        data_type <- .data_type(object[[mod]])
+        representation <- "sparse"
+        processing <- "counts"
+        feature_subset <- .feature_subset(object_list)[i]
+        MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
+        
+        ## layers
+        layers <- adata$layers$keys()
+        # need to figure out where does normalized/scaled etc goes. layers
+        for (mod in layers) {
             if (!is.null(mod)) {
                 fid <- paste0("fid", length(FIDs) + 1)
                 fea <- paste0("fea", length(FIDs) + 1)
                 FIDs <- c(FIDs, fid)
-                
-                if (mod == "X") {
-                    modality <- "rna"
-                    analyte <- "rna"
-                } else if (mod == "raw.X") {
-                    modality <- "rna"
-                    analyte <- "rna"
-                } else {
-                    modality <- "protein"
-                    analyte <- "protein"
-                }
-                
+                modality <- "rna"
+                analyte <- "rna"
                 fom <- paste0("fom", length(MAMS@FOM) + 1)
-                accessor <- paste0("object[['", mod, "']]")
-                
-                data_type <- if (mod == "X" || mod == "raw.X") "double" else "int"
-                representation <- if (is(object$X, "sparse")) "sparse" else "dense"
-                processing <- if (mod == "X") "lognormalized" else "counts"
-                feature_subset <- "full"
+                accessor <- paste0("object$layers['", mod, "']")
+                data_type <- .data_type(object[mod])
+                representation <- .representation(object[mod])
+                processing <- .processing(object[[mod]]) # update this with grepl
+                feature_subset <- .feature_subset(object_list)[i]
                 
                 MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
             }
@@ -368,7 +375,8 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
                 fom <- paste0("fom", length(MAMS@FOM) + 1)
                 reduction <- object$obsm[[dimred]]
                 data_type <- "double"
-                processing <- ifelse(grepl("pca|ica", dimred, ignore.case = TRUE), "Reduction", ifelse(grepl("tsne|umap", dimred, ignore.case = TRUE), "Embedding", NA))
+                # processing <- ifelse(grepl("pca|ica", dimred, ignore.case = TRUE), "Reduction", ifelse(grepl("tsne|umap", dimred, ignore.case = TRUE), "Embedding", NA))
+                processing <- .reduction_or_embedding(reduction)
                 accessor <- paste0("object$obsm[['", dimred, "']]")
                 
                 MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type)
