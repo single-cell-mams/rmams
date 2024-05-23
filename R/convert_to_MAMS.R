@@ -437,7 +437,7 @@ obs_sub_desc<-list("full"=	"Observations have not been filtered or subsetted.",
                    "detected" = "Observations that have minimum levels of detection across features.Filtering include cells with at least 3 counts in at least 3 genes.",
                    "nonartifact"= "A general term to describe filtering that may occur due other quality control metrics.	Artifacts in single cell RNA-seq data include high contamination from ambient material, high mitochondrial percentage, or doublets/multiplets.",
                    "clean"=	"An “analysis ready” set of observations.",
-                   "subset" = "Observations that belong to a certain cell type")
+                   "subset" = "Observations that belong to a certain biological subcategory")
 
 
 PR_desc<-list("transformation" = "Values have been modified but feature and observation dimensions are the same.	Normalization and Log2 transformation",
