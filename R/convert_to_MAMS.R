@@ -222,21 +222,6 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     }
 }
 
-.processing <- function(mat){
-    if (all(mat == as.integer(mat)) && all(mat >= 0)) {
-        return("counts")
-    }
-    
-    if (all(mat >= 0) && any(mat < 1)) {
-        return("lognormalized")
-    }
-    
-    if (mean(mat) > -0.01 && mean(mat) < 0.01 && sd(mat) > 0.9 && sd(mat) < 1.1) {
-        return("scaled")
-    }
-    return(NULL)
-}
-
 .feature_subset <- function(sce_list) {
     if(length(sce_list) > 1){
         n_rows <- sapply(sce_list, function(sce) nrow(sce))
