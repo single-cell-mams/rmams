@@ -165,47 +165,16 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
             fid <- paste0("fid", length(FIDs) + 1)
             fea <- paste0("fea", length(FIDs) + 1)
             FIDs <- c(FIDs, fid)
-            
-            if (mod == "counts") {
-                modality <- "rna"
-                analyte <- "rna"
-            } else if (mod == "logcounts") {
-                modality <- "rna"
-                analyte <- "rna"
-            } else if (mod == "cpm" || mod == "tpm" || mod == "fpkm") {
-                modality <- "rna"
-                analyte <- "rna"
-            } else {
-                modality <- "protein"
-                analyte <- "protein"
-            }
-            
+            modality <- "rna"
+            analyte <- "rna"
             assay_data <- SummarizedExperiment::assay(object, mod)
             fom <- paste0("fom", length(MAMS@FOM) + 1)
             accessor <- paste0("assay(object = ", substr(filepath, 1, nchar(filepath) - 4), ", \"", mod, "\")")
             
-            # manual annotation
-            # if (mod == "counts") {
-            #     data_type <- "int"
-            #     representation <- "sparse"
-            #     processing <- "counts"
-            #     feature_subset <- "full"
-            # } else if (mod == "logcounts") {
-            #     data_type <- "double"
-            #     representation <- "sparse"
-            #     processing <- "lognormalized"
-            #     feature_subset <- "full"
-            # } else if (mod == "cpm" || mod == "tpm" || mod == "fpkm") {
-            #     data_type <- "double"
-            #     representation <- "dense"
-            #     processing <- "scaled"
-            #     feature_subset <- "variable"
-            # }
-            
             # auto annotation
             data_type <- .data_type(assay_data)
             representation <- .representation(assay_data)
-            processing <- .processing(assay_data)
+            processing <- ifelse(grepl("log", mod), "log", NULL)
             feature_subset <- .feature_subset(object_list)[i]
             
             MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
@@ -217,8 +186,7 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
                 fom <- paste0("fom", length(MAMS@FOM) + 1)
                 reduction <- SingleCellExperiment::reducedDim(object, dimred)
                 data_type <- "double"
-                processing <- .reduction_or_embedding(reduction)
-                # processing <- ifelse(grepl("pca|ica", dimred, ignore.case = TRUE), "Reduction", ifelse(grepl("tsne|umap", dimred, ignore.case = TRUE), "Embedding", NA))
+                processing <- "Reduction"
                 accessor <- paste0("reducedDim(x = ", substr(filepath, 1, nchar(filepath) - 4), ", type = \"", dimred, "\")")
                 
                 MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type)
@@ -229,21 +197,6 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     return(MAMS)
 }
 
-.reduction_or_embedding <- function(matrix_input) {
-    if (!is.matrix(matrix_input)) {
-        stop("Input must be a matrix.")
-    }
-    
-    num_columns <- ncol(matrix_input)
-    
-    if (num_columns > 2) {
-        return("Reduction")
-    } else if (num_columns == 2) {
-        return("Embedding")
-    } else {
-        return(NULL)
-    }
-}
 
 .representation <- function(mat){
     if (inherits(mat, "dgCMatrix")) {
@@ -314,8 +267,8 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 #' counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
 #'     dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
 #' adata <- anndata$AnnData(X = counts)
-#' adata$obsm[["X_pca"]] <- counts[, 1:2]
-#' adata$obsm[["X_tsne"]] <- counts[, 3:4]
+#' py_set_item(adata$obsm, 'X_pca', matrix(rnorm(50), nrow=500, ncol=10))
+#' py_set_item(adata$obsm, 'X_tsne', matrix(rnorm(50), nrow=500, ncol=2))
 #' mams <- convert_AnnData_to_MAMS(object_list = list(adata = adata), 
 #'     observation_subsets = c("full"), dataset_id = "dataset1")
 #' print(mams)
@@ -342,7 +295,7 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
         analyte <- "rna"
         fom <- paste0("fom", length(MAMS@FOM) + 1)
         accessor <- paste0("object$X")
-        data_type <- .data_type(object[[mod]])
+        data_type <- .data_type(object$X)
         representation <- "sparse"
         processing <- "counts"
         feature_subset <- .feature_subset(object_list)[i]
@@ -350,23 +303,24 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
         
         ## layers
         layers <- adata$layers$keys()
-        # need to figure out where does normalized/scaled etc goes. layers
-        for (mod in layers) {
-            if (!is.null(mod)) {
-                fid <- paste0("fid", length(FIDs) + 1)
-                fea <- paste0("fea", length(FIDs) + 1)
-                FIDs <- c(FIDs, fid)
-                modality <- "rna"
-                analyte <- "rna"
-                fom <- paste0("fom", length(MAMS@FOM) + 1)
-                accessor <- paste0("object$layers['", mod, "']")
-                data_type <- .data_type(object[mod])
-                representation <- .representation(object[mod])
-                processing <- .processing(object[[mod]]) # update this with grepl
-                feature_subset <- .feature_subset(object_list)[i]
-                
-                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
-            }
+        if (length(layers) > 0){
+            for (mod in layers) {
+                if (!is.null(mod)) {
+                    fid <- paste0("fid", length(FIDs) + 1)
+                    fea <- paste0("fea", length(FIDs) + 1)
+                    FIDs <- c(FIDs, fid)
+                    modality <- "rna"
+                    analyte <- "rna"
+                    fom <- paste0("fom", length(MAMS@FOM) + 1)
+                    accessor <- paste0("object$layers['", mod, "']")
+                    data_type <- .data_type(object[mod])
+                    representation <- .representation(object[mod])
+                    processing <- ifelse(grepl("log", mod), "log", NULL)
+                    feature_subset <- .feature_subset(object_list)[i]
+                    
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
+                }
+            } 
         }
         
         # Iterate over reducedDims
@@ -375,8 +329,7 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
                 fom <- paste0("fom", length(MAMS@FOM) + 1)
                 reduction <- object$obsm[[dimred]]
                 data_type <- "double"
-                # processing <- ifelse(grepl("pca|ica", dimred, ignore.case = TRUE), "Reduction", ifelse(grepl("tsne|umap", dimred, ignore.case = TRUE), "Embedding", NA))
-                processing <- .reduction_or_embedding(reduction)
+                processing <- "Reduction"
                 accessor <- paste0("object$obsm[['", dimred, "']]")
                 
                 MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type)
