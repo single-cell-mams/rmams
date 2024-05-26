@@ -63,7 +63,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Creating MAMS from Seurat</h1>
             
-            <h4 data-toc-skip class="date">2024-05-21</h4>
+            <h4 data-toc-skip class="date">2024-05-26</h4>
       
       
       <div class="d-none name"><code>rmams_tutorial.Rmd</code></div>
@@ -307,114 +307,20 @@ txt or mtx file as well.</p>
 <h3 id="step-3-validating-mams-object">Step 3: Validating MAMS object<a class="anchor" aria-label="anchor" href="#step-3-validating-mams-object"></a>
 </h3>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_MAMS.html">check_MAMS</a></span><span class="op">(</span>mams_object <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"dataset_id"</span><span class="op">)</span> <span class="op">&lt;-</span><span class="st">""</span></span>
+<span><span class="fu"><a href="../reference/check_MAMS.html">check_MAMS</a></span><span class="op">(</span>mams_object <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error: Please use the setter functions to add the missing field information for the following slots: </span></span>
 <span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
 <span><span class="co">#&gt; :</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom1 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
+<span><span class="co">#&gt; [1] "dataset_id"</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom2 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom3 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom4 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom5 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom6 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom7 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom8 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom9 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom10 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom11 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom12 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom13 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom14 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom15 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom16 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom17 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom18 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom19 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom20 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom21 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom22 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom23 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): fom24 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "obs" "ong" "fng"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning: Please use the setter functions to add the missing field information for the following slots: </span></span>
-<span><span class="co">#&gt; (Ex. If missing 'filepath' for fom1, then 'fom(mams = mams_object, fom_id = 'fom1', key = 'filepath') &lt;- ...')</span></span>
-<span><span class="co">#&gt; :</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr5 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr6 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr7 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr12 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr13 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id" "parent_id"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): ogr14 is missing the fields:</span></span>
-<span><span class="co">#&gt; [1] "parent_id"</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result):</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FEA</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: OBS</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FID</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: OID</span></span>
-<span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: REC</span></span>
 <span><span class="co">#&gt; Warning in check_MAMS(mams_object = result): The following slot is empty: FNG</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="step-4-filling-the-missing-field">Step 4: Filling the missing field<a class="anchor" aria-label="anchor" href="#step-4-filling-the-missing-field"></a>
 </h4>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"representation"</span><span class="op">)</span> <span class="op">&lt;-</span><span class="st">"example"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/FOM-get-generic.html">fom</a></span><span class="op">(</span><span class="va">result</span>,<span class="st">"fom1"</span>,<span class="st">"dataset_id"</span><span class="op">)</span> <span class="op">&lt;-</span><span class="st">"PBMC1K"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
