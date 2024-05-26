@@ -15,9 +15,9 @@
 #' @slot obs_unit_description character.
 #' @slot processing character. 
 #' @slot processing_description character. 
-#' @slot analyte character. 
-#' @slot analyte_description character. 
-#' @slot modality character. 
+#' @slot analyte List or character. 
+#' @slot analyte_description List or character. 
+#' @slot modality List or character. 
 #' @slot obs_subset character. 
 #' @slot obs_subset_description character. 
 #' @slot feature_subset character. 
@@ -50,9 +50,9 @@ setClass(
     obs_unit_description = "CharOrNULL",
     processing = "CharOrNULL",
     processing_description = "CharOrNULL",
-    analyte = "CharOrNULL",
-    analyte_description = "CharOrNULL",
-    modality = "CharOrNULL",
+    analyte = "CharOrList",
+    analyte_description = "CharOrList",
+    modality = "CharOrList",
     obs_subset = "CharOrNULL",
     obs_subset_description = "CharOrNULL",
     feature_subset = "CharOrNULL",

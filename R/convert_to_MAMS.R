@@ -36,14 +36,20 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
         obs <- paste0("obs", i)
         obs_subset <- observation_subsets[[i]]
         obs_subset_description<-obs_sub_desc[[obs_subset]]
+        accessor<- paste0(names(object_list)[[i]],"[[]]")
+        oid_accessor<-paste0("`colnames(",names(object_list)[[i]],")`")
+        obs <- paste0("obs",i)
+        MAMS@OBS[[obs]]<- create_OBS_object(filepath = filepath,accessor = accessor)
+        MAMS@OID[[oid]]<- create_OID_object(filepath = filepath,accessor = oid_accessor)
         for(mod in SeuratObject::Assays(object)){
             if(mod == "RNA"){
                 modality <- "rna"
                 analyte <- "rna"
-            }else{
+            }else if (mod == "ADT"){
                 modality <- "protein"
                 analyte <- "protein"
             }
+            
             analyte_description<- analyte_desc[[analyte]]
             for(assay in slotNames(object@assays[[mod]])){
                 fom <- paste0("fom", length(MAMS@FOM)+1)
@@ -69,16 +75,28 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                     obs_unit_description<- obs_desc[[obs_unit]]
                     fid <- paste0("fid", length(FIDs)+1)
                     fea <- paste0("fea", length(FIDs)+1)
+                    fea_accessor <- paste0("`",substr(filepath, 1, nchar(filepath)-4), "[[", assay, "]][[]]`")
                     FIDs <- c(FIDs, fid)
+                    MAMS@FID[[fid]]<- create_FID_object(filepath = filepath, accessor = accessor)
+                    MAMS@FEA[[fea]]<- create_FEA_object(filepath = filepath, accessor = fea_accessor,feature_modality = modality)
                     
                     if(parent_list[i] == "yes"){
                         PIDs["parent"] <- fom
                         record_id <- "CellRanger.count"
+                        record_package_name<- "CellRanger"
+                        record_function_name<- "count"
+                        record_package_version<- "unknown"
                     }
                     else{
                         record_id <- "Seurat.subset"
+                        record_package_name<- "Seurat"
+                        record_function_name<- "subset"
+                        record_package_version<- as.character(Version(object))
                     }
                     
+                    MAMS@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+                                                              record_function_name = record_function_name,
+                                                              record_package_version = record_package_version)
                     
                     MAMS@FOM[[fom]] <- create_FOM_object(id = fom, 
                                                          filepath=filepath, 
@@ -86,6 +104,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                                                          fid=fid,
                                                          fea=fea,
                                                          oid=oid, 
+                                                         obs=obs,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
@@ -117,7 +136,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                         representation<- "dense"
                         representation_description<- "The matrix contains non-zeros for the majority of the measurements"
                     }
-                    processing <- "lognormalized"
+                    #processing <- as.character(object@commands[["NormalizeData.RNA"]]$normalization.method)
+                    processing<- "logNormalize"
                     processing_description <- process_desc[[processing]]
                     feature_subset <- "full"
                     feature_subset_description<- fea_desc[[feature_subset]]
@@ -127,12 +147,21 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                     parent_relationship = "transformation"
                     parent_relationship_description<- PR_desc[[parent_relationship]]
                     record_id <- paste0("NormalizeData",".",analyte)
+                    record_package_name<- "Seurat"
+                    record_function_name<- "NormalizeData"
+                    record_package_version<- as.character(Version(object))
+                    record_function_parameters<- list(object@commands[[record_id]])
+                    MAMS@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+                                                              record_function_name = record_function_name,
+                                                              record_package_version = record_package_version,
+                                                              record_function_parameters = record_function_parameters)
                     MAMS@FOM[[fom]] <- create_FOM_object(id = fom, 
                                                          filepath=filepath, 
                                                          accessor=accessor,
                                                          fid = fid,
                                                          fea = fea,
                                                          oid=oid, 
+                                                         obs=obs,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
@@ -174,12 +203,21 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                     parent_relationship<- "transformation"
                     parent_relationship_description<- PR_desc[[parent_relationship]]
                     record_id <- paste0("ScaleData",".",analyte)
+                    record_package_name<- "Seurat"
+                    record_function_name<- "ScaleData"
+                    record_package_version<- as.character(Version(object))
+                    record_function_parameters<- list(object@commands[[record_id]])
+                    MAMS@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+                                                              record_function_name = record_function_name,
+                                                              record_package_version = record_package_version,
+                                                              record_function_parameters = record_function_parameters)
                     MAMS@FOM[[fom]] <- create_FOM_object(id = fom, 
                                                          filepath=filepath, 
                                                          accessor=accessor, 
                                                          oid=oid, 
                                                          fid=fid,
                                                          fea=fea,
+                                                         obs=obs,
                                                          processing=processing, 
                                                          processing_description=processing_description,
                                                          modality=modality, 
@@ -211,40 +249,59 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             fom <- paste0("fom", length(MAMS@FOM)+1)
             reduction <- object@reductions[[dimred]]
             data_type <- "double"
-            if(grepl("pca|ica", dimred, ignore.case = TRUE)){
+            if(grepl("^pca|^ica", dimred, ignore.case = TRUE)){
+                analyte<-"rna"
+                modality<-"rna"
+                PIDs["pca"] <- fom
+                analyte_description<-analyte_desc[analyte]
                 processing<- "reduction"
                 processing_description <- process_desc[[processing]]
                 parent_id <- PIDs[["scale.data"]]
                 record_id <- paste0("RunPCA",".",analyte)
-                if(analyte == "RNA"){
-                    PIDs["pca"] <- fom
-                    print(PIDs)
-                }
-                else if(analyte == "ADT"){
-                    PIDs["apca"] <- fom
+            }   
+            else if(grepl("^apca", dimred, ignore.case = TRUE)){
+                analyte<-"rna"
+                modality<-"rna"
+                analyte_description<-analyte_desc[analyte]
+                PIDs["pca"] <- fom
+                processing<- "reduction"
+                processing_description <- process_desc[[processing]]
+                parent_id <- PIDs[["scale.data"]]
+                record_id <- paste0("RunPCA",".",analyte)
+                PIDs["apca"] <- fom
+                
                 }
                 
-            } else if (grepl("tsne|umap", dimred, ignore.case = TRUE)){
+            else if (grepl("^tsne|^umap", dimred, ignore.case = TRUE)){
                 processing <- "embedding"
                 processing_description <- process_desc[[processing]]
-                record_id <- paste0("RunUMAP",".",analyte)
                 
-                if(analyte == "RNA"){
+                if (grepl("rna",dimred,ignore.case = TRUE)){
+                    analyte<-"rna"
+                    modality<-"rna"
+                    analyte_description<-analyte_desc[analyte]
                     parent_id <- PIDs[["pca"]]
-                    
-                }
-                else if(analyte == "ADT"){
-                    parent_id <- PIDs[["apca"]]
+                    record_id = paste0("RunUMAP",".",analyte,"pca")
                 }
                 
-            }
-            
-            if(is.list(analyte)){
-                analyte_description = list()
-                for (i in length(analyte)){
-                    analyte_description <- list(analyte_description,analyte_desc[analyte])
+                else if(grepl("adt",dimred,ignore.case = TRUE)){
+                    analyte<- "protein"
+                    modality<-"rna"
+                    analyte_description<-analyte_desc[analyte]
+                    parent_id <- PIDs[["apca"]]
+                    record_id = paste0("RunUMAP",".",analyte,"apca")
                 }
             }
+             else if (grepl("^wnn", dimred, ignore.case = TRUE)){
+                   analyte <- c("rna","protein")
+                   parent_id <- PIDs[["multimodal.graph"]]    
+                   analyte_description = list()
+                   for (i in analyte){
+                       analyte_description <- c(analyte_description,analyte_desc[[i]])
+                   }
+                   record_id <- paste0("RunUMAP",".",paste0(analyte))
+                
+                }
             
             representation_description= "The matrix contains non-zeros for the majority of the measurements"
             feature_subset <- "full"
@@ -252,14 +309,6 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             obs_unit<- "cell"
             obs_unit_description<- obs_desc[[obs_unit]]
             accessor <- paste0(processing, "(object = ", substr(filepath, 1, nchar(filepath)-4), ', reduction = \"', dimred, '\")')
-            
-            if(length(analyte) > 1){
-                parent_id = PIDs[["multimodal.graph"]]
-                record_id = paste0("RunUMAP",".",analyte)
-            }
-            else {
-                parent_id <- parent_id
-            }
             
             parent_relationship <- "reduction"
             parent_relationship_description<- PR_desc[[parent_relationship]]
@@ -269,6 +318,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                                                  oid=oid, 
                                                  fid=fid,
                                                  fea=fea,
+                                                 obs=obs,
                                                  representation="dense",
                                                  representation_description=representation_description,
                                                  processing=processing, 
@@ -298,9 +348,11 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             edge_metric <- object@commands[[graphname]]$annoy.metric
             metric_type <- "distance"
             accessor <- paste0("Graphs(", substr(filepath, 1, nchar(filepath)-4), ', \"', graph, '\")')
+            
             if(substr(graph, 1, 3) == "RNA"){
                 record_id <- paste("FindNeighbors", mod, dimred, substr(filepath, 15, nchar(filepath)-4), sep = ".")
                 parent_id <- PIDs[["pca"]]
+               
             }
             
             else if(substr(graph, 1, 3) == "ADT"){
@@ -313,6 +365,9 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                 parent_id <- list(PIDs[["pca"]],PIDs[["apca"]])
                 PIDs["multimodal.graph"] <- ogr
             }
+            
+            
+            
             MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, 
                                                  filepath = filepath, 
                                                  accessor = accessor, 
@@ -335,9 +390,8 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             accessor <- paste0("Neighbors(", substr(filepath, 1, nchar(filepath)-4), ', \"', neighbor, '\")')
             record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
             parent_id <- list(PIDs[["pca"]],PIDs[["apca"]])
-        
             PIDs[["multimodal.neighbor"]]<- ogr
-            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type,dataset_id = dataset_id)
+            MAMS@ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, parent_id = parent_id, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type,dataset_id = dataset_id)
             #ONG[[ogr]] <- create_ONG_object(id = ogr, filepath = filepath, accessor = accessor, record_id = record_id, edge_metric = edge_metric, metric_type = metric_type)
         }
     }
@@ -430,11 +484,9 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
     for (i in 1:length(object_list)) {
         object <- object_list[[i]]
         filepath <- paste0(names(object_list)[[i]], ".rds")
-        accessor<- paste0(names(object_list)[[i]],"[[]]")
         oid <- paste0("oid", i)
         obs_subset <- observation_subsets[[i]]
-        obs <- paste0("obs",i)
-        MAMS@OBS[[obs]]<- create_OBS_object(filepath = filepath,accessor = accessor)
+        
         
         # Iterate over assays
         for (mod in SummarizedExperiment::assayNames(object)) {
