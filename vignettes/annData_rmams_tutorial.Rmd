@@ -87,40 +87,11 @@ sc$tl$leiden(adata.filtered.nonartifact)
 sc$pl$umap(adata.filtered.nonartifact, color = list("leiden"))
 ```
 
-```{r plot_rna_t_cells,message = FALSE, warning=FALSE}
-plotUMAP(sce.filtered.nonartifact, colour_by = "CD3E", by_exprs_values = "logcounts")
-```
-
-### Analysis of T-cell subset
-
-```{r subset_tcell,message = FALSE, warning=FALSE}
-sce.tcell <- sce.filtered.nonartifact[, sce.filtered.nonartifact$label %in% c(1,3,5,6,9)]
-```
-
-#### RNA only clustering of T-cells
-
-```{r cluster_rna_tcell,message = FALSE, warning=FALSE}
-sce.tcell <- logNormCounts(sce.tcell)
-dec <- modelGeneVar(sce.tcell)
-hvgs <- getTopHVGs(dec, n = 2000)
-sce.tcell <- runPCA(sce.tcell, subset_row = hvgs)
-g <- buildSNNGraph(sce.tcell, use.dimred = "PCA")
-clusters <- igraph::cluster_louvain(g)$membership
-colLabels(sce.tcell) <- factor(clusters)
-sce.tcell <- runUMAP(sce.tcell, dimred = "PCA")
-```
-
-```{r plot_rna,message = FALSE, warning=FALSE}
-plotUMAP(sce.tcell, colour_by = "label")
-```
 
 ```{r save_data,message = FALSE, warning=FALSE}
-adata.filtered.nonartifact$write_h5ad(filename = "PBMC_Scanpy.h5ad")
-
-saveRDS(sce.raw, "../inst/extdata/pbmc1k_sce_raw.rds")
-saveRDS(sce.filtered, "../inst/extdata/pbmc1k_sce_filtered.rds")
-saveRDS(sce.filtered.nonartifact, "../inst/extdata/pbmc1k_sce_filtered_nonartifact.rds")
-saveRDS(sce.tcell, "../inst/extdata/pbmc1k_sce_tcell.rds")
+adata$write_h5ad(filename = "../inst/extdata/pbmc1k_adata_raw.h5ad")
+adata.filtered$write_h5ad(filename = "../inst/extdata/pbmc1k_adata_filtered.h5ad")
+adata.filtered.nonartifact$write_h5ad(filename = "../inst/extdata/pbmc1k_adata_filtered_nonartifact.h5ad")
 ```
 
 ## Step 2: Creating the MAMS object from the SingleCellExperiment object
@@ -130,21 +101,21 @@ saveRDS(sce.tcell, "../inst/extdata/pbmc1k_sce_tcell.rds")
 ```{r create_mams_object,message = FALSE, warning=FALSE}
 library(rmams)
 
-# get the file paths of sce objects
+# get the file paths of anndata objects
 
-file_paths <- c("../inst/extdata/pbmc1k_sce_raw.rds", "../inst/extdata/pbmc1k_sce_filtered.rds", "../inst/extdata/pbmc1k_sce_filtered_nonartifact.rds", "../inst/extdata/pbmc1k_sce_tcell.rds")
+file_paths <- c("../inst/extdata/pbmc1k_adata_raw.h5ad", "../inst/extdata/pbmc1k_adata_filtered.h5ad", "../inst/extdata/pbmc1k_adata_filtered_nonartifact.h5ad")
 
 # get the names of these objects 
 file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
 
-# save the seurat objects onto the object_list by reading the object from file path.
-object_list <- lapply(file_paths, readRDS)
+# save the anndata objects onto the object_list by reading the object from file path.
+object_list <- lapply(file_paths, read_h5ad)
 
 # name the list objects using previously generated file_names.
 names(object_list) <- file_names
 
 # define the type of each subset
-observational_subsets<-c("raw", "filtered","nonartifact","subset")
+observational_subsets<-c("raw", "filtered","nonartifact")
 datasetid = "PBMC1K"
 ```
 
@@ -152,7 +123,7 @@ datasetid = "PBMC1K"
 ### Create MAMS object
 
 ```{r create_object}
-result<- convert_SCE_to_MAMS(object_list,observational_subsets,datasetid)
+result<- convert_AnnData_to_MAMS(object_list,observational_subsets,datasetid)
 ```
 
 ### Accessing data 
@@ -196,6 +167,7 @@ results@REC[[record_id]]<- create_REC_object(record_package_name = record_packag
 
 ## storing mams in input 
 ```{r}
+# uns slot
 metadata(sce.filtered.nonartifact) <- list() #store directly? json to list? make new function like json that converts to list of lists
 ```
 
