@@ -52,9 +52,9 @@ adt <- CreateAssayObject(counts = raw.matrices[[2]])
 data.raw[["ADT"]] <- adt
 
 nonempty.matrices <- Read10X(data.dir = "../data/filtered_feature_bc_matrix")
-data.nonempty <- CreateSeuratObject(counts = nonempty.matrices[[1]], assay = "RNA", project = "pbmc1k")
+data.nonartifact <- CreateSeuratObject(counts = nonempty.matrices[[1]], assay = "RNA", project = "pbmc1k")
 adt <- CreateAssayObject(counts = nonempty.matrices[[2]])
-data.nonempty[["ADT"]] <- adt
+data.nonartifact[["ADT"]] <- adt
 ```
 
 ### Quality control
@@ -62,8 +62,8 @@ data.nonempty[["ADT"]] <- adt
 The filtered matrix will be further subsetted based on mitochondrial percentage and total number of features detected:
 
 ```{r qc}
-data.nonempty[["percent.mt"]] <- PercentageFeatureSet(data.nonempty, pattern = "^MT-")
-data <- subset(data.nonempty, subset = nFeature_RNA > 200 & percent.mt < 5)
+data.nonartifact[["percent.mt"]] <- PercentageFeatureSet(data.nonartifact, pattern = "^MT-")
+data <- subset(data.nonartifact, subset = nFeature_RNA > 200 & percent.mt < 5)
 ```
 
 ### Clustering
@@ -190,7 +190,7 @@ The data matrices stored within a Seurat object will be saved to an "rds" file. 
 
 ```{r save_data,message = FALSE, warning=FALSE}
 saveRDS(data.raw, "../inst/extdata/pbmc1k_seurat_raw.rds")
-saveRDS(data.nonempty, "../inst/extdata/pbmc1k_seurat_nonempty.rds")
+saveRDS(data.nonartifact, "../inst/extdata/pbmc1k_seurat_nonartifact.rds")
 saveRDS(data, "../inst/extdata/pbmc1k_seurat_filtered.rds")
 saveRDS(data.tcell, "../inst/extdata/pbmc1k_seurat_tcell.rds")
 ```
@@ -206,7 +206,7 @@ library(rmams)
 
 # get the file paths of seurat objects
 
-file_paths <- c("../inst/extdata/pbmc1k_seurat_filtered.rds", "../inst/extdata/pbmc1k_seurat_nonempty.rds", "../inst/extdata/pbmc1k_seurat_tcell.rds")
+file_paths <- c("../inst/extdata/pbmc1k_seurat_filtered.rds", "../inst/extdata/pbmc1k_seurat_nonartifact.rds", "../inst/extdata/pbmc1k_seurat_tcell.rds")
 
 # get the names of these objects 
 file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
@@ -218,14 +218,15 @@ object_list <- lapply(file_paths, readRDS)
 names(object_list) <- file_names
 
 # define the type of each subset
-observational_subsets<-c("filtered","nonempty","subset")
+observational_subsets<-c("filtered","nonartifact","subset")
 datasetid = "PBMC1K"
 ```
 
 ### Create MAMS object
 
 ```{r create_object}
-result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid)
+parents<-c("yes","no","no","no")
+result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid,parents)
 ```
 
 ### Accessing data 
@@ -233,22 +234,20 @@ result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid)
 ```{r show_results}
 # Get the dataset_id from the first fom
 fom(result,"fom1","dataset_id")
-
 ```
 
 ## Step 3: Validating MAMS object
 
 ```{r validate_mams,message=TRUE,warning=TRUE, error=TRUE}
+fom(result,"fom1","dataset_id") <-""
 check_MAMS(mams_object = result)
 ```
 
 ### Step 4: Filling the missing field
 
 ```{r}
-fom(result,"fom1","representation") <-"example"
+fom(result,"fom1","dataset_id") <-"PBMC1K"
 ```
-
-
 
 
 ## Step 4: Saving MAMS object to JSON

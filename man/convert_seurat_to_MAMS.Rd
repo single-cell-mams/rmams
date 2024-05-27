@@ -4,7 +4,12 @@
 \alias{convert_seurat_to_MAMS}
 \title{Converts Seurat object to a MAMS object}
 \usage{
-convert_seurat_to_MAMS(object_list, observation_subsets, dataset_id)
+convert_seurat_to_MAMS(
+  object_list,
+  observation_subsets,
+  dataset_id,
+  parent_list
+)
 }
 \arguments{
 \item{object_list}{A named list of Seurat objects to be converted to MAMS format}
@@ -14,6 +19,8 @@ observation subset name for each Seurat object. One of: full, filtered, threshol
 nonartifact, clean.}
 
 \item{dataset_id}{Specify id of the dataset}
+
+\item{parent_list}{A named list that specifies which is the parent dataset}
 }
 \value{
 A MAMS object containing all the extracted metadata fields.
@@ -31,7 +38,8 @@ srt <- NormalizeData(srt)
 subset_srt <- srt[, 1:100]
 mams <- convert_seurat_to_MAMS(object_list = list(srt = srt, 
     subset_srt = subset_srt), observation_subsets = c("full", "subset"), 
-    dataset_id = "dataset1")
+    dataset_id = "dataset1",parent_list = c("yes","no"))
 print(mams)
+
 
 }

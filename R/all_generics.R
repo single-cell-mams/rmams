@@ -298,6 +298,28 @@ setGeneric("obs_unit", function(x) standardGeneric("obs_unit"))
 #' @noRd          
 setGeneric("obs_unit<-", function(x, value) standardGeneric("obs_unit<-"))
 
+# Define a generic function and method for 'obs_unit'
+#' obs_unit_description
+#' @rdname obs_unit_description-get-generic
+#' @description generic getter for obs_unit field
+#' @param x the obs_unit_description to get
+#' @return the value
+#' @keywords internal 
+#' @noRd          
+setGeneric("obs_unit_description", function(x) standardGeneric("obs_unit_description"))
+
+#' obs_unit_description
+#' @rdname obs_unit_description-set-generic
+#' @description generic getter for obs_unit field
+#' @param x the obs_unit_description to get
+#' @param value the new value
+#' @return nothing (setter)
+#' @keywords internal 
+#' @noRd          
+setGeneric("obs_unit_description<-", function(x, value) standardGeneric("obs_unit_description<-"))
+
+
+
 # Define a generic function and method for 'processing'
 #' processing
 #' @rdname processing-get-generic

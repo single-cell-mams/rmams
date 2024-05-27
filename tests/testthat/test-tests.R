@@ -15,7 +15,7 @@ test_that("Test MAMS functions", {
     print(subset_srt)
     # Test convert_seurat_to_MAMS
     mams <- convert_seurat_to_MAMS(object_list = list(srt = srt, subset_srt = subset_srt), 
-                                   observation_subsets = c("full", "subset"), dataset_id = "dataset1")
+                                   observation_subsets = c("full", "subset"), dataset_id = "dataset1",parent_list = c("yes","no"))
     # test if its a mam object
     expect_is(mams, "MAMS")
     print(mams)

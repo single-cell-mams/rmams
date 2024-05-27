@@ -12,17 +12,18 @@
 #' @slot representation character. 
 #' @slot representation_description character. 
 #' @slot obs_unit character. 
+#' @slot obs_unit_description character.
 #' @slot processing character. 
 #' @slot processing_description character. 
-#' @slot analyte character. 
-#' @slot analyte_description character. 
-#' @slot modality character. 
+#' @slot analyte List or character. 
+#' @slot analyte_description List or character. 
+#' @slot modality List or character. 
 #' @slot obs_subset character. 
 #' @slot obs_subset_description character. 
 #' @slot feature_subset character. 
 #' @slot feature_subset_description character. 
 #' @slot record_id character. 
-#' @slot parent_id character. 
+#' @slot parent_id character or list. 
 #' @slot parent_relationship character. 
 #' @slot parent_relationship_description character. 
 #' @slot oid character.
@@ -46,17 +47,18 @@ setClass(
     representation = "CharOrNULL",
     representation_description = "CharOrNULL",
     obs_unit = "CharOrNULL",
+    obs_unit_description = "CharOrNULL",
     processing = "CharOrNULL",
     processing_description = "CharOrNULL",
-    analyte = "CharOrNULL",
-    analyte_description = "CharOrNULL",
-    modality = "CharOrNULL",
+    analyte = "CharOrList",
+    analyte_description = "CharOrList",
+    modality = "CharOrList",
     obs_subset = "CharOrNULL",
     obs_subset_description = "CharOrNULL",
     feature_subset = "CharOrNULL",
     feature_subset_description = "CharOrNULL",
     record_id = "CharOrNULL",
-    parent_id = "CharOrNULL",
+    parent_id = "CharOrList",
     parent_relationship = "CharOrNULL",
     parent_relationship_description = "CharOrNULL",
     oid = "CharOrNULL",
@@ -79,6 +81,7 @@ setClass(
 #' @param representation Preferred representation of the matrix
 #' @param representation_description More detail about the representation 
 #' @param obs_unit Biological unit of the observations
+#' @param obs_unit_description Used to describe the obs_unit
 #' @param processing Used to describe the nature of the data contained within the matrix
 #' @param processing_description More detail about the nature of the data
 #' @param analyte Used to describe the biological analytes being quantified in the matrix
@@ -110,6 +113,7 @@ create_FOM_object <- function(
     representation = NA_character_,
     representation_description = NA_character_,
     obs_unit = NA_character_,
+    obs_unit_description = NA_character_,
     processing = NA_character_,
     processing_description = NA_character_,
     analyte = NA_character_,
@@ -139,6 +143,7 @@ create_FOM_object <- function(
              representation = representation,
              representation_description = representation_description,
              obs_unit = obs_unit,
+             obs_unit_description = obs_unit_description,
              processing = processing,
              processing_description = processing_description,
              analyte = analyte,
@@ -262,6 +267,7 @@ setMethod("representation", "FOM", function(x) x@representation)
 #' @return nothing (setter)
 #' @export
 setMethod("representation<-", "FOM", function(x, value) { x@representation <- value; x })
+
 #' representation_description
 #' @description getter
 #' @rdname representation_description-FOM-get
@@ -269,6 +275,7 @@ setMethod("representation<-", "FOM", function(x, value) { x@representation <- va
 #' @return the value
 #' @export
 setMethod("representation_description", "FOM", function(x) x@representation_description)
+
 #' representation_description<-
 #' @description setter
 #' @rdname representation_description-FOM-set
@@ -277,6 +284,7 @@ setMethod("representation_description", "FOM", function(x) x@representation_desc
 #' @return nothing (setter)
 #' @export
 setMethod("representation_description<-", "FOM", function(x, value) { x@representation_description <- value; x })
+
 #' obs_unit
 #' @description getter
 #' @rdname obs_unit-FOM-get
@@ -284,6 +292,7 @@ setMethod("representation_description<-", "FOM", function(x, value) { x@represen
 #' @return the value
 #' @export
 setMethod("obs_unit", "FOM", function(x) x@obs_unit)
+
 #' obs_unit<-
 #' @description setter
 #' @rdname obs_unit-FOM-set
@@ -292,6 +301,25 @@ setMethod("obs_unit", "FOM", function(x) x@obs_unit)
 #' @return nothing (setter)
 #' @export
 setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
+
+#' obs_unit_description
+#' @description setter
+#' @rdname obs_unit_description-FOM-set
+#' @param x FOM object
+#' @param value value
+#' @return nothing (setter)
+#' @export
+setMethod("obs_unit_description", "FOM", function(x) x@obs_unit_description)
+
+#' obs_unit_description<-
+#' @description setter
+#' @rdname obs_unit_description-FOM-set
+#' @param x FOM object
+#' @param value value
+#' @return nothing (setter)
+#' @export
+setMethod("obs_unit_description<-", "FOM", function(x, value) { x@obs_unit_description <- value; x })
+
 #' processing
 #' @description getter
 #' @rdname processing-FOM-get
@@ -299,6 +327,7 @@ setMethod("obs_unit<-", "FOM", function(x, value) { x@obs_unit <- value; x })
 #' @return the value
 #' @export
 setMethod("processing", "FOM", function(x) x@processing)
+
 #' processing<-
 #' @description setter
 #' @rdname processing-FOM-set
@@ -307,6 +336,7 @@ setMethod("processing", "FOM", function(x) x@processing)
 #' @return nothing (setter)
 #' @export
 setMethod("processing<-", "FOM", function(x, value) { x@processing <- value; x })
+
 #' processing_description
 #' @description getter
 #' @rdname processing_description-FOM-get
@@ -314,6 +344,7 @@ setMethod("processing<-", "FOM", function(x, value) { x@processing <- value; x }
 #' @return the value
 #' @export
 setMethod("processing_description", "FOM", function(x) x@processing_description)
+
 #' processing_description<-
 #' @description setter
 #' @rdname processing_description-FOM-set
@@ -322,6 +353,7 @@ setMethod("processing_description", "FOM", function(x) x@processing_description)
 #' @return nothing (setter)
 #' @export
 setMethod("processing_description<-", "FOM", function(x, value) { x@processing_description <- value; x })
+
 #' analyte
 #' @description getter
 #' @rdname analyte-FOM-get

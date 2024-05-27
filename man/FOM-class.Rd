@@ -32,15 +32,17 @@ Define the Feature Observation Matrix (FOM) S4 object
 
 \item{\code{obs_unit}}{character.}
 
+\item{\code{obs_unit_description}}{character.}
+
 \item{\code{processing}}{character.}
 
 \item{\code{processing_description}}{character.}
 
-\item{\code{analyte}}{character.}
+\item{\code{analyte}}{List or character.}
 
-\item{\code{analyte_description}}{character.}
+\item{\code{analyte_description}}{List or character.}
 
-\item{\code{modality}}{character.}
+\item{\code{modality}}{List or character.}
 
 \item{\code{obs_subset}}{character.}
 
@@ -52,7 +54,7 @@ Define the Feature Observation Matrix (FOM) S4 object
 
 \item{\code{record_id}}{character.}
 
-\item{\code{parent_id}}{character.}
+\item{\code{parent_id}}{character or list.}
 
 \item{\code{parent_relationship}}{character.}
 

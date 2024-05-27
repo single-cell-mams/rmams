@@ -17,22 +17,21 @@ check_MAMS <- function(mams_object){
     
     #Check 2. Check to see all required fields for each MAMS class (FOM, ONG, etc.) exist
     required_field_list = list(FOM = c("id", "dataset_id", "data_type", "analyte"),
-                               ONG = c("id", "dataset_id"),
-                               FEA = c("id", "dataset_id", "feature_modality"),
-                               OBS = c("id", "dataset_id"),
-                               FID = c("id", "dataset_id"),
-                               OID = c("id", "dataset_id"),
-                               REC = c("record_package_name", "record_package_version",
-                                       "record_function_name"),
-                               FNG = c("id", "dataset_id"))
+                               ONG = c("filepath", "accessor"),
+                               FEA = c("filepath", "accessor"),
+                               OBS = c("filepath", "accessor"),
+                               FID = c("filepath","accessor"),
+                               OID = c("filepath","accessor"),
+                               REC = c("record_function_name","record_package_name", "record_package_version"),
+                               FNG = c())
     
     
     warn_field_list = list(FOM = c("filepath","accessor","representation","representation_description","obs_unit","processing","processing_description",
                                    "analyte","analyte_description","modality","obs_subset","obs_subset_description","feature_subset","feature_subset_description",
-                                   "record_id","parent_id","parent_relationship","parent_relationship_description","oid","fid","obs", "fea","ong","fng"),
-                           ONG = c("filepath","accessor", "parent_id","record_id","edge_metric","metric_type"),
-                           FEA = c("id", "dataset_id", "feature_modality"),
-                           OBS = c(),
+                                   "record_id","parent_id","parent_relationship","parent_relationship_description","oid","fid","obs", "fea"),
+                           ONG = c("parent_id","record_id","edge_metric","metric_type"),
+                           FEA = c("feature_modality"),
+                           OBS = c("filepath","accessor"),
                            FID = c(),
                            OID = c(),
                            REC = c(),
@@ -90,9 +89,14 @@ check_MAMS <- function(mams_object){
                 check_missing_fields<- lapply(slot_obj, function(x){
                     missing_fields <- c()
                     for(fields in required_field_list[[mams_class]]){
-                        if(is.na(methods::slot(x, fields)) | methods::slot(x, fields) == ""){
+                        
+                        for (multi in methods::slot(x, fields)) { 
+                            
+                        if (is.na(multi) | multi == ""){
                             missing_fields <- c(missing_fields, fields)
                         }
+                        }
+                        
                     }
                     if(!is.null(missing_fields)){
                         return(missing_fields)
@@ -107,15 +111,16 @@ check_MAMS <- function(mams_object){
                     for(fields in warn_field_list[[mams_class]]){
                         lst <- list(methods::slot(x, fields))
                         #methods::slot(x, fields) %in% c("","NA")
-                        if(is.null(methods::slot(x, fields))){
+                        for (t in methods::slot(x, fields)){
+                            if(is.null(t)){
                            # print(fields)
-                            warning_fields <- c(warning_fields, fields)
-                        }
-                        else {
-                            if(is.na(methods::slot(x, fields)) | methods::slot(x, fields) == "") {
                                 warning_fields <- c(warning_fields, fields)
                             }
+                            else if(is.na(t) | t == "") {
+                                    warning_fields <- c(warning_fields, fields)
+                                }
                         }
+                        
                     }
                     if(!is.null(warning_fields)){
                         return(warning_fields)

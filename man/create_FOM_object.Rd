@@ -13,6 +13,7 @@ create_FOM_object(
   representation = NA_character_,
   representation_description = NA_character_,
   obs_unit = NA_character_,
+  obs_unit_description = NA_character_,
   processing = NA_character_,
   processing_description = NA_character_,
   analyte = NA_character_,
@@ -50,6 +51,8 @@ create_FOM_object(
 \item{representation_description}{More detail about the representation}
 
 \item{obs_unit}{Biological unit of the observations}
+
+\item{obs_unit_description}{Used to describe the obs_unit}
 
 \item{processing}{Used to describe the nature of the data contained within the matrix}
 
