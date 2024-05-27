@@ -497,12 +497,12 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
             analyte <- "rna"
             assay_data <- SummarizedExperiment::assay(object, mod)
             fom <- paste0("fom", length(MAMS@FOM) + 1)
-            accessor <- paste0("assay(object = ", substr(filepath, 1, nchar(filepath) - 4), ", \"", mod, "\")")
+            accessor <- paste0("assay(", substr(filepath, 1, nchar(filepath) - 4), ", \"", mod, "\")")
             
             # auto annotation
             data_type <- .data_type(assay_data)
             representation <- .representation(assay_data)
-            processing <- ifelse(grepl("log", mod), "log", NULL)
+            processing <- ifelse(grepl("log", mod), "log", "")
             feature_subset <- .feature_subset(object_list)[i]
             
             MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
