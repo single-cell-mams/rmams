@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data.
 
-This workflow highlights how an RNA expression based experiment from a SingleCellExperiment object can be annotated using the rmams package. For this purpose, we will analyze the [PBMC 1K dataset](https://support.10xgenomics.com/single-cell-gene-expression/datasets/4.0.0/SC3_v3_NextGem_SI_PBMC_CSP_1K) using packages from Bioconductor and with SingleCellExperiment as our data-container.
+This workflow highlights how an RNA expression based experiment from an AnnData object can be annotated using the rmams package. For this purpose, we will analyze the [PBMC 1K dataset](https://support.10xgenomics.com/single-cell-gene-expression/datasets/4.0.0/SC3_v3_NextGem_SI_PBMC_CSP_1K) using Python based packages and AnnData as our data-container.
 
 The steps include:
 1. Importing the raw/droplet and filtered/cell matrices
@@ -165,10 +165,9 @@ results@REC[[record_id]]<- create_REC_object(record_package_name = record_packag
 
 ```
 
-## storing mams in input 
+## Storing mams back to object
 ```{r}
 # uns slot
-metadata(sce.filtered.nonartifact) <- list() #store directly? json to list? make new function like json that converts to list of lists
 ```
 
 
@@ -176,13 +175,11 @@ metadata(sce.filtered.nonartifact) <- list() #store directly? json to list? make
 ### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
 
 ```{r}
-write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_sce_mams.JSON",format = "JSON")
-
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adata_mams.JSON",format = "JSON")
 ```
 
 ## Step 5: Saving MAMS as YAML
 
 ```{r}
-write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_sce_mams.yml",format = "YAML")
-
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adata_mams.yml",format = "YAML")
 ```
