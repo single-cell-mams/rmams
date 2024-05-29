@@ -40,11 +40,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install anndata
 
-      - name: Install R dependencies
-        run: |
-          install.packages('reticulate')
-          reticulate::py_install('anndata')
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::pkgdown, local::.
