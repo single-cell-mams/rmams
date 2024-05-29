@@ -505,7 +505,7 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
             processing <- ifelse(grepl("log", mod), "log", "")
             feature_subset <- .feature_subset(object_list)[i]
             
-            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
+            MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id, representation = representation)
         }
         
         # Iterate over reducedDims
@@ -516,8 +516,9 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
                 data_type <- "double"
                 processing <- "Reduction"
                 accessor <- paste0("reducedDim(x = ", substr(filepath, 1, nchar(filepath) - 4), ", type = \"", dimred, "\")")
+                representation = .representation(reduction)
                 
-                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type)
+                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type, representation = representation)
             }
         }
     }
@@ -565,6 +566,9 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 #' 
 #' @param object_list A named list of AnnData objects 
 #'  objects to be converted to MAMS format
+#' @param X_processing A vector of the same length as object_list,
+#'  where each element describes the processing for X in each object.
+#'  For example, "counts" or "logcounts" or "scaled". 
 #' @param observation_subsets A vector with same length as object_list 
 #'  indicating the observation subset name for each 
 #'  AnnData object. One of: full, filtered, threshold, detected,
@@ -586,7 +590,7 @@ convert_SCE_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
 #'     observation_subsets = c("full"), dataset_id = "dataset1")
 #' print(mams)
 #' }
-convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id) {
+convert_AnnData_to_MAMS <- function(object_list, X_processing, observation_subsets, dataset_id) {
     # Create emoty mams object
     MAMS <- create_MAMS_object()
     FIDs <- c()
@@ -599,8 +603,8 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
         obs_subset <- observation_subsets[[i]]
         
         # Iterate over assays
-        ## raw
-        raw <- object$X
+        ## X
+        X <- object$X
         fid <- paste0("fid", length(FIDs) + 1)
         fea <- paste0("fea", length(FIDs) + 1)
         FIDs <- c(FIDs, fid)
@@ -608,14 +612,14 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
         analyte <- "rna"
         fom <- paste0("fom", length(MAMS@FOM) + 1)
         accessor <- paste0("object$X")
-        data_type <- .data_type(object$X)
-        representation <- "sparse"
-        processing <- "counts"
+        data_type <- .data_type(as.matrix(object$X))
+        representation <- .representation(object$X)
+        processing <- X_processing[i]
         feature_subset <- .feature_subset(object_list)[i]
-        MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
+        MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id, representation = representation)
         
         ## layers
-        layers <- adata$layers$keys()
+        layers <- object$layers$keys()
         if (length(layers) > 0){
             for (mod in layers) {
                 if (!is.null(mod)) {
@@ -626,12 +630,12 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
                     analyte <- "rna"
                     fom <- paste0("fom", length(MAMS@FOM) + 1)
                     accessor <- paste0("object$layers['", mod, "']")
-                    data_type <- .data_type(object[mod])
-                    representation <- .representation(object[mod])
-                    processing <- ifelse(grepl("log", mod), "log", NULL)
+                    data_type <- .data_type(as.matrix(object$layers[mod]))
+                    representation <- .representation(object$layers[mod])
+                    processing <- ifelse(grepl("log", mod), "log", "")
                     feature_subset <- .feature_subset(object_list)[i]
                     
-                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id)
+                    MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, data_type = data_type, dataset_id = dataset_id, representation = representation)
                 }
             } 
         }
@@ -644,8 +648,9 @@ convert_AnnData_to_MAMS <- function(object_list, observation_subsets, dataset_id
                 data_type <- "double"
                 processing <- "Reduction"
                 accessor <- paste0("object$obsm[['", dimred, "']]")
+                representation = .representation(reduction)
                 
-                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type)
+                MAMS@FOM[[fom]] <- create_FOM_object(id = fom, filepath = filepath, accessor = accessor, oid = oid, processing = processing, modality = modality, analyte = analyte, obs_subset = obs_subset, dataset_id = dataset_id, data_type = data_type, representation = representation)
             }
         }
     }

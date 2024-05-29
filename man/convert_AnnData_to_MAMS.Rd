@@ -4,11 +4,20 @@
 \alias{convert_AnnData_to_MAMS}
 \title{Converts a AnnData object to a MAMS object}
 \usage{
-convert_AnnData_to_MAMS(object_list, observation_subsets, dataset_id)
+convert_AnnData_to_MAMS(
+  object_list,
+  X_processing,
+  observation_subsets,
+  dataset_id
+)
 }
 \arguments{
 \item{object_list}{A named list of AnnData objects
 objects to be converted to MAMS format}
+
+\item{X_processing}{A vector of the same length as object_list,
+where each element describes the processing for X in each object.
+For example, "counts" or "logcounts" or "scaled".}
 
 \item{observation_subsets}{A vector with same length as object_list
 indicating the observation subset name for each
@@ -30,8 +39,8 @@ anndata <- import("anndata")
 counts <- matrix(rpois((500*200), 1), nrow = 500, ncol = 200, 
     dimnames = list(paste0("Row", 1:500), paste0("Col", 1:200)))
 adata <- anndata$AnnData(X = counts)
-adata$obsm[["X_pca"]] <- counts[, 1:2]
-adata$obsm[["X_tsne"]] <- counts[, 3:4]
+py_set_item(adata$obsm, 'X_pca', matrix(rnorm(50), nrow=500, ncol=10))
+py_set_item(adata$obsm, 'X_tsne', matrix(rnorm(50), nrow=500, ncol=2))
 mams <- convert_AnnData_to_MAMS(object_list = list(adata = adata), 
     observation_subsets = c("full"), dataset_id = "dataset1")
 print(mams)
