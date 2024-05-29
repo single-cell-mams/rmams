@@ -21,89 +21,30 @@ knitr::opts_chunk$set(
 
 Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data.
 
-This workflow highlights how an RNA expression based experiment from an AnnData object can be annotated using the rmams package. For this purpose, we will analyze the [PBMC 1K dataset](https://support.10xgenomics.com/single-cell-gene-expression/datasets/4.0.0/SC3_v3_NextGem_SI_PBMC_CSP_1K) using Python based packages and AnnData as our data-container.
+This workflow highlights how an RNA expression based experiment from an AnnData object can be annotated using the rmams package. For this purpose, we utilize a pre-processed PBMC3K AnnData object, which has been passed through standard python scanpy workflow.
 
-The steps include:
-1. Importing the raw/droplet and filtered/cell matrices
-2. Performing quality control and further subsetting the filtered matrix to only include high-quality cells
-3. Clustering all cells
-4. Clustering T-cells only
+The data object (scverse-getting-started-anndata-pbmc3k_processed.h5ad) is available through this link [here](https://figshare.com/articles/dataset/scverse_tutorial_data_Getting_started_with_AnnData/22577536/2?file=40067737)[1].
 
-This workflow demonstrates how different subsets of cells/observations are produced due to QC/filtering or can be made based on different biological subsets. Note that the goal of this workflow is less about producing the best clustering results and cell type characterization. Rather it is focused on producing data/results that is commonly generated during real-world analyses which can be annotated with MAMS. For more information about MAMS, see the [GitHub repository](https://github.com/single-cell-mams/mams)
+This workflow is focused on producing data/results that is commonly generated during real-world analyses which can be annotated with MAMS. For more information about MAMS, see the [GitHub repository](https://github.com/single-cell-mams/mams)
 
-## Step 1: Creating the SingleCellExperiment object
-
-### Importing 
+## Step 1: Import AnnData object
 
 ```{r library, message=FALSE}
-library(reticulate)
+# library(reticulate)
 library(anndata)
-sc <- reticulate::import("scanpy")
 ```
-
-First, we will import raw/droplet and filtered/cell matrices:
 
 ```{r import, warning=FALSE}
-adata.raw <- sc$read_10x_mtx("../data/raw_feature_bc_matrix/", var_names = "gene_ids")
-adata.filtered <- sc$read_10x_mtx("../data/filtered_feature_bc_matrix/", var_names = "gene_ids")
-
-# ensembl_ids <- rownames(sce.filtered)
-# gene_symbols <- mapIds(org.Hs.eg.db, keys = ensembl_ids, column = "SYMBOL", keytype = "ENSEMBL", multiVals = "first")
-# rownames(sce.filtered) <- ifelse(is.na(gene_symbols), ensembl_ids, gene_symbols)
+adata <- anndata::read_h5ad('../inst/extdata/pbmc3k_annData_processed.h5ad')
 ```
 
-### Quality control
-
-The filtered matrix will be further subsetted based on mitochondrial percentage:
-
-```{r qc}
-var_df <- adata.filtered$var
-var_df$mito <- grepl("MT-", var_df$gene_symbols)
-adata.filtered$var <- var_df
-sc$pp$calculate_qc_metrics(adata.filtered,
-                           qc_vars = list("mito"),
-                           inplace = TRUE)
-adata.filtered.nonartifact = adata.filtered[adata.filtered$obs$pct_counts_mito < 5]
-```
-
-### Clustering
-
-The goal of many single cell workflows are to perform clustering to identify biologically distrinct groups of cells. We will perform clustering on all QC'ed cells using RNA, ADT, or both and then also re-cluster the T-cells by themselves.
-
-### Analyzing all cells
-
-#### RNA only clustering of all cells
-```{r cluster_rna, message = FALSE, warning=FALSE}
-sc$pp$log1p(adata.filtered.nonartifact)
-sc$pp$highly_variable_genes(adata.filtered.nonartifact, min_mean = 0.0125, max_mean = 3, min_disp = 0.5)
-sc$pp$scale(adata.filtered.nonartifact, max_value = 10)
-sc$tl$pca(adata.filtered.nonartifact, svd_solver = "arpack")
-sc$pp$neighbors(adata.filtered.nonartifact, n_neighbors = 10L, n_pcs = 40L)
-sc$tl$umap(adata.filtered.nonartifact)
-sc$tl$leiden(adata.filtered.nonartifact)
-```
-
-```{r plot_rna,message = FALSE, warning=FALSE}
-sc$pl$umap(adata.filtered.nonartifact, color = list("leiden"))
-```
-
-
-```{r save_data,message = FALSE, warning=FALSE}
-adata$write_h5ad(filename = "../inst/extdata/pbmc1k_adata_raw.h5ad")
-adata.filtered$write_h5ad(filename = "../inst/extdata/pbmc1k_adata_filtered.h5ad")
-adata.filtered.nonartifact$write_h5ad(filename = "../inst/extdata/pbmc1k_adata_filtered_nonartifact.h5ad")
-```
-
-## Step 2: Creating the MAMS object from the SingleCellExperiment object
-
-### Loading data
+## Step 2: Creating the MAMS object from the AnnData object
 
 ```{r create_mams_object,message = FALSE, warning=FALSE}
 library(rmams)
 
 # get the file paths of anndata objects
-
-file_paths <- c("../inst/extdata/pbmc1k_adata_raw.h5ad", "../inst/extdata/pbmc1k_adata_filtered.h5ad", "../inst/extdata/pbmc1k_adata_filtered_nonartifact.h5ad")
+file_paths <- c('../inst/extdata/pbmc3k_annData_processed.h5ad')
 
 # get the names of these objects 
 file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
@@ -115,15 +56,19 @@ object_list <- lapply(file_paths, read_h5ad)
 names(object_list) <- file_names
 
 # define the type of each subset
-observational_subsets<-c("raw", "filtered","nonartifact")
-datasetid = "PBMC1K"
+observational_subsets<-c("nonartifact")
+datasetid = "PBMC3K"
 ```
 
 
 ### Create MAMS object
 
 ```{r create_object}
-result<- convert_AnnData_to_MAMS(object_list,observational_subsets,datasetid)
+result <- convert_AnnData_to_MAMS(
+    object_list = object_list, 
+    observation_subsets = observational_subsets, 
+    X_processing = c("logcounts"), 
+    dataset_id = datasetid)
 ```
 
 ### Accessing data 
@@ -144,7 +89,7 @@ check_MAMS(mams_object = result)
 
 ```{r}
 # add dataset id
-fom(result,"fom1","dataset_id") <-"PBMC1K"
+fom(result,"fom1","dataset_id") <-"PBMC3K"
 
 # by default all reduced dimensions are annotated as Reductions, but UMAP can be better reflected as Embedding
 fom(result, "fom6", "processing") <- "Embedding"
@@ -154,14 +99,14 @@ we can add some commands as well
 ```{r}
 # command example 
 # show two examples, annotate counts matrix and annotate one of reducedDims, commands, params 
-record_id <- "CellRanger.count"
-record_package_name<- "CellRanger"
-record_function_name<- "count"
-record_package_version<- "unknown"
-
-results@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
-                                          record_function_name = record_function_name,
-                                          record_package_version = record_package_version)
+# record_id <- "CellRanger.count"
+# record_package_name<- "CellRanger"
+# record_function_name<- "count"
+# record_package_version<- "unknown"
+# 
+# results@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+#                                           record_function_name = record_function_name,
+#                                           record_package_version = record_package_version)
 
 ```
 
@@ -175,11 +120,14 @@ results@REC[[record_id]]<- create_REC_object(record_package_name = record_packag
 ### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
 
 ```{r}
-write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adata_mams.JSON",format = "JSON")
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc3k_rna_adata_mams.JSON",format = "JSON")
 ```
 
 ## Step 5: Saving MAMS as YAML
 
 ```{r}
-write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adata_mams.yml",format = "YAML")
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc3k_rna_adata_mams.yml",format = "YAML")
 ```
+
+# References:
+[1] Lause, Jan (2023). scverse tutorial data: Getting started with AnnData. figshare. Dataset. https://doi.org/10.6084/m9.figshare.22577536.v2
