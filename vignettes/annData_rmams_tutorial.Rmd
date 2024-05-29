@@ -30,7 +30,7 @@ This workflow is focused on producing data/results that is commonly generated du
 ## Step 1: Import AnnData object
 
 ```{r library, message=FALSE}
-# library(reticulate)
+library(reticulate)
 library(anndata)
 ```
 
