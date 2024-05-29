@@ -74,7 +74,7 @@ The goal of many single cell workflows are to perform clustering to identify bio
 #### RNA only clustering of all cells
 ```{r cluster_rna, message = FALSE, warning=FALSE}
 sce.filtered.nonartifact <- logNormCounts(sce.filtered.nonartifact)
-dec <- modelGeneVar(sce.filtered.nonartifact)
+dec <- scran::modelGeneVar(sce.filtered.nonartifact)
 hvgs <- getTopHVGs(dec, n = 2000)
 sce.filtered.nonartifact <- runPCA(sce.filtered.nonartifact, subset_row = hvgs)
 g <- buildSNNGraph(sce.filtered.nonartifact, use.dimred = "PCA")
