@@ -110,7 +110,7 @@ colLabels(sce.tcell) <- factor(clusters)
 sce.tcell <- runUMAP(sce.tcell, dimred = "PCA")
 ```
 
-```{r plot_rna,message = FALSE, warning=FALSE}
+```{r plot_rna_t_cell,message = FALSE, warning=FALSE}
 plotUMAP(sce.tcell, colour_by = "label")
 ```
 
