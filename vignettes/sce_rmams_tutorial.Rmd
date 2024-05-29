@@ -61,7 +61,7 @@ rownames(sce.filtered) <- ifelse(is.na(gene_symbols), ensembl_ids, gene_symbols)
 The filtered matrix will be further subsetted based on mitochondrial percentage:
 
 ```{r qc}
-is.mito <- grep("mt-", rownames(sce))
+is.mito <- grep("mt-", rownames(sce.filtered))
 sce.filtered.nonartifact <- quickPerCellQC(sce.filtered, subsets=list(Mito=is.mito), sub.fields="subsets_Mito_percent")
 ```
 
