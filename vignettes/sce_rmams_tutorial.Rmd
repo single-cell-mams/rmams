@@ -40,6 +40,7 @@ library(dplyr)
 library(SingleCellExperiment)
 library(DropletUtils)
 library(scater)
+library(scran)
 library(patchwork)
 library(AnnotationDbi)
 library(org.Hs.eg.db)
@@ -75,12 +76,12 @@ The goal of many single cell workflows are to perform clustering to identify bio
 ```{r cluster_rna, message = FALSE, warning=FALSE}
 sce.filtered.nonartifact <- logNormCounts(sce.filtered.nonartifact)
 dec <- scran::modelGeneVar(sce.filtered.nonartifact)
-hvgs <- getTopHVGs(dec, n = 2000)
-sce.filtered.nonartifact <- runPCA(sce.filtered.nonartifact, subset_row = hvgs)
-g <- buildSNNGraph(sce.filtered.nonartifact, use.dimred = "PCA")
+hvgs <- scran::getTopHVGs(dec, n = 2000)
+sce.filtered.nonartifact <- scater::runPCA(sce.filtered.nonartifact, subset_row = hvgs)
+g <- scran::buildSNNGraph(sce.filtered.nonartifact, use.dimred = "PCA")
 clusters <- igraph::cluster_louvain(g)$membership
 colLabels(sce.filtered.nonartifact) <- factor(clusters)
-sce.filtered.nonartifact <- runUMAP(sce.filtered.nonartifact, dimred = "PCA")
+sce.filtered.nonartifact <- scater::runUMAP(sce.filtered.nonartifact, dimred = "PCA")
 ```
 
 ```{r plot_rna,message = FALSE, warning=FALSE}
