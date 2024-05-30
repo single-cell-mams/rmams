@@ -223,7 +223,7 @@ write_MAMS_to_output<-function(MAMS,filepath,format){
 #' Convert input MAMS object to a list of list structre
 #' Useful for storing mams object into the uns slot of AnnData object
 #' @param mams MAMS object 
-#'
+#' @rdname convert_MAMS_to_list
 #' @return A list of list
 #' @export
 convert_MAMS_to_list <- function(mams) {
