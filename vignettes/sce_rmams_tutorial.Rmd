@@ -179,7 +179,7 @@ fom(result, "fom6", "processing") <- "Embedding"
 ```
 
 we can add some commands as well
-```{r}
+```{r add_commands}
 # command example 
 # show two examples, annotate counts matrix and annotate one of reducedDims, commands, params 
 record_id <- "CellRanger.count"
@@ -187,7 +187,7 @@ record_package_name<- "CellRanger"
 record_function_name<- "count"
 record_package_version<- "unknown"
 
-results@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+result@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
                                           record_function_name = record_function_name,
                                           record_package_version = record_package_version)
 
@@ -204,12 +204,10 @@ metadata(sce.filtered.nonartifact) <- list() #store directly? json to list? make
 
 ```{r}
 write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_sce_mams.JSON",format = "JSON")
-
 ```
 
 ## Step 5: Saving MAMS as YAML
 
 ```{r}
 write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_sce_mams.yml",format = "YAML")
-
 ```
