@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
 ```
 
 
-
 # Introduction
 
 Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data.
@@ -60,7 +59,6 @@ observational_subsets<-c("nonartifact")
 datasetid = "PBMC3K"
 ```
 
-
 ### Create MAMS object
 
 ```{r create_object}
@@ -85,7 +83,7 @@ fom(result,"fom1","dataset_id") <-""
 check_MAMS(mams_object = result)
 ```
 
-### Step 4: Updating fields manually
+## Step 4: Updating fields manually
 
 ```{r}
 # add dataset id
@@ -95,29 +93,25 @@ fom(result,"fom1","dataset_id") <-"PBMC3K"
 fom(result, "fom6", "processing") <- "Embedding"
 ```
 
-we can add some commands as well
+We can add some commands as well, e.g. the record for the generation of counts matrix:
 ```{r}
-# command example 
-# show two examples, annotate counts matrix and annotate one of reducedDims, commands, params 
-# record_id <- "CellRanger.count"
-# record_package_name<- "CellRanger"
-# record_function_name<- "count"
-# record_package_version<- "unknown"
-# 
-# results@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
-#                                           record_function_name = record_function_name,
-#                                           record_package_version = record_package_version)
-
+record_id <- "CellRanger.count"
+record_package_name<- "CellRanger"
+record_function_name<- "count"
+record_package_version<- "unknown"
+result@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+                                          record_function_name = record_function_name,
+                                          record_package_version = record_package_version)
 ```
 
-## Storing mams back to object
+## Step 5: Store mams object to AnnData
 ```{r}
-# uns slot
+adata$uns[["MAMS"]] <- convert_MAMS_to_list(result)
 ```
 
 
 ## Step 6: Saving MAMS object to JSON
-### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
+Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
 
 ```{r}
 write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc3k_rna_adata_mams.JSON",format = "JSON")
@@ -131,3 +125,8 @@ write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc3k_rna_adata_m
 
 # References:
 [1] Lause, Jan (2023). scverse tutorial data: Getting started with AnnData. figshare. Dataset. https://doi.org/10.6084/m9.figshare.22577536.v2
+
+# Session Info
+```{r}
+sessionInfo()
+```

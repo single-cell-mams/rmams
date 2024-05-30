@@ -2,6 +2,7 @@
 
 export(check_MAMS)
 export(convert_AnnData_to_MAMS)
+export(convert_MAMS_to_list)
 export(convert_SCE_to_MAMS)
 export(convert_seurat_to_MAMS)
 export(create_FEA_object)

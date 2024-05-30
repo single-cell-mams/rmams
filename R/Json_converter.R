@@ -220,3 +220,24 @@ write_MAMS_to_output<-function(MAMS,filepath,format){
 
 
 
+#' Convert input MAMS object to a list of list structre
+#' Useful for storing mams object into the uns slot of AnnData object
+#' @param mams MAMS object 
+#'
+#' @return A list of list
+#' @export
+convert_MAMS_to_list <- function(mams) {
+    list_to_write <- list(
+        "FOM" = lapply(mams@FOM, collapse_to_list),
+        "FEA" = lapply(mams@FEA, collapse_to_list),
+        "OBS" = lapply(mams@OBS, collapse_to_list),
+        "FID" = lapply(mams@FID, collapse_to_list),
+        "OID" = lapply(mams@OID, collapse_to_list),
+        "ONG" = lapply(mams@ONG, collapse_to_list),
+        "FNG" = lapply(mams@FNG, collapse_to_list),
+        "REC" = lapply(mams@REC, collapse_to_list)
+    )
+    names(list_to_write) <- c("FOM", "FEA", "OBS", "FID", "OID", "ONG", "FNG", "REC")
+    return(list_to_write)
+}
+
