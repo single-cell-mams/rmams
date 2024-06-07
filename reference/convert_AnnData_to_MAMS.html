@@ -24,7 +24,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/rmams_tutorial.html">Creating MAMS from Seurat</a>
+    <a class="dropdown-item" href="../articles/annData_rmams_tutorial.html">Creating MAMS from AnnData</a>
+    <a class="dropdown-item" href="../articles/sce_rmams_tutorial.html">Creating MAMS from SingleCellExperiment</a>
+    <a class="dropdown-item" href="../articles/seurat_rmams_tutorial.html">Creating MAMS from Seurat</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -48,7 +50,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">convert_AnnData_to_MAMS</span><span class="op">(</span><span class="va">object_list</span>, <span class="va">observation_subsets</span>, <span class="va">dataset_id</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">convert_AnnData_to_MAMS</span><span class="op">(</span></span>
+<span>  <span class="va">object_list</span>,</span>
+<span>  <span class="va">X_processing</span>,</span>
+<span>  <span class="va">observation_subsets</span>,</span>
+<span>  <span class="va">dataset_id</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,6 +63,12 @@
     <dl><dt>object_list</dt>
 <dd><p>A named list of AnnData objects
 objects to be converted to MAMS format</p></dd>
+
+
+<dt>X_processing</dt>
+<dd><p>A vector of the same length as object_list,
+where each element describes the processing for X in each object.
+For example, "counts" or "logcounts" or "scaled".</p></dd>
 
 
 <dt>observation_subsets</dt>
@@ -84,8 +97,8 @@ nonartifact, clean.</p></dd>
 <span class="r-in"><span><span class="va">counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="op">(</span><span class="fl">500</span><span class="op">*</span><span class="fl">200</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">500</span>, ncol <span class="op">=</span> <span class="fl">200</span>, </span></span>
 <span class="r-in"><span>    dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Row"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Col"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">adata</span> <span class="op">&lt;-</span> <span class="va">anndata</span><span class="op">$</span><span class="fu">AnnData</span><span class="op">(</span>X <span class="op">=</span> <span class="va">counts</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">adata</span><span class="op">$</span><span class="va">obsm</span><span class="op">[[</span><span class="st">"X_pca"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">counts</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="va">adata</span><span class="op">$</span><span class="va">obsm</span><span class="op">[[</span><span class="st">"X_tsne"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">counts</span><span class="op">[</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/py_get_item.html" class="external-link">py_set_item</a></span><span class="op">(</span><span class="va">adata</span><span class="op">$</span><span class="va">obsm</span>, <span class="st">'X_pca'</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">500</span>, ncol<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/py_get_item.html" class="external-link">py_set_item</a></span><span class="op">(</span><span class="va">adata</span><span class="op">$</span><span class="va">obsm</span>, <span class="st">'X_tsne'</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">500</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mams</span> <span class="op">&lt;-</span> <span class="fu">convert_AnnData_to_MAMS</span><span class="op">(</span>object_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>adata <span class="op">=</span> <span class="va">adata</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    observation_subsets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"full"</span><span class="op">)</span>, dataset_id <span class="op">=</span> <span class="st">"dataset1"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mams</span><span class="op">)</span></span></span>

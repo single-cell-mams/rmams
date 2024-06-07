@@ -7,10 +7,16 @@
     <loc>https://single-cell-mams.github.io/rmams/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>https://single-cell-mams.github.io/rmams/articles/annData_rmams_tutorial.html</loc>
+  </url>
+  <url>
     <loc>https://single-cell-mams.github.io/rmams/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://single-cell-mams.github.io/rmams/articles/rmams_tutorial.html</loc>
+    <loc>https://single-cell-mams.github.io/rmams/articles/sce_rmams_tutorial.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/articles/seurat_rmams_tutorial.html</loc>
   </url>
   <url>
     <loc>https://single-cell-mams.github.io/rmams/authors.html</loc>
@@ -152,6 +158,9 @@
   </url>
   <url>
     <loc>https://single-cell-mams.github.io/rmams/reference/convert_AnnData_to_MAMS.html</loc>
+  </url>
+  <url>
+    <loc>https://single-cell-mams.github.io/rmams/reference/convert_MAMS_to_list.html</loc>
   </url>
   <url>
     <loc>https://single-cell-mams.github.io/rmams/reference/convert_SCE_to_MAMS.html</loc>
