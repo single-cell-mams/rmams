@@ -383,9 +383,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
             ogr <- paste0("ogr", length(MAMS@ONG)+1)
            # graphname <- paste("FindMultiModalNeighbors", mod, dimred, sep = ".")
             graphname <- paste("FindMultiModalNeighbors")
-            if(object@commands[[graphname]]$l2.norm == "TRUE"){
-                edge_metric == "euclidean"
-            }
+            edge_metric == object@commands[[graphname]]$annoy.metric
             metric_type <- "distance"
             accessor <- paste0("Neighbors(", substr(filepath, 1, nchar(filepath)-4), ', \"', neighbor, '\")')
             record_id <- paste("FindMultiModalNeighbors", substr(filepath, 15, nchar(filepath)-4), sep = ".")
@@ -439,7 +437,7 @@ obs_sub_desc<-list("full"=	"Observations have not been filtered or subsetted.",
                    "detected" = "Observations that have minimum levels of detection across features.Filtering include cells with at least 3 counts in at least 3 genes.",
                    "nonartifact"= "A general term to describe filtering that may occur due other quality control metrics.	Artifacts in single cell RNA-seq data include high contamination from ambient material, high mitochondrial percentage, or doublets/multiplets.",
                    "clean"=	"An “analysis ready” set of observations.",
-                   "subset" = "Observations that belong to a certain cell type")
+                   "subset" = "Observations that belong to a certain biological subcategory")
 
 
 PR_desc<-list("transformation" = "Values have been modified but feature and observation dimensions are the same.	Normalization and Log2 transformation",
