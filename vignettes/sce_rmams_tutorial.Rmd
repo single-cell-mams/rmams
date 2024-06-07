@@ -1,0 +1,215 @@
+---
+title: "Creating MAMS from SingleCellExperiment"
+date: "`r Sys.Date()`"
+package: rmams
+output:
+    rmdformats::readthedown:
+      toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+# Introduction
+
+Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data.
+
+This workflow highlights how an RNA expression based experiment from a SingleCellExperiment object can be annotated using the rmams package. For this purpose, we will analyze the [PBMC 1K dataset](https://support.10xgenomics.com/single-cell-gene-expression/datasets/4.0.0/SC3_v3_NextGem_SI_PBMC_CSP_1K) using packages from Bioconductor and with SingleCellExperiment as our data-container.
+
+The steps include:
+- Importing the raw/droplet and filtered/cell matrices
+- Performing quality control and further subsetting the filtered matrix to only include high-quality cells
+- Clustering all cells
+- Clustering T-cells only
+
+This workflow demonstrates how different subsets of cells/observations are produced due to QC/filtering or can be made based on different biological subsets. Note that the goal of this workflow is less about producing the best clustering results and cell type characterization. Rather it is focused on producing data/results that is commonly generated during real-world analyses which can be annotated with MAMS. For more information about MAMS, see the [GitHub repository](https://github.com/single-cell-mams/mams)
+
+## Step 1: Creating the SingleCellExperiment object
+
+### Load required packages
+We first import the required packages into the R environment:
+
+```{r library, message=FALSE}
+library(dplyr)
+library(SingleCellExperiment)
+library(DropletUtils)
+library(scater)
+library(scran)
+library(patchwork)
+library(AnnotationDbi)
+library(org.Hs.eg.db)
+```
+
+### Import data
+Next, we will import raw/droplet and filtered/cell matrices:
+
+```{r import, warning=FALSE}
+sce.raw <- read10xCounts("../data/raw_feature_bc_matrix/")
+sce.filtered <- read10xCounts("../data/filtered_feature_bc_matrix")
+
+ensembl_ids <- rownames(sce.filtered)
+gene_symbols <- mapIds(org.Hs.eg.db, keys = ensembl_ids, column = "SYMBOL", keytype = "ENSEMBL", multiVals = "first")
+rownames(sce.filtered) <- ifelse(is.na(gene_symbols), ensembl_ids, gene_symbols)
+```
+
+### Quality control
+The filtered matrix is then subset based on some quality control metrics and mitchondrial percentage:
+
+```{r qc}
+is.mito <- grep("mt-", rownames(sce.filtered))
+sce.filtered.nonartifact <- quickPerCellQC(sce.filtered, subsets=list(Mito=is.mito), sub.fields="subsets_Mito_percent")
+```
+
+### Clustering
+As the goal of many single cell workflows is to perform clustering to identify biologically relevant groups of cells, we will perform clustering on all cells that have passed QC metrics previously:
+
+```{r cluster_rna, message = FALSE, warning=FALSE}
+sce.filtered.nonartifact <- logNormCounts(sce.filtered.nonartifact)
+dec <- scran::modelGeneVar(sce.filtered.nonartifact)
+hvgs <- scran::getTopHVGs(dec, n = 2000)
+sce.filtered.nonartifact <- scater::runPCA(sce.filtered.nonartifact, subset_row = hvgs)
+g <- scran::buildSNNGraph(sce.filtered.nonartifact, use.dimred = "PCA")
+clusters <- igraph::cluster_louvain(g)$membership
+colLabels(sce.filtered.nonartifact) <- factor(clusters)
+sce.filtered.nonartifact <- scater::runUMAP(sce.filtered.nonartifact, dimred = "PCA")
+```
+
+```{r plot_rna,message = FALSE, warning=FALSE}
+plotUMAP(sce.filtered.nonartifact, colour_by = "label")
+```
+
+```{r plot_rna_t_cells,message = FALSE, warning=FALSE}
+plotUMAP(sce.filtered.nonartifact, colour_by = "CD3E", by_exprs_values = "logcounts")
+```
+
+### Subset T-cells
+Now we subset to just the T-cells and re-do clustering on this subset:
+
+```{r subset_tcell,message = FALSE, warning=FALSE}
+sce.tcell <- sce.filtered.nonartifact[, sce.filtered.nonartifact$label %in% c(1,3,5,6,9)]
+```
+
+### Clustering of T-cells subset
+
+```{r cluster_rna_tcell,message = FALSE, warning=FALSE}
+sce.tcell <- logNormCounts(sce.tcell)
+dec <- modelGeneVar(sce.tcell)
+hvgs <- getTopHVGs(dec, n = 2000)
+sce.tcell <- runPCA(sce.tcell, subset_row = hvgs)
+g <- buildSNNGraph(sce.tcell, use.dimred = "PCA")
+clusters <- igraph::cluster_louvain(g)$membership
+colLabels(sce.tcell) <- factor(clusters)
+sce.tcell <- runUMAP(sce.tcell, dimred = "PCA")
+```
+
+```{r plot_rna_t_cell,message = FALSE, warning=FALSE}
+plotUMAP(sce.tcell, colour_by = "label")
+```
+
+### Save data
+
+```{r save_data,message = FALSE, warning=FALSE}
+saveRDS(sce.raw, "../inst/extdata/pbmc1k_sce_raw.rds")
+saveRDS(sce.filtered, "../inst/extdata/pbmc1k_sce_filtered.rds")
+saveRDS(sce.filtered.nonartifact, "../inst/extdata/pbmc1k_sce_filtered_nonartifact.rds")
+saveRDS(sce.tcell, "../inst/extdata/pbmc1k_sce_tcell.rds")
+```
+
+## Step 2: Creating the MAMS object from the SingleCellExperiment object
+
+### Load packages and import data
+
+```{r create_mams_object,message = FALSE, warning=FALSE}
+library(rmams)
+
+# get the file paths of sce objects
+
+file_paths <- c("../inst/extdata/pbmc1k_sce_raw.rds", "../inst/extdata/pbmc1k_sce_filtered.rds", "../inst/extdata/pbmc1k_sce_filtered_nonartifact.rds", "../inst/extdata/pbmc1k_sce_tcell.rds")
+
+# get the names of these objects 
+file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
+
+# save the seurat objects onto the object_list by reading the object from file path.
+object_list <- lapply(file_paths, readRDS)
+
+# name the list objects using previously generated file_names.
+names(object_list) <- file_names
+
+# define the type of each subset
+observational_subsets<-c("raw", "filtered","nonartifact","subset")
+datasetid = "PBMC1K"
+```
+
+
+### Create MAMS object
+
+```{r create_object}
+result<- convert_SCE_to_MAMS(object_list,observational_subsets,datasetid)
+```
+
+### Accessing data 
+
+```{r show_results}
+# Get the dataset_id from the first fom
+fom(result,"fom1","dataset_id")
+```
+
+## Step 3: Validating MAMS object
+
+```{r validate_mams,message=TRUE,warning=TRUE, error=TRUE}
+fom(result,"fom1","dataset_id") <-""
+check_MAMS(mams_object = result)
+```
+
+## Step 4: Updating fields manually
+
+```{r}
+# add dataset id
+fom(result,"fom1","dataset_id") <-"PBMC1K"
+
+# by default all reduced dimensions are annotated as Reductions, but UMAP can be better reflected as Embedding
+fom(result, "fom6", "processing") <- "Embedding"
+```
+
+We can add some commands as well, e.g. the record for the generation of counts matrix:
+```{r add_commands}
+record_id <- "CellRanger.count"
+record_package_name<- "CellRanger"
+record_function_name<- "count"
+record_package_version<- "unknown"
+result@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+                                          record_function_name = record_function_name,
+                                          record_package_version = record_package_version)
+```
+
+## Step 5: Store mams object to SCE 
+
+```{r}
+metadata(sce.filtered.nonartifact) <- c(metadata(sce.filtered.nonartifact), list(mams = result))
+```
+
+
+## Step 6: Saving MAMS object to JSON
+Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_sce_mams.JSON",format = "JSON")
+```
+
+## Step 7: Saving MAMS as YAML
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_sce_mams.yml",format = "YAML")
+```
+
+# Session Info
+```{r}
+sessionInfo()
+```

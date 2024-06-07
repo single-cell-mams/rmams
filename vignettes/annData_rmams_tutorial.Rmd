@@ -1,0 +1,132 @@
+---
+title: "Creating MAMS from AnnData"
+date: "`r Sys.Date()`"
+package: rmams
+output:
+    rmdformats::readthedown:
+      toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Introduction
+
+Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data.
+
+This workflow highlights how an RNA expression based experiment from an AnnData object can be annotated using the rmams package. For this purpose, we utilize a pre-processed PBMC3K AnnData object, which has been passed through standard python scanpy workflow.
+
+The data object (scverse-getting-started-anndata-pbmc3k_processed.h5ad) is available through this link [here](https://figshare.com/articles/dataset/scverse_tutorial_data_Getting_started_with_AnnData/22577536/2?file=40067737)[1].
+
+This workflow is focused on producing data/results that is commonly generated during real-world analyses which can be annotated with MAMS. For more information about MAMS, see the [GitHub repository](https://github.com/single-cell-mams/mams)
+
+## Step 1: Import AnnData object
+
+```{r library, message=FALSE}
+library(reticulate)
+library(anndata)
+```
+
+```{r import, warning=FALSE}
+adata <- anndata::read_h5ad('../inst/extdata/pbmc3k_annData_processed.h5ad')
+```
+
+## Step 2: Creating the MAMS object from the AnnData object
+
+```{r create_mams_object,message = FALSE, warning=FALSE}
+library(rmams)
+
+# get the file paths of anndata objects
+file_paths <- c('../inst/extdata/pbmc3k_annData_processed.h5ad')
+
+# get the names of these objects 
+file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
+
+# save the anndata objects onto the object_list by reading the object from file path.
+object_list <- lapply(file_paths, read_h5ad)
+
+# name the list objects using previously generated file_names.
+names(object_list) <- file_names
+
+# define the type of each subset
+observational_subsets<-c("nonartifact")
+datasetid = "PBMC3K"
+```
+
+### Create MAMS object
+
+```{r create_object}
+result <- convert_AnnData_to_MAMS(
+    object_list = object_list, 
+    observation_subsets = observational_subsets, 
+    X_processing = c("logcounts"), 
+    dataset_id = datasetid)
+```
+
+### Accessing data 
+
+```{r show_results}
+# Get the dataset_id from the first fom
+fom(result,"fom1","dataset_id")
+```
+
+## Step 3: Validating MAMS object
+
+```{r validate_mams,message=TRUE,warning=TRUE, error=TRUE}
+fom(result,"fom1","dataset_id") <-""
+check_MAMS(mams_object = result)
+```
+
+## Step 4: Updating fields manually
+
+```{r}
+# add dataset id
+fom(result,"fom1","dataset_id") <-"PBMC3K"
+
+# by default all reduced dimensions are annotated as Reductions, but UMAP can be better reflected as Embedding
+fom(result, "fom6", "processing") <- "Embedding"
+```
+
+We can add some commands as well, e.g. the record for the generation of counts matrix:
+```{r}
+record_id <- "CellRanger.count"
+record_package_name<- "CellRanger"
+record_function_name<- "count"
+record_package_version<- "unknown"
+result@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
+                                          record_function_name = record_function_name,
+                                          record_package_version = record_package_version)
+```
+
+## Step 5: Store mams object to AnnData
+```{r}
+adata$uns[["MAMS"]] <- convert_MAMS_to_list(result)
+```
+
+
+## Step 6: Saving MAMS object to JSON
+Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc3k_rna_adata_mams.JSON",format = "JSON")
+```
+
+## Step 5: Saving MAMS as YAML
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc3k_rna_adata_mams.yml",format = "YAML")
+```
+
+# References:
+[1] Lause, Jan (2023). scverse tutorial data: Getting started with AnnData. figshare. Dataset. https://doi.org/10.6084/m9.figshare.22577536.v2
+
+# Session Info
+```{r}
+sessionInfo()
+```

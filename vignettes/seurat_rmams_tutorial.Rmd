@@ -1,0 +1,299 @@
+---
+title: "Creating MAMS from Seurat"
+date: "`r Sys.Date()`"
+package: rmams
+output:
+    rmdformats::readthedown:
+      toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+# Introduction
+
+Matrix and Analysis Metadata Standards (MAMS) can be used to capture the relevant information about the data matrices and annotations that are produced during common and complex analysis workflows for single-cell data. This use case demonstrates how MAMS can be used to annotate matrices and annotations that are produced during the analysis of multi-modal single-cell data containing both RNA and Antibody Derived Tags (ADTs). We will analyze the [PBMC 1K dataset](https://support.10xgenomics.com/single-cell-gene-expression/datasets/4.0.0/SC3_v3_NextGem_SI_PBMC_CSP_1K) with the Seurat package according to the [Multi-modal](https://satijalab.org/seurat/articles/multimodal_vignette.html) and [Weighted Nearst Neighbor vignettes](https://satijalab.org/seurat/articles/weighted_nearest_neighbor_analysis.html). The analytical steps include:
+
+1. Importing the raw/droplet and filtered/cell matrices
+2. Performing quality control and further subsetting the filtered matrix to only include high-quality cells
+3. Clustering all cells with RNA only
+4. Clustering all cells with ADTs only
+5. Clustering all cells with both RNA and ADT
+6. Clustering T-cells with RNA only
+7. Clustering T-cells with ADT only
+8. Clustering T-cells with both RNA and ADT
+
+This workflow demonstrates how different subsets of cells/observations are produced due to QC/filtering or can be made based on different biological subsets. It also produces several matrices and annotations from different modalities. Note that the goal of this workflow is less about producing the best clustering results and cell type characterization. Rather it is focused on producing data/results that is commonly generated during real-world analyses which can be annotated with MAMS. For more information about MAMS, see the [GitHub repository](https://github.com/single-cell-mams/mams)
+
+
+## Step 1: Creating the Seurat object
+
+### Importing 
+
+```{r library, message=FALSE}
+library(dplyr)
+library(Seurat)
+library(patchwork)
+```
+
+First, we will import raw/droplet and filtered/cell matrices:
+
+```{r import, warning=FALSE}
+raw.matrices <- Read10X(data.dir = "../data/raw_feature_bc_matrix/")
+data.raw <- CreateSeuratObject(counts = raw.matrices[[1]], assay = "RNA", project = "pbmc1k")
+adt <- CreateAssayObject(counts = raw.matrices[[2]])
+data.raw[["ADT"]] <- adt
+
+nonempty.matrices <- Read10X(data.dir = "../data/filtered_feature_bc_matrix")
+data.nonartifact <- CreateSeuratObject(counts = nonempty.matrices[[1]], assay = "RNA", project = "pbmc1k")
+adt <- CreateAssayObject(counts = nonempty.matrices[[2]])
+data.nonartifact[["ADT"]] <- adt
+```
+
+### Quality control
+
+The filtered matrix will be further subsetted based on mitochondrial percentage and total number of features detected:
+
+```{r qc}
+data.nonartifact[["percent.mt"]] <- PercentageFeatureSet(data.nonartifact, pattern = "^MT-")
+data <- subset(data.nonartifact, subset = nFeature_RNA > 200 & percent.mt < 5)
+```
+
+### Clustering
+
+The goal of many single cell workflows are to perform clustering to identify biologically distrinct groups of cells. We will perform clustering on all QC'ed cells using RNA, ADT, or both and then also re-cluster the T-cells by themselves.
+
+### Analyzing all cells
+
+
+#### RNA only clustering of all cells
+```{r cluster_rna, message = FALSE, warning=FALSE}
+DefaultAssay(data) <- 'RNA'
+data <- NormalizeData(data) %>% FindVariableFeatures() %>% ScaleData() %>% RunPCA()
+data <- FindNeighbors(data, dims = 1:10)
+data <- FindClusters(data, resolution = 2, verbose = FALSE)
+data <- RunUMAP(data, reduction = 'pca', dims = 1:10, assay = 'RNA', 
+              reduction.name = 'rna.umap', reduction.key = 'rnaUMAP_')
+```
+
+```{r plot_rna,message = FALSE, warning=FALSE}
+DimPlot(data, reduction = 'rna.umap')
+```
+
+#### ADT only clustering of all cells
+
+```{r cluster_adt,message = FALSE, warning=FALSE}
+DefaultAssay(data) <- 'ADT'
+VariableFeatures(data) <- rownames(data[["ADT"]])
+data <- NormalizeData(data, normalization.method = 'CLR', margin = 2) %>% 
+  ScaleData() %>% RunPCA(reduction.name = 'apca', dims = 1:10)
+data <- FindNeighbors(data, reduction = "apca", dims = 1:10)
+data <- FindClusters(data, graph.name = "ADT_snn", resolution = 2, verbose = FALSE)
+data <- RunUMAP(data, reduction = 'apca', dims = 1:10, 
+              reduction.name = 'adt.umap', reduction.key = 'adtUMAP_')
+```
+
+```{r plot_adt,message = FALSE, warning=FALSE}
+DimPlot(data, reduction = 'adt.umap')
+```
+
+
+#### Multimodal clustering of all cells
+
+```{r multimodal_clustering,message = FALSE, warning=FALSE}
+data <- FindMultiModalNeighbors(
+  data, reduction.list = list("pca", "apca"), 
+  dims.list = list(1:20, 1:10), modality.weight.name = "RNA.weight"
+)
+```
+
+
+```{r plot_multimodal_umap,message = FALSE, warning=FALSE}
+data <- RunUMAP(data, nn.name = "weighted.nn", reduction.name = "wnn.umap", reduction.key = "wnnUMAP_")
+data <- FindClusters(data, graph.name = "wsnn", algorithm = 3, resolution = 2, verbose = FALSE)
+```
+
+```{r plot_multimodal,message = FALSE, warning=FALSE}
+DimPlot(data, reduction = 'wnn.umap', label = TRUE, repel = TRUE)
+FeaturePlot(data, features = c("adt_CD3","rna_CD3E"), reduction = 'wnn.umap')
+```
+
+### Analysis of T-cell subset
+
+```{r subset_tcell,message = FALSE, warning=FALSE}
+data.tcell <- subset(data, seurat_clusters %in% 0:7)
+```
+
+
+
+#### RNA only clustering of T-cells
+
+```{r cluster_rna_tcell,message = FALSE, warning=FALSE}
+DefaultAssay(data.tcell) <- 'RNA'
+data.tcell <- NormalizeData(data.tcell) %>% FindVariableFeatures() %>% ScaleData() %>% RunPCA(reduction.name = "pca.tcell")
+data.tcell <- FindNeighbors(data.tcell, reduction = "pca.tcell", dims = 1:10)
+data.tcell <- FindClusters(data.tcell, resolution = 2, verbose = FALSE)
+data.tcell <- RunUMAP(data.tcell, reduction = 'pca.tcell', dims = 1:10, assay = 'RNA', 
+              reduction.name = 'rna.tcell.umap', reduction.key = 'rnaTcellUMAP_')
+```
+
+```{r plot_rna_tcell,message = FALSE, warning=FALSE}
+DimPlot(data.tcell, reduction = 'rna.tcell.umap')
+```
+
+#### ADT only clustering of T-cells
+
+```{r cluster_adt_tcell,message = FALSE, warning=FALSE}
+DefaultAssay(data.tcell) <- 'ADT'
+VariableFeatures(data.tcell) <- rownames(data.tcell[["ADT"]])
+data.tcell <- NormalizeData(data.tcell, normalization.method = 'CLR', margin = 2) %>% 
+  ScaleData() %>% RunPCA(reduction.name = 'apca.tcell', dims = 1:10)
+data.tcell <- RunUMAP(data.tcell, reduction = 'apca.tcell', dims = 1:10, assay = 'ADT', 
+              reduction.name = 'adt.tcell.umap', reduction.key = 'adtTcellUMAP_')
+data.tcell <- FindNeighbors(data.tcell, reduction = "apca.tcell", dims = 1:10)
+data.tcell <- FindClusters(data.tcell, graph.name = "ADT_snn", resolution = 2, verbose = FALSE)
+data.tcell <- FindClusters(data.tcell, algorithm = 3, resolution = 2, verbose = FALSE)
+
+```
+
+
+```{r plot_adt_tcell,message = FALSE, warning=FALSE}
+DimPlot(data.tcell, reduction = 'adt.tcell.umap')
+```
+
+#### Multimodal clustering of T-cells
+
+```{r multimodal_clustering_tcell,message = FALSE, warning=FALSE}
+data.tcell <- FindMultiModalNeighbors(
+  data.tcell, reduction.list = list("pca.tcell", "apca.tcell"),
+  dims.list = list(1:10, 1:10), modality.weight.name = "RNA.weight"
+)
+```
+
+
+```{r plot_multimodal_umap_tcell,message = FALSE, warning=FALSE}
+data.tcell <- RunUMAP(data.tcell, nn.name = "weighted.nn", reduction.name = "wnn.tcell.umap", reduction.key = "wnnTcellUMAP_")
+data.tcell <- FindClusters(data.tcell, graph.name = "wsnn", algorithm = 3, resolution = 2, verbose = FALSE)
+```
+
+```{r plot_multimodal_tcell,message = FALSE, warning=FALSE}
+DimPlot(data.tcell, reduction = 'wnn.tcell.umap', label = TRUE, repel = TRUE)
+```
+The data matrices stored within a Seurat object will be saved to an "rds" file. Note that we could extract and save each matrix in a basic txt or mtx file as well.
+
+```{r save_data,message = FALSE, warning=FALSE}
+saveRDS(data.raw, "../inst/extdata/pbmc1k_seurat_raw.rds")
+saveRDS(data.nonartifact, "../inst/extdata/pbmc1k_seurat_nonartifact.rds")
+saveRDS(data, "../inst/extdata/pbmc1k_seurat_filtered.rds")
+saveRDS(data.tcell, "../inst/extdata/pbmc1k_seurat_tcell.rds")
+```
+
+
+
+## Step 2: Creating the MAMS object from seurat object
+
+### Loading data
+
+```{r create_mams_object,message = FALSE, warning=FALSE}
+library(rmams)
+
+# get the file paths of seurat objects
+
+file_paths <- c("../inst/extdata/pbmc1k_seurat_filtered.rds", "../inst/extdata/pbmc1k_seurat_nonartifact.rds", "../inst/extdata/pbmc1k_seurat_tcell.rds")
+
+# get the names of these objects 
+file_names <-  gsub(pattern = "\\.rds$", replacement = "", x = basename(file_paths))
+
+# save the seurat objects onto the object_list by reading the object from file path.
+object_list <- lapply(file_paths, readRDS)
+
+# name the list objects using previously generated file_names.
+names(object_list) <- file_names
+
+# define the type of each subset
+observational_subsets<-c("filtered","nonartifact","subset")
+datasetid = "PBMC1K"
+```
+
+### Create MAMS object
+
+```{r create_object}
+parents<-c("yes","no","no","no")
+result<- convert_seurat_to_MAMS(object_list,observational_subsets,datasetid,parents)
+```
+
+### Accessing data 
+
+```{r show_results}
+# Get the dataset_id from the first fom
+fom(result,"fom1","dataset_id")
+```
+
+## Step 3: Validating MAMS object
+
+```{r validate_mams,message=TRUE,warning=TRUE, error=TRUE}
+fom(result,"fom1","dataset_id") <-""
+check_MAMS(mams_object = result)
+```
+
+### Step 4: Filling the missing field
+
+```{r}
+fom(result,"fom1","dataset_id") <-"PBMC1K"
+```
+
+
+## Step 4: Saving MAMS object to JSON
+### Here we show how you can convert the MAMS object to the JSON format for export. MAMS and JSON formats are interchangeable.
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.JSON",format = "JSON")
+
+```
+
+
+## Step 5: Saving MAMS as YAML
+
+```{r}
+write_MAMS_to_output(MAMS=result, filepath = "../inst/extdata/pbmc1k_rna_adt_seurat_mams.yml",format = "YAML")
+
+```
+
+
+
+
+## Support for Seurat V5 objects
+#### In this example we show how we can extract counts from Seurat V5 object and make a V3 object that can be used with rmams pacakge
+
+```{r, warning=FALSE,message=FALSE}
+options(Seurat.object.assay.version = "v5")
+
+
+pbmc.counts <- Read10X(data.dir = "../data/filtered_feature_bc_matrix/")
+pbmc <- CreateSeuratObject(counts = pbmc.counts)
+class(pbmc[["RNA"]])
+
+# Extract counts from v5
+v3_counts = LayerData(pbmc, assay="RNA", layer='counts')
+
+# make v3 object 
+
+options(Seurat.object.assay.version = "v3")
+pbmc_v3 <- CreateSeuratObject(counts = v3_counts)
+class(pbmc_v3[["RNA"]])
+
+# This pbmc_v3 can now be used with rmams pacakge
+
+```
+
+
+
+
+
