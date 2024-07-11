@@ -91,7 +91,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                         record_id <- "Seurat.subset"
                         record_package_name<- "Seurat"
                         record_function_name<- "subset"
-                        record_package_version<- as.character(Version(object))
+                        record_package_version<- as.character(SeuratObject::Version(object))
                     }
                     
                     MAMS@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
@@ -149,7 +149,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                     record_id <- paste0("NormalizeData",".",analyte)
                     record_package_name<- "Seurat"
                     record_function_name<- "NormalizeData"
-                    record_package_version<- as.character(Version(object))
+                    record_package_version<- as.character(SeuratObject::Version(object))
                     record_function_parameters<- list(object@commands[[record_id]])
                     MAMS@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
                                                               record_function_name = record_function_name,
@@ -205,7 +205,7 @@ convert_seurat_to_MAMS <- function(object_list,observation_subsets,dataset_id,pa
                     record_id <- paste0("ScaleData",".",analyte)
                     record_package_name<- "Seurat"
                     record_function_name<- "ScaleData"
-                    record_package_version<- as.character(Version(object))
+                    record_package_version<- as.character(SeuratObject::Version(object))
                     record_function_parameters<- list(object@commands[[record_id]])
                     MAMS@REC[[record_id]]<- create_REC_object(record_package_name = record_package_name,
                                                               record_function_name = record_function_name,
