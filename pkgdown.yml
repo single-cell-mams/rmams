@@ -5,7 +5,7 @@ articles:
   annData_rmams_tutorial: annData_rmams_tutorial.html
   sce_rmams_tutorial: sce_rmams_tutorial.html
   seurat_rmams_tutorial: seurat_rmams_tutorial.html
-last_built: 2024-07-11T14:00Z
+last_built: 2024-07-11T14:05Z
 urls:
   reference: https://single-cell-mams.github.io/rmams/reference
   article: https://single-cell-mams.github.io/rmams/articles
