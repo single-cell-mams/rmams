@@ -58,7 +58,7 @@
 
       <h1>Creating MAMS from SingleCellExperiment</h1>
             
-            <h4 data-toc-skip class="date">2024-07-11</h4>
+            <h4 data-toc-skip class="date">2024-08-26</h4>
       
 
       <div class="d-none name"><code>sce_rmams_tutorial.Rmd</code></div>
@@ -416,7 +416,7 @@ for export. MAMS and JSON formats are interchangeable.</p>
 <span><span class="co">#&gt; other attached packages:</span></span>
 <span><span class="co">#&gt;  [1] rmams_1.0.1                 org.Hs.eg.db_3.19.1        </span></span>
 <span><span class="co">#&gt;  [3] AnnotationDbi_1.66.0        patchwork_1.2.0            </span></span>
-<span><span class="co">#&gt;  [5] scran_1.32.0                scater_1.32.0              </span></span>
+<span><span class="co">#&gt;  [5] scran_1.32.0                scater_1.32.1              </span></span>
 <span><span class="co">#&gt;  [7] ggplot2_3.5.1               scuttle_1.14.0             </span></span>
 <span><span class="co">#&gt;  [9] DropletUtils_1.24.0         SingleCellExperiment_1.26.0</span></span>
 <span><span class="co">#&gt; [11] SummarizedExperiment_1.34.0 Biobase_2.64.0             </span></span>
@@ -428,30 +428,30 @@ for export. MAMS and JSON formats are interchangeable.</p>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;   [1] jsonlite_1.8.8            magrittr_2.0.3           </span></span>
 <span><span class="co">#&gt;   [3] ggbeeswarm_0.7.2          farver_2.1.2             </span></span>
-<span><span class="co">#&gt;   [5] rmarkdown_2.27            fs_1.6.4                 </span></span>
+<span><span class="co">#&gt;   [5] rmarkdown_2.28            fs_1.6.4                 </span></span>
 <span><span class="co">#&gt;   [7] zlibbioc_1.50.0           ragg_1.3.2               </span></span>
 <span><span class="co">#&gt;   [9] vctrs_0.6.5               memoise_2.0.1            </span></span>
 <span><span class="co">#&gt;  [11] DelayedMatrixStats_1.26.0 htmltools_0.5.8.1        </span></span>
 <span><span class="co">#&gt;  [13] S4Arrays_1.4.1            BiocNeighbors_1.22.0     </span></span>
 <span><span class="co">#&gt;  [15] Rhdf5lib_1.26.0           SparseArray_1.4.8        </span></span>
-<span><span class="co">#&gt;  [17] rhdf5_2.48.0              parallelly_1.37.1        </span></span>
-<span><span class="co">#&gt;  [19] sass_0.4.9                bslib_0.7.0              </span></span>
+<span><span class="co">#&gt;  [17] rhdf5_2.48.0              parallelly_1.38.0        </span></span>
+<span><span class="co">#&gt;  [19] sass_0.4.9                bslib_0.8.0              </span></span>
 <span><span class="co">#&gt;  [21] htmlwidgets_1.6.4         desc_1.4.3               </span></span>
 <span><span class="co">#&gt;  [23] cachem_1.1.0              igraph_2.0.3             </span></span>
 <span><span class="co">#&gt;  [25] lifecycle_1.0.4           pkgconfig_2.0.3          </span></span>
 <span><span class="co">#&gt;  [27] rsvd_1.0.5                Matrix_1.7-0             </span></span>
 <span><span class="co">#&gt;  [29] R6_2.5.1                  fastmap_1.2.0            </span></span>
-<span><span class="co">#&gt;  [31] GenomeInfoDbData_1.2.12   future_1.33.2            </span></span>
-<span><span class="co">#&gt;  [33] digest_0.6.36             colorspace_2.1-0         </span></span>
+<span><span class="co">#&gt;  [31] GenomeInfoDbData_1.2.12   future_1.34.0            </span></span>
+<span><span class="co">#&gt;  [33] digest_0.6.37             colorspace_2.1-1         </span></span>
 <span><span class="co">#&gt;  [35] dqrng_0.4.1               irlba_2.3.5.1            </span></span>
 <span><span class="co">#&gt;  [37] textshaping_0.4.0         RSQLite_2.3.7            </span></span>
 <span><span class="co">#&gt;  [39] beachmat_2.20.0           labeling_0.4.3           </span></span>
 <span><span class="co">#&gt;  [41] progressr_0.14.0          fansi_1.0.6              </span></span>
 <span><span class="co">#&gt;  [43] httr_1.4.7                abind_1.4-5              </span></span>
 <span><span class="co">#&gt;  [45] compiler_4.4.1            bit64_4.0.5              </span></span>
-<span><span class="co">#&gt;  [47] withr_3.0.0               BiocParallel_1.38.0      </span></span>
+<span><span class="co">#&gt;  [47] withr_3.0.1               BiocParallel_1.38.0      </span></span>
 <span><span class="co">#&gt;  [49] viridis_0.6.5             DBI_1.2.3                </span></span>
-<span><span class="co">#&gt;  [51] highr_0.11                HDF5Array_1.32.0         </span></span>
+<span><span class="co">#&gt;  [51] highr_0.11                HDF5Array_1.32.1         </span></span>
 <span><span class="co">#&gt;  [53] R.utils_2.12.3            DelayedArray_0.30.1      </span></span>
 <span><span class="co">#&gt;  [55] bluster_1.14.0            tools_4.4.1              </span></span>
 <span><span class="co">#&gt;  [57] vipor_0.4.7               beeswarm_0.4.0           </span></span>
@@ -464,19 +464,19 @@ for export. MAMS and JSON formats are interchangeable.</p>
 <span><span class="co">#&gt;  [71] ScaledMatrix_1.12.0       metapod_1.12.0           </span></span>
 <span><span class="co">#&gt;  [73] utf8_1.2.4                XVector_0.44.0           </span></span>
 <span><span class="co">#&gt;  [75] ggrepel_0.9.5             pillar_1.9.0             </span></span>
-<span><span class="co">#&gt;  [77] spam_2.10-0               limma_3.60.3             </span></span>
+<span><span class="co">#&gt;  [77] spam_2.10-0               limma_3.60.4             </span></span>
 <span><span class="co">#&gt;  [79] lattice_0.22-6            FNN_1.1.4                </span></span>
 <span><span class="co">#&gt;  [81] bit_4.0.5                 tidyselect_1.2.1         </span></span>
 <span><span class="co">#&gt;  [83] locfit_1.5-9.10           Biostrings_2.72.1        </span></span>
 <span><span class="co">#&gt;  [85] knitr_1.48                gridExtra_2.3            </span></span>
-<span><span class="co">#&gt;  [87] bookdown_0.40             edgeR_4.2.0              </span></span>
-<span><span class="co">#&gt;  [89] xfun_0.45                 statmod_1.5.0            </span></span>
-<span><span class="co">#&gt;  [91] UCSC.utils_1.0.0          yaml_2.3.9               </span></span>
+<span><span class="co">#&gt;  [87] bookdown_0.40             edgeR_4.2.1              </span></span>
+<span><span class="co">#&gt;  [89] xfun_0.47                 statmod_1.5.0            </span></span>
+<span><span class="co">#&gt;  [91] UCSC.utils_1.0.0          yaml_2.3.10              </span></span>
 <span><span class="co">#&gt;  [93] evaluate_0.24.0           codetools_0.2-20         </span></span>
 <span><span class="co">#&gt;  [95] tibble_3.2.1              cli_3.6.3                </span></span>
 <span><span class="co">#&gt;  [97] uwot_0.2.2                systemfonts_1.1.0        </span></span>
 <span><span class="co">#&gt;  [99] munsell_0.5.1             jquerylib_0.1.4          </span></span>
-<span><span class="co">#&gt; [101] Rcpp_1.0.12               globals_0.16.3           </span></span>
+<span><span class="co">#&gt; [101] Rcpp_1.0.13               globals_0.16.3           </span></span>
 <span><span class="co">#&gt; [103] png_0.1-8                 parallel_4.4.1           </span></span>
 <span><span class="co">#&gt; [105] pkgdown_2.1.0             blob_1.2.4               </span></span>
 <span><span class="co">#&gt; [107] dotCall64_1.1-1           sparseMatrixStats_1.16.0 </span></span>
