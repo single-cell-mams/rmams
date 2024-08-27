@@ -12,6 +12,7 @@ library(devtools)
 install_github("single-cell-mams/rmams")
 
 ```
+or with a conda-compatible package manager using the [bioconda](https://bioconda.github.io/recipes/r-mams/README.html) channel.
 
 ### Quick Usage
 
